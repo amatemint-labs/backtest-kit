@@ -1,0 +1,11 @@
+# Copy to kit.toml to change these. Everything here is optional.
+tickers = ["SPY", "QQQ", "AAPL", "MSFT", "NVDA"]   # default list for fetch / census
+market = "SPY"                                    # the market ticker for "market state" readings
+start = "2024-05-01"                              # first date for minute bars
+timeframes = ["3m", "15m", "1h", "4h", "1D"]
+# data_dir = "~/BacktestData"                     # keep bars somewhere else (e.g. an external drive)
+ts_redirect_port = 3000                           # TradeStation default callbacks: 80, 3000, 3001, 8080, 31022
+ts_scopes = "openid offline_access MarketData"    # market data only. Never add Trade.
+ts_window_days = 120                              # calendar days per minute-bar request
+ts_requests_per_minute = 80                       # TradeStation allows 500 bar requests / 5 min
+workers = 0                                       # 0 = auto (cores - 2, at most 8)

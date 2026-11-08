@@ -1,0 +1,28 @@
+# Sample study on SYNTHETIC data (made-up tickers SYNA..SYNE, market SYNSPY). Numbers mean nothing about markets.
+tickers = []
+market = "SYNSPY"
+start = "2025-05-01"
+end = ""
+split = "2025-11-03"
+holdout_start = ""
+mode = "closed"
+labels = ["C_1x", "C_3x", "P_1x", "P_3x"]
+group_removal = true
+min_state_n = 120
+indicators = ["stoch", "rsi", "macd", "rsi_bands"]      # the three bundled indicators + the example plug-in
+use_signals = ["rsi_hook"]                               # plug-in signal from plugins/signals/example_rsi_hook.py
+
+[signals.volume_surge]
+side = "C"
+when = "h1_volume_x > 2.0 and m15_volume_x > 1.5"
+note = "heavy volume on the 1h and 15m bars"
+
+[signals.stoch_turn_up]
+side = "C"
+when = "h1_STOCH_STATE == '<20 rising' and h4_MACD_STATE != 'bear widening'"
+note = "1h stochastic turning up from below 20, 4h MACD not falling harder"
+
+[signals.overbought_fade]
+side = "P"
+when = "h1_stoch_k > 80 and h1_stoch_ch2 < 0 and h1_MACD_STATE == 'bull narrowing'"
+note = "1h stochastic rolling over above 80 while 1h MACD momentum fades"

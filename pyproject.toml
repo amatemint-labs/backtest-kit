@@ -1,0 +1,37 @@
+[project]
+name = "backtest-kit"
+version = "1.0.0"
+description = "Honest, local options backtesting for discretionary traders: your own indicators, every bar, priced as options, graded out of sample."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.12",
+    "pyarrow>=15",
+    "numba>=0.60",
+    "httpx>=0.27",
+    "keyring>=25",
+]
+
+[project.optional-dependencies]
+databento = ["databento>=0.40"]
+
+[project.scripts]
+kit = "kit.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::pandas.errors.PerformanceWarning"]

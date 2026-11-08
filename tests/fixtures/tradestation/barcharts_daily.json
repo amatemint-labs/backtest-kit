@@ -1,0 +1,7 @@
+{
+  "_about": "Shape of GET /v3/marketdata/barcharts/{symbol}?unit=Daily per TradeStation's API v3 spec. Made-up values.",
+  "Bars": [
+    {"High": "499.00", "Low": "492.10", "Open": "493.00", "Close": "498.20", "TimeStamp": "2026-11-05T21:00:00Z", "TotalVolume": "61234567", "BarStatus": "Closed"},
+    {"High": "500.10", "Low": "495.00", "Open": "498.00", "Close": "497.05", "TimeStamp": "2026-11-06T21:00:00Z", "TotalVolume": "58000000", "BarStatus": "Closed"}
+  ]
+}

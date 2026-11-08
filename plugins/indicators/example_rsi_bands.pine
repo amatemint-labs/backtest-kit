@@ -1,0 +1,28 @@
+// RSI Bands (example) — a small, original Pine v5 script used to show how a TradingView
+// indicator becomes a kit plug-in. Its Python port is example_rsi_bands.py, line by line.
+//@version=5
+indicator("RSI Bands (example)", overlay=false)
+
+rsiLen  = input.int(14, "RSI length")
+bandLen = input.int(20, "Band length")
+mult    = input.float(2.0, "Band width")
+// per-timeframe setting: a slower RSI on the daily chart
+len = timeframe.isdaily ? 21 : rsiLen
+
+r      = ta.rsi(close, len)
+basis  = ta.sma(r, bandLen)
+dev    = mult * ta.stdev(r, bandLen)
+upper  = basis + dev
+lower  = basis - dev
+pctB   = (r - lower) / (upper - lower)
+
+// yesterday's daily RSI — the classic non-repainting idiom: expr[1] with lookahead_on
+dailyR = request.security(syminfo.tickerid, "D", ta.rsi(close, 14)[1], lookahead=barmerge.lookahead_on)
+
+hookUp = ta.crossover(r, lower)          // RSI climbing back over its lower band
+
+plot(r,      "RSI")
+plot(upper,  "Upper")
+plot(lower,  "Lower")
+plot(dailyR, "Daily RSI")
+plotshape(hookUp, "Hook up", shape.triangleup, location.bottom)

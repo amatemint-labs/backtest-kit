@@ -1,0 +1,14 @@
+{
+  "_about": "Shape of GET /v3/marketdata/barcharts/{symbol}?unit=Minute&interval=1 per TradeStation's API v3 spec (prices as strings, TimeStamp RFC3339 UTC). Values are made up; not recorded from a live account.",
+  "Bars": [
+    {"High": "497.40", "Low": "496.10", "Open": "496.20", "Close": "497.10", "TimeStamp": "2026-11-06T14:31:00Z", "TotalVolume": "812345",
+     "DownTicks": 1200, "DownVolume": 300000, "Epoch": 1794061860000, "IsEndOfHistory": false, "IsRealtime": false, "OpenInterest": "0",
+     "TotalTicks": 2500, "UpTicks": 1300, "UpVolume": 512345, "BarStatus": "Closed"},
+    {"High": "497.55", "Low": "496.90", "Open": "497.10", "Close": "497.30", "TimeStamp": "2026-11-06T14:32:00Z", "TotalVolume": "402110",
+     "DownTicks": 700, "DownVolume": 200000, "Epoch": 1794061920000, "IsEndOfHistory": false, "IsRealtime": false, "OpenInterest": "0",
+     "TotalTicks": 1400, "UpTicks": 700, "UpVolume": 202110, "BarStatus": "Closed"},
+    {"High": "497.35", "Low": "496.95", "Open": "497.30", "Close": "497.05", "TimeStamp": "2026-11-06T14:33:00Z", "TotalVolume": "350000",
+     "DownTicks": 650, "DownVolume": 190000, "Epoch": 1794061980000, "IsEndOfHistory": false, "IsRealtime": false, "OpenInterest": "0",
+     "TotalTicks": 1200, "UpTicks": 550, "UpVolume": 160000, "BarStatus": "Closed"}
+  ]
+}

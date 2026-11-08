@@ -1,0 +1,6930 @@
+{
+ "study": "_example",
+ "built": "2026-11-08T23:45:07.550222-05:00",
+ "versions": {
+  "stoch": "Stochastic 14/1/3",
+  "rsi": "RSI 14",
+  "macd": "MACD 12/26/9 + higher-timeframe histogram",
+  "rsi_bands": "RSI Bands (example) v1"
+ },
+ "mode": "closed",
+ "tickers": [
+  "SYNA",
+  "SYNB",
+  "SYNC",
+  "SYND",
+  "SYNE"
+ ],
+ "market": "SYNSPY",
+ "bars": 9135,
+ "split": "2025-11-03",
+ "periods": {
+  "P1": {
+   "from": "2025-05-01 10:30:00-04:00",
+   "to": "2025-10-31 16:00:00-04:00",
+   "bars": 4620,
+   "months": 6.0
+  },
+  "P2": {
+   "from": "2025-11-03 10:30:00-05:00",
+   "to": "2026-04-30 16:00:00-04:00",
+   "bars": 4515,
+   "months": 5.9
+  }
+ },
+ "holdout": null,
+ "label_definition": "a >=Nx option leg (1h zigzag, 0.75 or 1.5 day-ATR) starts within the next 0-3 bars",
+ "census": {
+  "summary": [
+   {
+    "tf": "1D",
+    "k_atr": 2.0,
+    "side": "C",
+    "legs": 72,
+    "pct_1x+": 44.4,
+    "pct_3x+": 16.7,
+    "median_mult": 1.97,
+    "median_sessions": 6.0,
+    "pct_outlived_option": 5.6
+   },
+   {
+    "tf": "1D",
+    "k_atr": 2.0,
+    "side": "P",
+    "legs": 71,
+    "pct_1x+": 22.5,
+    "pct_3x+": 8.5,
+    "median_mult": 1.42,
+    "median_sessions": 6.0,
+    "pct_outlived_option": 1.4
+   },
+   {
+    "tf": "1D",
+    "k_atr": 4.0,
+    "side": "C",
+    "legs": 20,
+    "pct_1x+": 80.0,
+    "pct_3x+": 50.0,
+    "median_mult": 4.01,
+    "median_sessions": 23.5,
+    "pct_outlived_option": 15.0
+   },
+   {
+    "tf": "1D",
+    "k_atr": 4.0,
+    "side": "P",
+    "legs": 20,
+    "pct_1x+": 40.0,
+    "pct_3x+": 5.0,
+    "median_mult": 1.83,
+    "median_sessions": 13.0,
+    "pct_outlived_option": 5.0
+   },
+   {
+    "tf": "1D",
+    "k_atr": 8.0,
+    "side": "C",
+    "legs": 7,
+    "pct_1x+": 71.4,
+    "pct_3x+": 57.1,
+    "median_mult": 5.33,
+    "median_sessions": 89.0,
+    "pct_outlived_option": 71.4
+   },
+   {
+    "tf": "1D",
+    "k_atr": 8.0,
+    "side": "P",
+    "legs": 7,
+    "pct_1x+": 57.1,
+    "pct_3x+": 14.3,
+    "median_mult": 2.26,
+    "median_sessions": 35.0,
+    "pct_outlived_option": 14.3
+   },
+   {
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "legs": 315,
+    "pct_1x+": 39.0,
+    "pct_3x+": 11.7,
+    "median_mult": 1.69,
+    "median_sessions": 1.0,
+    "pct_outlived_option": 6.7
+   },
+   {
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "P",
+    "legs": 315,
+    "pct_1x+": 27.0,
+    "pct_3x+": 7.0,
+    "median_mult": 1.39,
+    "median_sessions": 1.0,
+    "pct_outlived_option": 7.3
+   },
+   {
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "legs": 108,
+    "pct_1x+": 70.4,
+    "pct_3x+": 19.4,
+    "median_mult": 2.46,
+    "median_sessions": 3.0,
+    "pct_outlived_option": 13.0
+   },
+   {
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "P",
+    "legs": 106,
+    "pct_1x+": 44.3,
+    "pct_3x+": 8.5,
+    "median_mult": 1.87,
+    "median_sessions": 3.0,
+    "pct_outlived_option": 16.0
+   }
+  ],
+  "winners_5x_10x_by_horizon": [
+   {
+    "horizon": "same-day",
+    "side": "calls",
+    "legs": 60,
+    ">=1x": 6,
+    ">=3x": 0,
+    ">=5x": 0,
+    ">=10x": 0
+   },
+   {
+    "horizon": "same-day",
+    "side": "puts",
+    "legs": 53,
+    ">=1x": 0,
+    ">=3x": 0,
+    ">=5x": 0,
+    ">=10x": 0
+   },
+   {
+    "horizon": "overnight",
+    "side": "calls",
+    "legs": 125,
+    ">=1x": 36,
+    ">=3x": 4,
+    ">=5x": 0,
+    ">=10x": 0
+   },
+   {
+    "horizon": "overnight",
+    "side": "puts",
+    "legs": 162,
+    ">=1x": 32,
+    ">=3x": 3,
+    ">=5x": 1,
+    ">=10x": 0
+   },
+   {
+    "horizon": "2-5 days",
+    "side": "calls",
+    "legs": 213,
+    ">=1x": 126,
+    ">=3x": 33,
+    ">=5x": 12,
+    ">=10x": 3
+   },
+   {
+    "horizon": "2-5 days",
+    "side": "puts",
+    "legs": 189,
+    ">=1x": 68,
+    ">=3x": 18,
+    ">=5x": 3,
+    ">=10x": 0
+   },
+   {
+    "horizon": "1-4 weeks",
+    "side": "calls",
+    "legs": 98,
+    ">=1x": 64,
+    ">=3x": 32,
+    ">=5x": 17,
+    ">=10x": 4
+   },
+   {
+    "horizon": "1-4 weeks",
+    "side": "puts",
+    "legs": 100,
+    ">=1x": 54,
+    ">=3x": 15,
+    ">=5x": 8,
+    ">=10x": 2
+   },
+   {
+    "horizon": "1-3 months",
+    "side": "calls",
+    "legs": 19,
+    ">=1x": 16,
+    ">=3x": 12,
+    ">=5x": 8,
+    ">=10x": 4
+   },
+   {
+    "horizon": "1-3 months",
+    "side": "puts",
+    "legs": 13,
+    ">=1x": 6,
+    ">=3x": 3,
+    ">=5x": 1,
+    ">=10x": 0
+   },
+   {
+    "horizon": "3 months+",
+    "side": "calls",
+    "legs": 7,
+    ">=1x": 4,
+    ">=3x": 3,
+    ">=5x": 2,
+    ">=10x": 0
+   },
+   {
+    "horizon": "3 months+",
+    "side": "puts",
+    "legs": 2,
+    ">=1x": 0,
+    ">=3x": 0,
+    ">=5x": 0,
+    ">=10x": 0
+   }
+  ],
+  "top_winners": [
+   {
+    "ticker": "SYNE",
+    "tf": "1D",
+    "k_atr": 4.0,
+    "side": "C",
+    "entry_ts": "2025-05-16T20:00:00.000Z",
+    "exit_ts": "2025-06-30T20:00:00.000Z",
+    "horizon": "1-3 months",
+    "S0": 196.9968316305,
+    "S1": 597.8275927486,
+    "move_atr": 33.9407888292,
+    "mult": 33.096258855,
+    "expiry": "2025-07-18T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1D",
+    "k_atr": 2.0,
+    "side": "C",
+    "entry_ts": "2025-05-21T20:00:00.000Z",
+    "exit_ts": "2025-06-25T20:00:00.000Z",
+    "horizon": "1-3 months",
+    "S0": 240.5300765939,
+    "S1": 528.5283357424,
+    "move_atr": 16.6403374905,
+    "mult": 32.3542272056,
+    "expiry": "2025-06-20T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1D",
+    "k_atr": 8.0,
+    "side": "C",
+    "entry_ts": "2025-05-16T20:00:00.000Z",
+    "exit_ts": "2025-06-30T20:00:00.000Z",
+    "horizon": "1-3 months",
+    "S0": 196.9968316305,
+    "S1": 597.8275927486,
+    "move_atr": 33.9407888292,
+    "mult": 27.3038196405,
+    "expiry": "2025-08-15T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2025-05-21T18:30:00.000Z",
+    "exit_ts": "2025-06-25T16:30:00.000Z",
+    "horizon": "1-3 months",
+    "S0": 233.6263757993,
+    "S1": 583.0800778282,
+    "move_atr": 20.3651688666,
+    "mult": 24.5659828189,
+    "expiry": "2025-06-06T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2025-05-16T18:30:00.000Z",
+    "exit_ts": "2025-05-20T14:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 194.9896142864,
+    "S1": 264.043495289,
+    "move_atr": 5.9139940728,
+    "mult": 17.4959679063,
+    "expiry": "2025-05-23T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYND",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2025-05-27T15:30:00.000Z",
+    "exit_ts": "2025-05-30T16:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 154.7390615599,
+    "S1": 190.6095096174,
+    "move_atr": 2.8776994475,
+    "mult": 13.6450779274,
+    "expiry": "2025-05-30T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "P",
+    "entry_ts": "2025-05-23T20:00:00.000Z",
+    "exit_ts": "2025-06-02T19:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 97.8211664853,
+    "S1": 72.5247166124,
+    "move_atr": 5.6459397247,
+    "mult": 13.0865079851,
+    "expiry": "2025-05-30T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2025-05-16T18:30:00.000Z",
+    "exit_ts": "2025-05-20T14:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 194.9896142864,
+    "S1": 264.043495289,
+    "move_atr": 5.9139940728,
+    "mult": 12.4528454435,
+    "expiry": "2025-05-30T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "P",
+    "entry_ts": "2025-05-20T17:30:00.000Z",
+    "exit_ts": "2025-06-02T19:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 105.5267939209,
+    "S1": 72.5247166124,
+    "move_atr": 7.5398173914,
+    "mult": 12.4217651889,
+    "expiry": "2025-05-30T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNC",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2025-08-04T14:30:00.000Z",
+    "exit_ts": "2025-08-15T16:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 145.8096048286,
+    "S1": 225.488652521,
+    "move_atr": 9.1468017372,
+    "mult": 12.2400471113,
+    "expiry": "2025-08-15T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNC",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2025-08-07T14:30:00.000Z",
+    "exit_ts": "2025-08-15T16:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 155.8942131846,
+    "S1": 225.488652521,
+    "move_atr": 7.961979356,
+    "mult": 12.0953222684,
+    "expiry": "2025-08-15T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2026-01-07T16:30:00.000Z",
+    "exit_ts": "2026-01-28T18:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 82.2758921939,
+    "S1": 132.6369250499,
+    "move_atr": 21.9232261257,
+    "mult": 11.5401064141,
+    "expiry": "2026-01-23T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2026-01-07T16:30:00.000Z",
+    "exit_ts": "2026-01-19T16:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 82.2758921939,
+    "S1": 114.8067437496,
+    "move_atr": 14.161369898,
+    "mult": 11.1316596351,
+    "expiry": "2026-01-16T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNC",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2026-01-05T19:30:00.000Z",
+    "exit_ts": "2026-01-09T15:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 152.8255734964,
+    "S1": 190.9842924901,
+    "move_atr": 7.7399261007,
+    "mult": 10.7939738876,
+    "expiry": "2026-01-09T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "P",
+    "entry_ts": "2026-02-02T19:30:00.000Z",
+    "exit_ts": "2026-02-10T15:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 125.1026630969,
+    "S1": 71.3277141878,
+    "move_atr": 9.3074306557,
+    "mult": 10.5491757626,
+    "expiry": "2026-02-06T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNA",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2025-10-30T14:30:00.000Z",
+    "exit_ts": "2025-11-13T20:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 78.6586166744,
+    "S1": 121.3481991645,
+    "move_atr": 13.7842916674,
+    "mult": 10.075560266,
+    "expiry": "2025-11-14T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNC",
+    "tf": "1D",
+    "k_atr": 8.0,
+    "side": "C",
+    "entry_ts": "2025-05-14T20:00:00.000Z",
+    "exit_ts": "2025-10-14T20:00:00.000Z",
+    "horizon": "3 months+",
+    "S0": 125.6675135984,
+    "S1": 216.9075665986,
+    "move_atr": 12.6456934378,
+    "mult": 9.2825564717,
+    "expiry": "2025-08-15T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYND",
+    "tf": "1D",
+    "k_atr": 8.0,
+    "side": "C",
+    "entry_ts": "2025-10-15T20:00:00.000Z",
+    "exit_ts": "2026-02-03T21:00:00.000Z",
+    "horizon": "3 months+",
+    "S0": 113.1471447145,
+    "S1": 287.4320441166,
+    "move_atr": 25.8013614959,
+    "mult": 8.9193507629,
+    "expiry": "2026-01-16T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYND",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "C",
+    "entry_ts": "2025-05-27T15:30:00.000Z",
+    "exit_ts": "2025-05-30T16:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 154.7390615599,
+    "S1": 190.6095096174,
+    "move_atr": 2.8776994475,
+    "mult": 8.8590471499,
+    "expiry": "2025-06-06T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1D",
+    "k_atr": 2.0,
+    "side": "C",
+    "entry_ts": "2026-01-01T21:00:00.000Z",
+    "exit_ts": "2026-01-28T21:00:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 79.3527129527,
+    "S1": 128.5615614133,
+    "move_atr": 19.0399931509,
+    "mult": 8.5594872847,
+    "expiry": "2026-01-30T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2025-11-27T20:30:00.000Z",
+    "exit_ts": "2025-12-02T19:30:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 76.6358285378,
+    "S1": 98.5814962673,
+    "move_atr": 6.5396121936,
+    "mult": 8.4539263806,
+    "expiry": "2025-12-05T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNC",
+    "tf": "1h",
+    "k_atr": 0.75,
+    "side": "C",
+    "entry_ts": "2026-02-24T20:30:00.000Z",
+    "exit_ts": "2026-03-02T21:00:00.000Z",
+    "horizon": "2-5 days",
+    "S0": 202.11671498,
+    "S1": 293.1345319292,
+    "move_atr": 4.7203676178,
+    "mult": 8.3373564479,
+    "expiry": "2026-02-27T00:00:00.000",
+    "outlived_option": true
+   },
+   {
+    "ticker": "SYNB",
+    "tf": "1h",
+    "k_atr": 1.5,
+    "side": "P",
+    "entry_ts": "2026-02-02T19:30:00.000Z",
+    "exit_ts": "2026-02-10T15:30:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 125.1026630969,
+    "S1": 71.3277141878,
+    "move_atr": 9.3074306557,
+    "mult": 8.2086210641,
+    "expiry": "2026-02-13T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1D",
+    "k_atr": 4.0,
+    "side": "C",
+    "entry_ts": "2025-12-08T21:00:00.000Z",
+    "exit_ts": "2026-02-03T21:00:00.000Z",
+    "horizon": "1-3 months",
+    "S0": 486.6867931588,
+    "S1": 1146.3226182815,
+    "move_atr": 17.6809848335,
+    "mult": 8.1965532678,
+    "expiry": "2026-02-06T00:00:00.000",
+    "outlived_option": false
+   },
+   {
+    "ticker": "SYNE",
+    "tf": "1D",
+    "k_atr": 2.0,
+    "side": "P",
+    "entry_ts": "2026-02-03T21:00:00.000Z",
+    "exit_ts": "2026-02-16T21:00:00.000Z",
+    "horizon": "1-4 weeks",
+    "S0": 1146.3226182815,
+    "S1": 566.7680468401,
+    "move_atr": 8.0957913266,
+    "mult": 8.1497305565,
+    "expiry": "2026-03-06T00:00:00.000",
+    "outlived_option": false
+   }
+  ]
+ },
+ "base_rates_pct": {
+  "C_1x": {
+   "P1": 6.54,
+   "P2": 5.67
+  },
+  "C_3x": {
+   "P1": 1.9,
+   "P2": 2.04
+  },
+  "P_1x": {
+   "P1": 4.85,
+   "P2": 3.63
+  },
+  "P_3x": {
+   "P1": 1.21,
+   "P2": 0.89
+  }
+ },
+ "lift": {
+  "C_1x": {
+   "raise": [
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening + h1_MACD_HTF_STATE=bull",
+     "n": 483,
+     "rate_P1_pct": 15.85,
+     "rate_P2_pct": 16.88,
+     "lift_P1": 2.43,
+     "lift_P2": 2.98,
+     "weaker_lift": 2.43
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_STOCH_STATE=40-60 falling",
+     "n": 289,
+     "rate_P1_pct": 15.76,
+     "rate_P2_pct": 14.52,
+     "lift_P1": 2.41,
+     "lift_P2": 2.56,
+     "weaker_lift": 2.41
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening",
+     "n": 762,
+     "rate_P1_pct": 14.66,
+     "rate_P2_pct": 14.74,
+     "lift_P1": 2.24,
+     "lift_P2": 2.6,
+     "weaker_lift": 2.24
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening + h1_RB_STATE=middle falling",
+     "n": 762,
+     "rate_P1_pct": 14.66,
+     "rate_P2_pct": 14.74,
+     "lift_P1": 2.24,
+     "lift_P2": 2.6,
+     "weaker_lift": 2.24
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling",
+     "n": 903,
+     "rate_P1_pct": 14.52,
+     "rate_P2_pct": 12.59,
+     "lift_P1": 2.22,
+     "lift_P2": 2.22,
+     "weaker_lift": 2.22
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling + h1_RB_STATE=middle falling",
+     "n": 903,
+     "rate_P1_pct": 14.52,
+     "rate_P2_pct": 12.59,
+     "lift_P1": 2.22,
+     "lift_P2": 2.22,
+     "weaker_lift": 2.22
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RB_STATE=middle falling",
+     "n": 1022,
+     "rate_P1_pct": 14.23,
+     "rate_P2_pct": 12.7,
+     "lift_P1": 2.18,
+     "lift_P2": 2.24,
+     "weaker_lift": 2.18
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_MACD_STATE=bear widening",
+     "n": 384,
+     "rate_P1_pct": 16.28,
+     "rate_P2_pct": 12.26,
+     "lift_P1": 2.49,
+     "lift_P2": 2.16,
+     "weaker_lift": 2.16
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h4_RSI_STATE=strong falling",
+     "n": 489,
+     "rate_P1_pct": 14.04,
+     "rate_P2_pct": 14.57,
+     "lift_P1": 2.15,
+     "lift_P2": 2.57,
+     "weaker_lift": 2.15
+    },
+    {
+     "state": "h1_RB_STATE=middle falling + h4_STOCH_STATE=40-60 falling",
+     "n": 278,
+     "rate_P1_pct": 13.79,
+     "rate_P2_pct": 12.03,
+     "lift_P1": 2.11,
+     "lift_P2": 2.12,
+     "weaker_lift": 2.11
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h1_MACD_HTF_STATE=bear + h4_STOCH_STATE=<20 falling",
+     "n": 288,
+     "rate_P1_pct": 15.83,
+     "rate_P2_pct": 11.9,
+     "lift_P1": 2.42,
+     "lift_P2": 2.1,
+     "weaker_lift": 2.1
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_HTF_STATE=bull",
+     "n": 812,
+     "rate_P1_pct": 14.17,
+     "rate_P2_pct": 11.83,
+     "lift_P1": 2.17,
+     "lift_P2": 2.09,
+     "weaker_lift": 2.09
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_HTF_STATE=bull + h1_RB_STATE=middle falling",
+     "n": 812,
+     "rate_P1_pct": 14.17,
+     "rate_P2_pct": 11.83,
+     "lift_P1": 2.17,
+     "lift_P2": 2.09,
+     "weaker_lift": 2.09
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_MACD_STATE=bear narrowing + h1_RB_STATE=middle falling",
+     "n": 252,
+     "rate_P1_pct": 18.94,
+     "rate_P2_pct": 11.67,
+     "lift_P1": 2.9,
+     "lift_P2": 2.06,
+     "weaker_lift": 2.06
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_RSI_STATE=strong falling",
+     "n": 752,
+     "rate_P1_pct": 13.45,
+     "rate_P2_pct": 14.25,
+     "lift_P1": 2.06,
+     "lift_P2": 2.51,
+     "weaker_lift": 2.06
+    }
+   ],
+   "lower": [
+    {
+     "state": "m15_RB_STATE=overbought rising",
+     "n": 821,
+     "rate_P1_pct": 0.25,
+     "rate_P2_pct": 0.24,
+     "lift_P1": 0.04,
+     "lift_P2": 0.04,
+     "weaker_lift": 0.04
+    },
+    {
+     "state": "m15_RSI_STATE=overbought rising",
+     "n": 821,
+     "rate_P1_pct": 0.25,
+     "rate_P2_pct": 0.24,
+     "lift_P1": 0.04,
+     "lift_P2": 0.04,
+     "weaker_lift": 0.04
+    },
+    {
+     "state": "h1_MACD_HTF_STATE=bull + h1_RB_STATE=overbought rising + h4_STOCH_STATE=>80 rising",
+     "n": 375,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.41,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_RB_STATE=overbought rising + h4_RSI_STATE=overbought rising",
+     "n": 382,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.41,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h1_MACD_HTF_STATE=bull + h1_RB_STATE=overbought rising",
+     "n": 384,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.4,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_RSI_STATE=overbought rising + h4_RSI_STATE=overbought rising",
+     "n": 382,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.41,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_RSI_STATE=overbought rising + h1_MACD_HTF_STATE=bull + h4_STOCH_STATE=>80 rising",
+     "n": 375,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.41,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h1_RSI_STATE=overbought rising + h1_MACD_HTF_STATE=bull",
+     "n": 384,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.4,
+     "lift_P1": 0.0,
+     "lift_P2": 0.07,
+     "weaker_lift": 0.07
+    },
+    {
+     "state": "h1_RSI_STATE=overbought rising + h1_MACD_STATE=bull widening + h4_STOCH_STATE=>80 rising",
+     "n": 385,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.49,
+     "lift_P1": 0.0,
+     "lift_P2": 0.09,
+     "weaker_lift": 0.09
+    },
+    {
+     "state": "m15_RB_STATE=overbought falling",
+     "n": 359,
+     "rate_P1_pct": 0.6,
+     "rate_P2_pct": 0.52,
+     "lift_P1": 0.09,
+     "lift_P2": 0.09,
+     "weaker_lift": 0.09
+    }
+   ]
+  },
+  "C_3x": {
+   "raise": [
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_STOCH_STATE=60-80 falling",
+     "n": 334,
+     "rate_P1_pct": 6.11,
+     "rate_P2_pct": 7.79,
+     "lift_P1": 3.21,
+     "lift_P2": 3.82,
+     "weaker_lift": 3.21
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_MACD_STATE=bear widening",
+     "n": 845,
+     "rate_P1_pct": 5.2,
+     "rate_P2_pct": 7.2,
+     "lift_P1": 2.73,
+     "lift_P2": 3.53,
+     "weaker_lift": 2.73
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling + h1_RB_STATE=middle falling",
+     "n": 903,
+     "rate_P1_pct": 4.98,
+     "rate_P2_pct": 5.7,
+     "lift_P1": 2.61,
+     "lift_P2": 2.8,
+     "weaker_lift": 2.61
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling",
+     "n": 903,
+     "rate_P1_pct": 4.98,
+     "rate_P2_pct": 5.7,
+     "lift_P1": 2.61,
+     "lift_P2": 2.8,
+     "weaker_lift": 2.61
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RB_STATE=middle falling",
+     "n": 1022,
+     "rate_P1_pct": 4.87,
+     "rate_P2_pct": 5.94,
+     "lift_P1": 2.56,
+     "lift_P2": 2.92,
+     "weaker_lift": 2.56
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_MACD_STATE=bear widening",
+     "n": 384,
+     "rate_P1_pct": 6.98,
+     "rate_P2_pct": 5.19,
+     "lift_P1": 3.66,
+     "lift_P2": 2.55,
+     "weaker_lift": 2.55
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling",
+     "n": 1499,
+     "rate_P1_pct": 5.49,
+     "rate_P2_pct": 5.16,
+     "lift_P1": 2.88,
+     "lift_P2": 2.53,
+     "weaker_lift": 2.53
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_HTF_STATE=bull",
+     "n": 812,
+     "rate_P1_pct": 4.72,
+     "rate_P2_pct": 5.34,
+     "lift_P1": 2.48,
+     "lift_P2": 2.62,
+     "weaker_lift": 2.48
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_HTF_STATE=bull + h1_RB_STATE=middle falling",
+     "n": 812,
+     "rate_P1_pct": 4.72,
+     "rate_P2_pct": 5.34,
+     "lift_P1": 2.48,
+     "lift_P2": 2.62,
+     "weaker_lift": 2.48
+    },
+    {
+     "state": "h1_RB_STATE=middle falling + h4_STOCH_STATE=60-80 falling",
+     "n": 357,
+     "rate_P1_pct": 4.69,
+     "rate_P2_pct": 7.88,
+     "lift_P1": 2.46,
+     "lift_P2": 3.87,
+     "weaker_lift": 2.46
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening",
+     "n": 525,
+     "rate_P1_pct": 4.61,
+     "rate_P2_pct": 8.23,
+     "lift_P1": 2.42,
+     "lift_P2": 4.04,
+     "weaker_lift": 2.42
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening",
+     "n": 762,
+     "rate_P1_pct": 4.57,
+     "rate_P2_pct": 6.65,
+     "lift_P1": 2.4,
+     "lift_P2": 3.26,
+     "weaker_lift": 2.4
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening + h1_RB_STATE=middle falling",
+     "n": 762,
+     "rate_P1_pct": 4.57,
+     "rate_P2_pct": 6.65,
+     "lift_P1": 2.4,
+     "lift_P2": 3.26,
+     "weaker_lift": 2.4
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_MACD_STATE=bear widening + h1_RB_STATE=middle falling",
+     "n": 638,
+     "rate_P1_pct": 4.55,
+     "rate_P2_pct": 8.12,
+     "lift_P1": 2.39,
+     "lift_P2": 3.98,
+     "weaker_lift": 2.39
+    },
+    {
+     "state": "h4_STOCH_STATE=60-80 falling + h4_RSI_STATE=strong falling",
+     "n": 515,
+     "rate_P1_pct": 4.51,
+     "rate_P2_pct": 4.82,
+     "lift_P1": 2.37,
+     "lift_P2": 2.37,
+     "weaker_lift": 2.37
+    }
+   ],
+   "lower": [
+    {
+     "state": "h1_MACD_HTF_STATE=bull + h1_RB_STATE=overbought rising + h4_STOCH_STATE=>80 rising",
+     "n": 375,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h4_RSI_STATE=weak rising + h4_MACD_STATE=bull widening",
+     "n": 319,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=weak rising + h4_STOCH_STATE=<20 rising",
+     "n": 374,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h4_RSI_STATE=overbought rising + h4_MACD_STATE=bull widening",
+     "n": 594,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_MACD_STATE=bull widening + h4_STOCH_STATE=20-40 rising",
+     "n": 276,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=weak rising + h1_MACD_STATE=bull narrowing + h1_RB_STATE=middle rising",
+     "n": 281,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=weak rising + h1_MACD_STATE=bull widening + h1_RB_STATE=middle rising",
+     "n": 367,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=overbought rising + h1_MACD_HTF_STATE=bull + h1_RB_STATE=overbought rising",
+     "n": 604,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h4_STOCH_STATE=>80 falling + h4_MACD_STATE=bull widening",
+     "n": 662,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 falling + h1_RSI_STATE=overbought rising",
+     "n": 318,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    }
+   ]
+  },
+  "P_1x": {
+   "raise": [
+    {
+     "state": "h1_RSI_STATE=strong rising + h4_RSI_STATE=strong rising",
+     "n": 527,
+     "rate_P1_pct": 15.7,
+     "rate_P2_pct": 12.28,
+     "lift_P1": 3.24,
+     "lift_P2": 3.38,
+     "weaker_lift": 3.24
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h1_MACD_STATE=bull widening + h1_MACD_HTF_STATE=bull",
+     "n": 272,
+     "rate_P1_pct": 15.0,
+     "rate_P2_pct": 13.16,
+     "lift_P1": 3.09,
+     "lift_P2": 3.62,
+     "weaker_lift": 3.09
+    },
+    {
+     "state": "h1_RB_STATE=middle rising + h4_RSI_STATE=strong rising",
+     "n": 569,
+     "rate_P1_pct": 15.08,
+     "rate_P2_pct": 11.04,
+     "lift_P1": 3.11,
+     "lift_P2": 3.04,
+     "weaker_lift": 3.04
+    },
+    {
+     "state": "h1_MACD_STATE=bull widening + h1_MACD_HTF_STATE=bull + h1_RB_STATE=middle rising",
+     "n": 314,
+     "rate_P1_pct": 14.29,
+     "rate_P2_pct": 10.64,
+     "lift_P1": 2.95,
+     "lift_P2": 2.93,
+     "weaker_lift": 2.93
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h4_RSI_STATE=strong rising",
+     "n": 587,
+     "rate_P1_pct": 17.43,
+     "rate_P2_pct": 8.83,
+     "lift_P1": 3.6,
+     "lift_P2": 2.43,
+     "weaker_lift": 2.43
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h4_STOCH_STATE=>80 rising",
+     "n": 286,
+     "rate_P1_pct": 11.67,
+     "rate_P2_pct": 13.86,
+     "lift_P1": 2.41,
+     "lift_P2": 3.81,
+     "weaker_lift": 2.41
+    },
+    {
+     "state": "h1_MACD_HTF_STATE=bull + h4_STOCH_STATE=60-80 rising",
+     "n": 261,
+     "rate_P1_pct": 11.68,
+     "rate_P2_pct": 8.87,
+     "lift_P1": 2.41,
+     "lift_P2": 2.44,
+     "weaker_lift": 2.41
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h1_RB_STATE=middle rising + h4_STOCH_STATE=>80 rising",
+     "n": 286,
+     "rate_P1_pct": 11.67,
+     "rate_P2_pct": 13.86,
+     "lift_P1": 2.41,
+     "lift_P2": 3.81,
+     "weaker_lift": 2.41
+    },
+    {
+     "state": "h1_MACD_STATE=bull widening + h4_RSI_STATE=strong rising",
+     "n": 737,
+     "rate_P1_pct": 15.56,
+     "rate_P2_pct": 8.75,
+     "lift_P1": 3.21,
+     "lift_P2": 2.41,
+     "weaker_lift": 2.41
+    },
+    {
+     "state": "h1_RB_STATE=middle rising + h4_STOCH_STATE=>80 rising",
+     "n": 287,
+     "rate_P1_pct": 11.57,
+     "rate_P2_pct": 13.86,
+     "lift_P1": 2.39,
+     "lift_P2": 3.81,
+     "weaker_lift": 2.39
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h1_MACD_STATE=bull narrowing",
+     "n": 521,
+     "rate_P1_pct": 11.48,
+     "rate_P2_pct": 9.39,
+     "lift_P1": 2.37,
+     "lift_P2": 2.58,
+     "weaker_lift": 2.37
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h4_MACD_STATE=bull widening",
+     "n": 446,
+     "rate_P1_pct": 11.85,
+     "rate_P2_pct": 8.51,
+     "lift_P1": 2.44,
+     "lift_P2": 2.34,
+     "weaker_lift": 2.34
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h1_MACD_STATE=bull narrowing + h1_MACD_HTF_STATE=bull",
+     "n": 299,
+     "rate_P1_pct": 11.29,
+     "rate_P2_pct": 10.86,
+     "lift_P1": 2.33,
+     "lift_P2": 2.99,
+     "weaker_lift": 2.33
+    },
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h1_MACD_HTF_STATE=bull",
+     "n": 857,
+     "rate_P1_pct": 13.29,
+     "rate_P2_pct": 8.37,
+     "lift_P1": 2.74,
+     "lift_P2": 2.3,
+     "weaker_lift": 2.3
+    },
+    {
+     "state": "h4_STOCH_STATE=60-80 rising + h4_RSI_STATE=strong rising",
+     "n": 379,
+     "rate_P1_pct": 11.43,
+     "rate_P2_pct": 8.28,
+     "lift_P1": 2.36,
+     "lift_P2": 2.28,
+     "weaker_lift": 2.28
+    }
+   ],
+   "lower": [
+    {
+     "state": "h1_MACD_HTF_STATE=bear + h1_RB_STATE=oversold falling",
+     "n": 422,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=oversold falling + h1_MACD_HTF_STATE=bear + h4_STOCH_STATE=<20 falling",
+     "n": 273,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_MACD_STATE=bear widening + h4_MACD_STATE=bear widening",
+     "n": 384,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 rising + h1_MACD_HTF_STATE=bear + h4_STOCH_STATE=<20 falling",
+     "n": 299,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=oversold falling + h1_MACD_HTF_STATE=bear",
+     "n": 264,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=oversold falling + h4_MACD_STATE=bear widening",
+     "n": 358,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "m15_RSI_STATE=oversold falling",
+     "n": 634,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=oversold falling + h1_MACD_HTF_STATE=bear + h1_RB_STATE=oversold falling",
+     "n": 422,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_MACD_STATE=bear narrowing + h1_MACD_HTF_STATE=bear + h4_STOCH_STATE=<20 falling",
+     "n": 278,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h4_RSI_STATE=oversold falling",
+     "n": 384,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    }
+   ]
+  },
+  "P_3x": {
+   "raise": [
+    {
+     "state": "h1_STOCH_STATE=>80 rising + h4_RSI_STATE=strong rising",
+     "n": 587,
+     "rate_P1_pct": 5.59,
+     "rate_P2_pct": 2.83,
+     "lift_P1": 4.61,
+     "lift_P2": 3.19,
+     "weaker_lift": 3.19
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h1_MACD_STATE=bull widening + h1_MACD_HTF_STATE=bull",
+     "n": 272,
+     "rate_P1_pct": 3.33,
+     "rate_P2_pct": 3.95,
+     "lift_P1": 2.75,
+     "lift_P2": 4.46,
+     "weaker_lift": 2.75
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h1_RB_STATE=middle rising + h4_STOCH_STATE=>80 rising",
+     "n": 286,
+     "rate_P1_pct": 4.17,
+     "rate_P2_pct": 2.41,
+     "lift_P1": 3.44,
+     "lift_P2": 2.72,
+     "weaker_lift": 2.72
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h4_STOCH_STATE=>80 rising",
+     "n": 286,
+     "rate_P1_pct": 4.17,
+     "rate_P2_pct": 2.41,
+     "lift_P1": 3.44,
+     "lift_P2": 2.72,
+     "weaker_lift": 2.72
+    },
+    {
+     "state": "h1_RB_STATE=middle rising + h4_STOCH_STATE=>80 rising",
+     "n": 287,
+     "rate_P1_pct": 4.13,
+     "rate_P2_pct": 2.41,
+     "lift_P1": 3.41,
+     "lift_P2": 2.72,
+     "weaker_lift": 2.72
+    },
+    {
+     "state": "h1_MACD_STATE=bull widening + h1_MACD_HTF_STATE=bull + h1_RB_STATE=middle rising",
+     "n": 314,
+     "rate_P1_pct": 3.17,
+     "rate_P2_pct": 3.19,
+     "lift_P1": 2.62,
+     "lift_P2": 3.6,
+     "weaker_lift": 2.62
+    },
+    {
+     "state": "h1_STOCH_STATE=60-80 falling + h4_STOCH_STATE=>80 rising",
+     "n": 291,
+     "rate_P1_pct": 3.12,
+     "rate_P2_pct": 2.45,
+     "lift_P1": 2.58,
+     "lift_P2": 2.77,
+     "weaker_lift": 2.58
+    },
+    {
+     "state": "h1_MACD_STATE=bull widening + h4_RSI_STATE=strong rising",
+     "n": 737,
+     "rate_P1_pct": 3.06,
+     "rate_P2_pct": 4.24,
+     "lift_P1": 2.52,
+     "lift_P2": 4.79,
+     "weaker_lift": 2.52
+    },
+    {
+     "state": "h1_MACD_HTF_STATE=bear + h4_RSI_STATE=strong rising",
+     "n": 572,
+     "rate_P1_pct": 3.81,
+     "rate_P2_pct": 2.21,
+     "lift_P1": 3.14,
+     "lift_P2": 2.49,
+     "weaker_lift": 2.49
+    },
+    {
+     "state": "h4_RSI_STATE=strong rising",
+     "n": 1899,
+     "rate_P1_pct": 2.94,
+     "rate_P2_pct": 2.22,
+     "lift_P1": 2.43,
+     "lift_P2": 2.5,
+     "weaker_lift": 2.43
+    },
+    {
+     "state": "h1_RSI_STATE=weak rising + h4_RSI_STATE=weak rising",
+     "n": 293,
+     "rate_P1_pct": 3.95,
+     "rate_P2_pct": 2.13,
+     "lift_P1": 3.26,
+     "lift_P2": 2.4,
+     "weaker_lift": 2.4
+    },
+    {
+     "state": "h1_RSI_STATE=strong rising + h4_RSI_STATE=strong rising",
+     "n": 527,
+     "rate_P1_pct": 2.89,
+     "rate_P2_pct": 4.91,
+     "lift_P1": 2.39,
+     "lift_P2": 5.54,
+     "weaker_lift": 2.39
+    },
+    {
+     "state": "h1_MACD_HTF_STATE=bull + h4_RSI_STATE=strong rising",
+     "n": 1145,
+     "rate_P1_pct": 2.86,
+     "rate_P2_pct": 2.22,
+     "lift_P1": 2.36,
+     "lift_P2": 2.5,
+     "weaker_lift": 2.36
+    },
+    {
+     "state": "h1_RB_STATE=middle rising + h4_RSI_STATE=strong rising",
+     "n": 569,
+     "rate_P1_pct": 2.78,
+     "rate_P2_pct": 4.42,
+     "lift_P1": 2.29,
+     "lift_P2": 4.99,
+     "weaker_lift": 2.29
+    },
+    {
+     "state": "m15_STOCH_STATE=60-80 falling",
+     "n": 763,
+     "rate_P1_pct": 2.68,
+     "rate_P2_pct": 2.56,
+     "lift_P1": 2.21,
+     "lift_P2": 2.89,
+     "weaker_lift": 2.21
+    }
+   ],
+   "lower": [
+    {
+     "state": "h1_RSI_STATE=weak falling + h4_RSI_STATE=strong falling",
+     "n": 489,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_MACD_HTF_STATE=bull + h4_STOCH_STATE=20-40 falling",
+     "n": 254,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "m15_RSI_STATE=oversold falling",
+     "n": 634,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=oversold falling + h4_STOCH_STATE=<20 falling",
+     "n": 404,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening + h1_MACD_HTF_STATE=bull",
+     "n": 483,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "m15_STOCH_STATE=<20 rising",
+     "n": 775,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RSI_STATE=oversold falling + h1_MACD_STATE=bear widening + h1_RB_STATE=oversold falling",
+     "n": 337,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=oversold falling + h1_MACD_HTF_STATE=bear",
+     "n": 264,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_RB_STATE=oversold falling + h4_STOCH_STATE=<20 falling",
+     "n": 404,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    },
+    {
+     "state": "h1_STOCH_STATE=<20 falling + h1_RSI_STATE=weak falling + h1_MACD_STATE=bear widening",
+     "n": 525,
+     "rate_P1_pct": 0.0,
+     "rate_P2_pct": 0.0,
+     "lift_P1": 0.0,
+     "lift_P2": 0.0,
+     "weaker_lift": 0.0
+    }
+   ]
+  }
+ },
+ "lift_cells_tested": 2416,
+ "lift_expected_false_at_5pct": 120.8,
+ "scorecard": {
+  "C_1x": {
+   "auc_graded_P1": 0.724,
+   "auc_graded_P2": 0.718,
+   "grades": [
+    {
+     "graded_half": "P1",
+     "grade": "A (top 1%)",
+     "bars": 16,
+     "per_month": 2.7,
+     "hit_rate_pct": 0.0,
+     "lift": 0.0,
+     "t075_median_mult": 0.74,
+     "t075_pct_doubled": 12.5,
+     "t075_pct_4x": 6.2,
+     "t075_pct_lost_half": 12.5,
+     "t150_median_mult": 0.7,
+     "t150_pct_doubled": 12.5,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 18.8,
+     "broke_first_pct": 12.5
+    },
+    {
+     "graded_half": "P1",
+     "grade": "B (top 5%)",
+     "bars": 139,
+     "per_month": 23.1,
+     "hit_rate_pct": 22.3,
+     "lift": 3.41,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 17.4,
+     "t075_pct_4x": 8.7,
+     "t075_pct_lost_half": 18.1,
+     "t150_median_mult": 0.75,
+     "t150_pct_doubled": 21.0,
+     "t150_pct_4x": 3.6,
+     "t150_pct_lost_half": 30.4,
+     "broke_first_pct": 9.4
+    },
+    {
+     "graded_half": "P1",
+     "grade": "C (top 15%)",
+     "bars": 641,
+     "per_month": 106.5,
+     "hit_rate_pct": 14.82,
+     "lift": 2.27,
+     "t075_median_mult": 0.72,
+     "t075_pct_doubled": 11.6,
+     "t075_pct_4x": 3.8,
+     "t075_pct_lost_half": 16.9,
+     "t150_median_mult": 0.63,
+     "t150_pct_doubled": 16.7,
+     "t150_pct_4x": 5.6,
+     "t150_pct_lost_half": 33.9,
+     "broke_first_pct": 18.1
+    },
+    {
+     "graded_half": "P1",
+     "grade": "D (rest)",
+     "bars": 3824,
+     "per_month": 635.2,
+     "hit_rate_pct": 4.6,
+     "lift": 0.7,
+     "t075_median_mult": 0.73,
+     "t075_pct_doubled": 14.8,
+     "t075_pct_4x": 6.5,
+     "t075_pct_lost_half": 15.1,
+     "t150_median_mult": 0.69,
+     "t150_pct_doubled": 17.1,
+     "t150_pct_4x": 6.5,
+     "t150_pct_lost_half": 31.1,
+     "broke_first_pct": 15.5
+    },
+    {
+     "graded_half": "P1",
+     "grade": "ALL",
+     "bars": 4620,
+     "per_month": 767.5,
+     "hit_rate_pct": 6.54,
+     "lift": 1.0,
+     "t075_median_mult": 0.73,
+     "t075_pct_doubled": 14.4,
+     "t075_pct_4x": 6.2,
+     "t075_pct_lost_half": 15.5,
+     "t150_median_mult": 0.68,
+     "t150_pct_doubled": 17.2,
+     "t150_pct_4x": 6.3,
+     "t150_pct_lost_half": 31.4,
+     "broke_first_pct": 15.6
+    },
+    {
+     "graded_half": "P2",
+     "grade": "A (top 1%)",
+     "bars": 8,
+     "per_month": 1.4,
+     "hit_rate_pct": 50.0,
+     "lift": 8.82,
+     "t075_median_mult": 0.72,
+     "t075_pct_doubled": 12.5,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 12.5,
+     "t150_median_mult": 1.44,
+     "t150_pct_doubled": 25.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 25.0,
+     "broke_first_pct": 0.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "B (top 5%)",
+     "bars": 76,
+     "per_month": 13.0,
+     "hit_rate_pct": 11.84,
+     "lift": 2.09,
+     "t075_median_mult": 0.78,
+     "t075_pct_doubled": 13.2,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 28.9,
+     "t150_median_mult": 0.81,
+     "t150_pct_doubled": 26.3,
+     "t150_pct_4x": 9.2,
+     "t150_pct_lost_half": 36.8,
+     "broke_first_pct": 11.8
+    },
+    {
+     "graded_half": "P2",
+     "grade": "C (top 15%)",
+     "bars": 457,
+     "per_month": 78.0,
+     "hit_rate_pct": 14.22,
+     "lift": 2.51,
+     "t075_median_mult": 0.71,
+     "t075_pct_doubled": 13.1,
+     "t075_pct_4x": 3.7,
+     "t075_pct_lost_half": 22.3,
+     "t150_median_mult": 0.67,
+     "t150_pct_doubled": 19.7,
+     "t150_pct_4x": 7.4,
+     "t150_pct_lost_half": 36.5,
+     "broke_first_pct": 16.8
+    },
+    {
+     "graded_half": "P2",
+     "grade": "D (rest)",
+     "bars": 3974,
+     "per_month": 678.7,
+     "hit_rate_pct": 4.48,
+     "lift": 0.79,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 14.9,
+     "t075_pct_4x": 4.7,
+     "t075_pct_lost_half": 15.3,
+     "t150_median_mult": 0.76,
+     "t150_pct_doubled": 22.5,
+     "t150_pct_4x": 7.5,
+     "t150_pct_lost_half": 28.7,
+     "broke_first_pct": 14.6
+    },
+    {
+     "graded_half": "P2",
+     "grade": "ALL",
+     "bars": 4515,
+     "per_month": 771.1,
+     "hit_rate_pct": 5.67,
+     "lift": 1.0,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 14.7,
+     "t075_pct_4x": 4.5,
+     "t075_pct_lost_half": 16.3,
+     "t150_median_mult": 0.76,
+     "t150_pct_doubled": 22.3,
+     "t150_pct_4x": 7.5,
+     "t150_pct_lost_half": 29.6,
+     "broke_first_pct": 14.7
+    }
+   ],
+   "deciles": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.23,
+     "decile 2": 0.3,
+     "decile 3": 0.3,
+     "decile 4": 0.43,
+     "decile 5": 0.5,
+     "decile 6": 1.03,
+     "decile 7": 1.19,
+     "decile 8": 1.49,
+     "decile 9": 1.89,
+     "decile 10": 2.65
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.2,
+     "decile 2": 0.16,
+     "decile 3": 0.51,
+     "decile 4": 0.47,
+     "decile 5": 0.59,
+     "decile 6": 0.94,
+     "decile 7": 1.13,
+     "decile 8": 1.76,
+     "decile 9": 1.76,
+     "decile 10": 2.5
+    }
+   ],
+   "raise_odds": [
+    {
+     "reading": "h4_stoch_k",
+     "bin (P1 edges)": "-inf..6.5",
+     "bin (P2 edges)": "-inf..7.45",
+     "odds_x_learned_P1": 1.24,
+     "odds_x_learned_P2": 1.24
+    },
+    {
+     "reading": "D_volume_x",
+     "bin (P1 edges)": "1.44..inf",
+     "bin (P2 edges)": "1.46..inf",
+     "odds_x_learned_P1": 1.25,
+     "odds_x_learned_P2": 1.22
+    },
+    {
+     "reading": "m15_volume_x",
+     "bin (P1 edges)": "1.8..inf",
+     "bin (P2 edges)": "1.8..inf",
+     "odds_x_learned_P1": 1.29,
+     "odds_x_learned_P2": 1.2
+    },
+    {
+     "reading": "h4_vs_ema20_atr",
+     "bin (P1 edges)": "-1.95..-1.08",
+     "bin (P2 edges)": "-1.96..-1.14",
+     "odds_x_learned_P1": 1.19,
+     "odds_x_learned_P2": 1.2
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "-0.0769..0.0394",
+     "bin (P2 edges)": "-0.0717..0.0457",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.44
+    },
+    {
+     "reading": "h1_volume_x",
+     "bin (P1 edges)": "1.42..inf",
+     "bin (P2 edges)": "1.45..inf",
+     "odds_x_learned_P1": 1.33,
+     "odds_x_learned_P2": 1.18
+    },
+    {
+     "reading": "vs_prev_high_atr",
+     "bin (P1 edges)": "-inf..-1.4",
+     "bin (P2 edges)": "-inf..-1.24",
+     "odds_x_learned_P1": 1.17,
+     "odds_x_learned_P2": 1.23
+    },
+    {
+     "reading": "day_range_atr",
+     "bin (P1 edges)": "0.594..0.73",
+     "bin (P2 edges)": "0.584..0.738",
+     "odds_x_learned_P1": 1.17,
+     "odds_x_learned_P2": 1.16
+    },
+    {
+     "reading": "D_volume_x",
+     "bin (P1 edges)": "1.22..1.44",
+     "bin (P2 edges)": "1.27..1.46",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.18
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "-inf..0.472",
+     "bin (P2 edges)": "-inf..0.469",
+     "odds_x_learned_P1": 1.29,
+     "odds_x_learned_P2": 1.15
+    },
+    {
+     "reading": "bars_since_20bar_high",
+     "bin (P1 edges)": "13..17",
+     "bin (P2 edges)": "12..16",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.2
+    },
+    {
+     "reading": "D_macd_hist_ch3",
+     "bin (P1 edges)": "-0.0439..0.0102",
+     "bin (P2 edges)": "-0.0612..-0.00208",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.15
+    },
+    {
+     "reading": "day_range_atr",
+     "bin (P1 edges)": "0.73..0.879",
+     "bin (P2 edges)": "0.738..0.939",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.28
+    },
+    {
+     "reading": "m15_STOCH_STATE",
+     "bin (P1 edges)": "<20 falling",
+     "bin (P2 edges)": "<20 falling",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "D_stoch_ch2",
+     "bin (P1 edges)": "-13.7..-4.15",
+     "bin (P2 edges)": "-9.78..-3.82",
+     "odds_x_learned_P1": 1.2,
+     "odds_x_learned_P2": 1.13
+    }
+   ],
+   "lower_odds": [
+    {
+     "reading": "h4_stoch_k",
+     "bin (P1 edges)": "6.5..17",
+     "bin (P2 edges)": "7.45..18.1",
+     "odds_x_learned_P1": 0.84,
+     "odds_x_learned_P2": 0.83
+    },
+    {
+     "reading": "mktD_macd_hist_ch3",
+     "bin (P1 edges)": "-0.00435..0.0492",
+     "bin (P2 edges)": "-0.0267..0.0269",
+     "odds_x_learned_P1": 0.85,
+     "odds_x_learned_P2": 0.81
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "0.88..1.05",
+     "bin (P2 edges)": "0.951..1.11",
+     "odds_x_learned_P1": 0.81,
+     "odds_x_learned_P2": 0.85
+    },
+    {
+     "reading": "D_volume_x",
+     "bin (P1 edges)": "0.925..1.08",
+     "bin (P2 edges)": "0.962..1.09",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.83
+    },
+    {
+     "reading": "mktD_pos_in_20bar_range",
+     "bin (P1 edges)": "0.33..0.399",
+     "bin (P2 edges)": "0.631..0.737",
+     "odds_x_learned_P1": 0.86,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "weekday",
+     "bin (P1 edges)": "2..3",
+     "bin (P2 edges)": "2..3",
+     "odds_x_learned_P1": 0.85,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "m3_rb_pctb",
+     "bin (P1 edges)": "0.51..0.64",
+     "bin (P2 edges)": "0.495..0.632",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.85
+    },
+    {
+     "reading": "vs_prev_low_atr",
+     "bin (P1 edges)": "0.375..0.592",
+     "bin (P2 edges)": "0.415..0.652",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "mktD_vs_ema50_atr",
+     "bin (P1 edges)": "-3.19..-2.54",
+     "bin (P2 edges)": "-1.14..-0.421",
+     "odds_x_learned_P1": 0.85,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "mktH1_vs_ema50_atr",
+     "bin (P1 edges)": "-1.08..-0.426",
+     "bin (P2 edges)": "-0.36..0.327",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "D_RSI_STATE",
+     "bin (P1 edges)": "strong falling",
+     "bin (P2 edges)": "strong falling",
+     "odds_x_learned_P1": 0.8,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "m15_macd_hist_atr",
+     "bin (P1 edges)": "0.338..inf",
+     "bin (P2 edges)": "0.351..inf",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "m3_macd_htf_hist_atr",
+     "bin (P1 edges)": "0.338..inf",
+     "bin (P2 edges)": "0.351..inf",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "h1_stoch_ch2",
+     "bin (P1 edges)": "3.89..10.5",
+     "bin (P2 edges)": "3.84..11",
+     "odds_x_learned_P1": 0.84,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "0.0915..0.233",
+     "bin (P2 edges)": "0.0885..0.221",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.88
+    }
+   ],
+   "group_removal": [
+    {
+     "group removed": "volume",
+     "AUC lost (graded P1)": 0.01,
+     "AUC lost (graded P2)": 0.019
+    },
+    {
+     "group removed": "lower timeframes (15m, 3m)",
+     "AUC lost (graded P1)": 0.0177,
+     "AUC lost (graded P2)": 0.0102
+    },
+    {
+     "group removed": "time of day / weekday",
+     "AUC lost (graded P1)": 0.0028,
+     "AUC lost (graded P2)": 0.0051
+    },
+    {
+     "group removed": "daily chart",
+     "AUC lost (graded P1)": -0.0062,
+     "AUC lost (graded P2)": 0.005
+    },
+    {
+     "group removed": "session levels (open, prior day, 20-bar)",
+     "AUC lost (graded P1)": 0.008,
+     "AUC lost (graded P2)": 0.0032
+    },
+    {
+     "group removed": "4h chart",
+     "AUC lost (graded P1)": 0.0033,
+     "AUC lost (graded P2)": 0.0025
+    },
+    {
+     "group removed": "1h location (EMAs, range)",
+     "AUC lost (graded P1)": -0.0044,
+     "AUC lost (graded P2)": 0.0006
+    },
+    {
+     "group removed": "1h indicator readings",
+     "AUC lost (graded P1)": 0.0005,
+     "AUC lost (graded P2)": -0.0005
+    },
+    {
+     "group removed": "market (daily + hourly)",
+     "AUC lost (graded P1)": 0.0038,
+     "AUC lost (graded P2)": -0.0049
+    }
+   ],
+   "lookalikes": {
+    "win_first_base_pct": {
+     "P1": 70.0,
+     "P2": 73.3
+    },
+    "strengtheners": [
+     {
+      "reading": "h4_rb_daily_rsi",
+      "bin": "40.9..46.9",
+      "n": 147,
+      "win_first_P1_pct": 83.3,
+      "win_first_P2_pct": 88.4,
+      "x_P1": 1.19,
+      "x_P2": 1.21
+     },
+     {
+      "reading": "from_open_atr",
+      "bin": "-0.277..-0.103",
+      "n": 151,
+      "win_first_P1_pct": 81.9,
+      "win_first_P2_pct": 88.2,
+      "x_P1": 1.17,
+      "x_P2": 1.2
+     },
+     {
+      "reading": "D_vs_ema20_atr",
+      "bin": "-1.35..-0.568",
+      "n": 144,
+      "win_first_P1_pct": 81.4,
+      "win_first_P2_pct": 85.1,
+      "x_P1": 1.16,
+      "x_P2": 1.16
+     },
+     {
+      "reading": "h1_vs_ema50_atr",
+      "bin": "-3.72..-1.92",
+      "n": 151,
+      "win_first_P1_pct": 81.6,
+      "win_first_P2_pct": 84.0,
+      "x_P1": 1.17,
+      "x_P2": 1.15
+     },
+     {
+      "reading": "bars_since_20bar_low",
+      "bin": "8..17",
+      "n": 162,
+      "win_first_P1_pct": 80.4,
+      "win_first_P2_pct": 83.6,
+      "x_P1": 1.15,
+      "x_P2": 1.14
+     },
+     {
+      "reading": "h4_stoch_d",
+      "bin": "11.6..36.6",
+      "n": 151,
+      "win_first_P1_pct": 83.1,
+      "win_first_P2_pct": 83.8,
+      "x_P1": 1.19,
+      "x_P2": 1.14
+     },
+     {
+      "reading": "m3_rb_daily_rsi",
+      "bin": "39.9..46",
+      "n": 150,
+      "win_first_P1_pct": 83.5,
+      "win_first_P2_pct": 83.1,
+      "x_P1": 1.19,
+      "x_P2": 1.13
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "-0.14..-0.0775",
+      "n": 152,
+      "win_first_P1_pct": 79.1,
+      "win_first_P2_pct": 83.6,
+      "x_P1": 1.13,
+      "x_P2": 1.14
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-0.111..0.0202",
+      "n": 151,
+      "win_first_P1_pct": 79.8,
+      "win_first_P2_pct": 82.5,
+      "x_P1": 1.14,
+      "x_P2": 1.13
+     },
+     {
+      "reading": "h1_rb_daily_rsi",
+      "bin": "39.9..46",
+      "n": 150,
+      "win_first_P1_pct": 83.5,
+      "win_first_P2_pct": 83.1,
+      "x_P1": 1.19,
+      "x_P2": 1.13
+     },
+     {
+      "reading": "h4_RSI_STATE",
+      "bin": "weak rising",
+      "n": 114,
+      "win_first_P1_pct": 86.8,
+      "win_first_P2_pct": 82.6,
+      "x_P1": 1.24,
+      "x_P2": 1.13
+     },
+     {
+      "reading": "h1_move5_atr",
+      "bin": "-0.486..2.86",
+      "n": 152,
+      "win_first_P1_pct": 78.9,
+      "win_first_P2_pct": 88.7,
+      "x_P1": 1.13,
+      "x_P2": 1.21
+     }
+    ],
+    "eliminators": [
+     {
+      "reading": "m3_vs_ema50_atr",
+      "bin": "-12.1..-3.98",
+      "n": 152,
+      "win_first_P1_pct": 50.6,
+      "win_first_P2_pct": 46.6,
+      "x_P1": 0.72,
+      "x_P2": 0.64
+     },
+     {
+      "reading": "m3_vs_sma200_atr",
+      "bin": "-37.9..-10.6",
+      "n": 152,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 53.8,
+      "x_P1": 0.71,
+      "x_P2": 0.73
+     },
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "-0.994..-0.325",
+      "n": 152,
+      "win_first_P1_pct": 45.0,
+      "win_first_P2_pct": 54.2,
+      "x_P1": 0.64,
+      "x_P2": 0.74
+     },
+     {
+      "reading": "m15_rb_rsi",
+      "bin": "4.81..28.3",
+      "n": 152,
+      "win_first_P1_pct": 44.4,
+      "win_first_P2_pct": 53.9,
+      "x_P1": 0.64,
+      "x_P2": 0.74
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-0.994..-0.325",
+      "n": 152,
+      "win_first_P1_pct": 45.0,
+      "win_first_P2_pct": 54.2,
+      "x_P1": 0.64,
+      "x_P2": 0.74
+     },
+     {
+      "reading": "m15_rsi",
+      "bin": "4.81..28.3",
+      "n": 152,
+      "win_first_P1_pct": 44.4,
+      "win_first_P2_pct": 53.9,
+      "x_P1": 0.64,
+      "x_P2": 0.74
+     },
+     {
+      "reading": "m15_stoch_d",
+      "bin": "0.16..6.83",
+      "n": 152,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 55.0,
+      "x_P1": 0.71,
+      "x_P2": 0.75
+     },
+     {
+      "reading": "m15_RB_STATE",
+      "bin": "oversold falling",
+      "n": 137,
+      "win_first_P1_pct": 48.4,
+      "win_first_P2_pct": 54.8,
+      "x_P1": 0.69,
+      "x_P2": 0.75
+     },
+     {
+      "reading": "m15_RSI_STATE",
+      "bin": "oversold falling",
+      "n": 137,
+      "win_first_P1_pct": 48.4,
+      "win_first_P2_pct": 54.8,
+      "x_P1": 0.69,
+      "x_P2": 0.75
+     },
+     {
+      "reading": "m15_vs_ema20_atr",
+      "bin": "-6.92..-2.46",
+      "n": 152,
+      "win_first_P1_pct": 46.5,
+      "win_first_P2_pct": 55.6,
+      "x_P1": 0.66,
+      "x_P2": 0.76
+     },
+     {
+      "reading": "m3_rsi",
+      "bin": "0.63..31.9",
+      "n": 152,
+      "win_first_P1_pct": 54.3,
+      "win_first_P2_pct": 47.9,
+      "x_P1": 0.78,
+      "x_P2": 0.65
+     },
+     {
+      "reading": "m3_RB_STATE",
+      "bin": "oversold falling",
+      "n": 94,
+      "win_first_P1_pct": 54.9,
+      "win_first_P2_pct": 44.2,
+      "x_P1": 0.78,
+      "x_P2": 0.6
+     }
+    ]
+   }
+  },
+  "C_3x": {
+   "auc_graded_P1": 0.735,
+   "auc_graded_P2": 0.682,
+   "grades": [
+    {
+     "graded_half": "P1",
+     "grade": "A (top 1%)",
+     "bars": 3,
+     "per_month": 0.5,
+     "hit_rate_pct": 0.0,
+     "lift": 0.0,
+     "t075_median_mult": 0.25,
+     "t075_pct_doubled": 0.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 100.0,
+     "t150_median_mult": 0.32,
+     "t150_pct_doubled": 0.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 100.0,
+     "broke_first_pct": 33.3
+    },
+    {
+     "graded_half": "P1",
+     "grade": "B (top 5%)",
+     "bars": 190,
+     "per_month": 31.6,
+     "hit_rate_pct": 3.16,
+     "lift": 1.66,
+     "t075_median_mult": 0.64,
+     "t075_pct_doubled": 10.0,
+     "t075_pct_4x": 3.7,
+     "t075_pct_lost_half": 18.4,
+     "t150_median_mult": 0.61,
+     "t150_pct_doubled": 13.7,
+     "t150_pct_4x": 3.7,
+     "t150_pct_lost_half": 40.0,
+     "broke_first_pct": 24.2
+    },
+    {
+     "graded_half": "P1",
+     "grade": "C (top 15%)",
+     "bars": 586,
+     "per_month": 97.3,
+     "hit_rate_pct": 4.1,
+     "lift": 2.15,
+     "t075_median_mult": 0.7,
+     "t075_pct_doubled": 9.9,
+     "t075_pct_4x": 4.0,
+     "t075_pct_lost_half": 16.3,
+     "t150_median_mult": 0.62,
+     "t150_pct_doubled": 19.6,
+     "t150_pct_4x": 5.5,
+     "t150_pct_lost_half": 33.7,
+     "broke_first_pct": 16.7
+    },
+    {
+     "graded_half": "P1",
+     "grade": "D (rest)",
+     "bars": 3841,
+     "per_month": 638.1,
+     "hit_rate_pct": 1.51,
+     "lift": 0.79,
+     "t075_median_mult": 0.74,
+     "t075_pct_doubled": 15.5,
+     "t075_pct_4x": 6.7,
+     "t075_pct_lost_half": 15.1,
+     "t150_median_mult": 0.69,
+     "t150_pct_doubled": 17.0,
+     "t150_pct_4x": 6.5,
+     "t150_pct_lost_half": 30.5,
+     "broke_first_pct": 15.0
+    },
+    {
+     "graded_half": "P1",
+     "grade": "ALL",
+     "bars": 4620,
+     "per_month": 767.5,
+     "hit_rate_pct": 1.9,
+     "lift": 1.0,
+     "t075_median_mult": 0.73,
+     "t075_pct_doubled": 14.4,
+     "t075_pct_4x": 6.2,
+     "t075_pct_lost_half": 15.5,
+     "t150_median_mult": 0.68,
+     "t150_pct_doubled": 17.2,
+     "t150_pct_4x": 6.3,
+     "t150_pct_lost_half": 31.4,
+     "broke_first_pct": 15.6
+    },
+    {
+     "graded_half": "P2",
+     "grade": "A (top 1%)",
+     "bars": 2,
+     "per_month": 0.3,
+     "hit_rate_pct": 0.0,
+     "lift": 0.0,
+     "t075_median_mult": 0.02,
+     "t075_pct_doubled": 0.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 100.0,
+     "t150_median_mult": 0.3,
+     "t150_pct_doubled": 0.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 100.0,
+     "broke_first_pct": 0.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "B (top 5%)",
+     "bars": 120,
+     "per_month": 20.5,
+     "hit_rate_pct": 5.83,
+     "lift": 2.86,
+     "t075_median_mult": 0.65,
+     "t075_pct_doubled": 5.8,
+     "t075_pct_4x": 1.7,
+     "t075_pct_lost_half": 29.2,
+     "t150_median_mult": 0.59,
+     "t150_pct_doubled": 23.3,
+     "t150_pct_4x": 7.5,
+     "t150_pct_lost_half": 46.7,
+     "broke_first_pct": 20.8
+    },
+    {
+     "graded_half": "P2",
+     "grade": "C (top 15%)",
+     "bars": 456,
+     "per_month": 77.9,
+     "hit_rate_pct": 4.17,
+     "lift": 2.04,
+     "t075_median_mult": 0.69,
+     "t075_pct_doubled": 11.6,
+     "t075_pct_4x": 3.3,
+     "t075_pct_lost_half": 25.0,
+     "t150_median_mult": 0.61,
+     "t150_pct_doubled": 17.5,
+     "t150_pct_4x": 7.0,
+     "t150_pct_lost_half": 39.9,
+     "broke_first_pct": 20.6
+    },
+    {
+     "graded_half": "P2",
+     "grade": "D (rest)",
+     "bars": 3937,
+     "per_month": 672.4,
+     "hit_rate_pct": 1.68,
+     "lift": 0.82,
+     "t075_median_mult": 0.76,
+     "t075_pct_doubled": 15.4,
+     "t075_pct_4x": 4.8,
+     "t075_pct_lost_half": 14.8,
+     "t150_median_mult": 0.78,
+     "t150_pct_doubled": 22.8,
+     "t150_pct_4x": 7.6,
+     "t150_pct_lost_half": 27.9,
+     "broke_first_pct": 13.9
+    },
+    {
+     "graded_half": "P2",
+     "grade": "ALL",
+     "bars": 4515,
+     "per_month": 771.1,
+     "hit_rate_pct": 2.04,
+     "lift": 1.0,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 14.7,
+     "t075_pct_4x": 4.5,
+     "t075_pct_lost_half": 16.3,
+     "t150_median_mult": 0.76,
+     "t150_pct_doubled": 22.3,
+     "t150_pct_4x": 7.5,
+     "t150_pct_lost_half": 29.6,
+     "broke_first_pct": 14.7
+    }
+   ],
+   "deciles": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.11,
+     "decile 4": 0.45,
+     "decile 5": 0.8,
+     "decile 6": 0.8,
+     "decile 7": 1.7,
+     "decile 8": 2.16,
+     "decile 9": 2.16,
+     "decile 10": 1.82
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.33,
+     "decile 3": 0.54,
+     "decile 4": 0.43,
+     "decile 5": 1.31,
+     "decile 6": 1.19,
+     "decile 7": 1.09,
+     "decile 8": 1.09,
+     "decile 9": 1.74,
+     "decile 10": 2.28
+    }
+   ],
+   "raise_odds": [
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "-inf..0.472",
+     "bin (P2 edges)": "-inf..0.469",
+     "odds_x_learned_P1": 1.29,
+     "odds_x_learned_P2": 1.16
+    },
+    {
+     "reading": "D_vs_ema50_atr",
+     "bin (P1 edges)": "-1.27..-0.791",
+     "bin (P2 edges)": "-0.991..-0.103",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "D_rb_pctb",
+     "bin (P1 edges)": "0.399..0.478",
+     "bin (P2 edges)": "0.406..0.517",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "D_vs_ema20_atr",
+     "bin (P1 edges)": "-0.484..-0.0862",
+     "bin (P2 edges)": "-0.227..0.579",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.17
+    },
+    {
+     "reading": "h1_MACD_STATE",
+     "bin (P1 edges)": "bear widening",
+     "bin (P2 edges)": "bear widening",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.16
+    },
+    {
+     "reading": "mktD_rb_rsi_ch3",
+     "bin (P1 edges)": "3.19..5.95",
+     "bin (P2 edges)": "2.97..5.11",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "-0.0769..0.0394",
+     "bin (P2 edges)": "-0.0717..0.0457",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.19
+    },
+    {
+     "reading": "m15_RSI_STATE",
+     "bin (P1 edges)": "weak rising",
+     "bin (P2 edges)": "weak rising",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "1.36..2.03",
+     "bin (P2 edges)": "1.13..1.91",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.18
+    },
+    {
+     "reading": "h4_rsi_ch3",
+     "bin (P1 edges)": "-9.93..-4.98",
+     "bin (P2 edges)": "-9.05..-4.54",
+     "odds_x_learned_P1": 1.21,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h4_rb_rsi_ch3",
+     "bin (P1 edges)": "-9.93..-4.98",
+     "bin (P2 edges)": "-9.05..-4.54",
+     "odds_x_learned_P1": 1.21,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h1_STOCH_STATE",
+     "bin (P1 edges)": "<20 falling",
+     "bin (P2 edges)": "<20 falling",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "D_pos_in_20bar_range",
+     "bin (P1 edges)": "0.357..0.459",
+     "bin (P2 edges)": "0.407..0.633",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "vs_prev_high_atr",
+     "bin (P1 edges)": "-inf..-1.4",
+     "bin (P2 edges)": "-inf..-1.24",
+     "odds_x_learned_P1": 1.23,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "h1_volume_x",
+     "bin (P1 edges)": "1.42..inf",
+     "bin (P2 edges)": "1.45..inf",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.09
+    }
+   ],
+   "lower_odds": [
+    {
+     "reading": "h4_stoch_k",
+     "bin (P1 edges)": "17..32.2",
+     "bin (P2 edges)": "18.1..38.4",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "D_RSI_STATE",
+     "bin (P1 edges)": "weak rising",
+     "bin (P2 edges)": "weak rising",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "mktD_rsi_ch3",
+     "bin (P1 edges)": "0.19..1.74",
+     "bin (P2 edges)": "0.0722..2.69",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "mktD_move5_atr",
+     "bin (P1 edges)": "-1.75..-1.03",
+     "bin (P2 edges)": "-1.36..-0.798",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "mktH1_macd_htf_hist_atr",
+     "bin (P1 edges)": "0.235..0.301",
+     "bin (P2 edges)": "0.14..0.229",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.86
+    },
+    {
+     "reading": "mktD_rb_daily_rsi",
+     "bin (P1 edges)": "48.3..55.5",
+     "bin (P2 edges)": "62.5..67",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "0.623..0.697",
+     "bin (P2 edges)": "0.636..0.742",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "mktD_macd_hist_atr",
+     "bin (P1 edges)": "0.235..0.301",
+     "bin (P2 edges)": "0.14..0.229",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "h1_vs_ema50_atr",
+     "bin (P1 edges)": "-3.92..-2.11",
+     "bin (P2 edges)": "-4.07..-2.02",
+     "odds_x_learned_P1": 0.86,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "D_stoch_ch2",
+     "bin (P1 edges)": "-4.15..0.114",
+     "bin (P2 edges)": "-3.82..-0.0532",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "h1_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "1.05..inf",
+     "bin (P2 edges)": "1.11..inf",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "0.244..0.399",
+     "bin (P2 edges)": "0.284..0.471",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "h4_vs_ema50_atr",
+     "bin (P1 edges)": "1.93..3.85",
+     "bin (P2 edges)": "3.99..5.51",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "D_macd_hist_ch3",
+     "bin (P1 edges)": "0.207..inf",
+     "bin (P2 edges)": "0.253..inf",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.9
+    }
+   ],
+   "group_removal": [
+    {
+     "group removed": "lower timeframes (15m, 3m)",
+     "AUC lost (graded P1)": 0.011,
+     "AUC lost (graded P2)": 0.0166
+    },
+    {
+     "group removed": "1h indicator readings",
+     "AUC lost (graded P1)": 0.0035,
+     "AUC lost (graded P2)": 0.0148
+    },
+    {
+     "group removed": "daily chart",
+     "AUC lost (graded P1)": -0.0112,
+     "AUC lost (graded P2)": 0.0096
+    },
+    {
+     "group removed": "market (daily + hourly)",
+     "AUC lost (graded P1)": 0.0129,
+     "AUC lost (graded P2)": 0.0044
+    },
+    {
+     "group removed": "session levels (open, prior day, 20-bar)",
+     "AUC lost (graded P1)": 0.0079,
+     "AUC lost (graded P2)": 0.001
+    },
+    {
+     "group removed": "volume",
+     "AUC lost (graded P1)": -0.0052,
+     "AUC lost (graded P2)": -0.0019
+    },
+    {
+     "group removed": "1h location (EMAs, range)",
+     "AUC lost (graded P1)": 0.0014,
+     "AUC lost (graded P2)": -0.0024
+    },
+    {
+     "group removed": "time of day / weekday",
+     "AUC lost (graded P1)": -0.0046,
+     "AUC lost (graded P2)": -0.0025
+    },
+    {
+     "group removed": "4h chart",
+     "AUC lost (graded P1)": 0.0121,
+     "AUC lost (graded P2)": -0.0163
+    }
+   ],
+   "lookalikes": {
+    "win_first_base_pct": {
+     "P1": 65.4,
+     "P2": 64.4
+    },
+    "strengtheners": [
+     {
+      "reading": "h4_stoch_k",
+      "bin": "30.7..56.6",
+      "n": 152,
+      "win_first_P1_pct": 81.1,
+      "win_first_P2_pct": 77.4,
+      "x_P1": 1.24,
+      "x_P2": 1.2
+     },
+     {
+      "reading": "h4_macd_hist_atr",
+      "bin": "-0.306..-0.0714",
+      "n": 147,
+      "win_first_P1_pct": 87.7,
+      "win_first_P2_pct": 76.8,
+      "x_P1": 1.34,
+      "x_P2": 1.19
+     },
+     {
+      "reading": "h4_rb_pctb",
+      "bin": "0.281..0.468",
+      "n": 150,
+      "win_first_P1_pct": 77.8,
+      "win_first_P2_pct": 76.9,
+      "x_P1": 1.19,
+      "x_P2": 1.19
+     },
+     {
+      "reading": "D_STOCH_STATE",
+      "bin": "20-40 falling",
+      "n": 96,
+      "win_first_P1_pct": 81.1,
+      "win_first_P2_pct": 76.7,
+      "x_P1": 1.24,
+      "x_P2": 1.19
+     },
+     {
+      "reading": "D_rb_daily_rsi",
+      "bin": "44.2..48.8",
+      "n": 149,
+      "win_first_P1_pct": 77.6,
+      "win_first_P2_pct": 80.4,
+      "x_P1": 1.19,
+      "x_P2": 1.25
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "-0.139..-0.0688",
+      "n": 151,
+      "win_first_P1_pct": 81.4,
+      "win_first_P2_pct": 75.9,
+      "x_P1": 1.25,
+      "x_P2": 1.18
+     },
+     {
+      "reading": "h4_vs_sma200_atr",
+      "bin": "0.897..3.45",
+      "n": 92,
+      "win_first_P1_pct": 82.1,
+      "win_first_P2_pct": 75.5,
+      "x_P1": 1.25,
+      "x_P2": 1.17
+     },
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "-0.195..-0.0954",
+      "n": 151,
+      "win_first_P1_pct": 75.8,
+      "win_first_P2_pct": 75.0,
+      "x_P1": 1.16,
+      "x_P2": 1.17
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-0.195..-0.0954",
+      "n": 151,
+      "win_first_P1_pct": 75.8,
+      "win_first_P2_pct": 75.0,
+      "x_P1": 1.16,
+      "x_P2": 1.17
+     },
+     {
+      "reading": "mktD_STOCH_STATE",
+      "bin": ">80 rising",
+      "n": 94,
+      "win_first_P1_pct": 75.6,
+      "win_first_P2_pct": 75.5,
+      "x_P1": 1.16,
+      "x_P2": 1.17
+     },
+     {
+      "reading": "m15_rb_rsi",
+      "bin": "33.1..39.1",
+      "n": 151,
+      "win_first_P1_pct": 75.3,
+      "win_first_P2_pct": 74.2,
+      "x_P1": 1.15,
+      "x_P2": 1.15
+     },
+     {
+      "reading": "m15_rsi",
+      "bin": "33.1..39.1",
+      "n": 151,
+      "win_first_P1_pct": 75.3,
+      "win_first_P2_pct": 74.2,
+      "x_P1": 1.15,
+      "x_P2": 1.15
+     }
+    ],
+    "eliminators": [
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "-1.06..-0.321",
+      "n": 151,
+      "win_first_P1_pct": 42.7,
+      "win_first_P2_pct": 36.2,
+      "x_P1": 0.65,
+      "x_P2": 0.56
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-1.06..-0.321",
+      "n": 151,
+      "win_first_P1_pct": 42.7,
+      "win_first_P2_pct": 36.2,
+      "x_P1": 0.65,
+      "x_P2": 0.56
+     },
+     {
+      "reading": "m15_vs_ema20_atr",
+      "bin": "-8.54..-2.8",
+      "n": 151,
+      "win_first_P1_pct": 39.6,
+      "win_first_P2_pct": 42.9,
+      "x_P1": 0.61,
+      "x_P2": 0.67
+     },
+     {
+      "reading": "m3_vs_ema50_atr",
+      "bin": "-15.5..-4.24",
+      "n": 151,
+      "win_first_P1_pct": 43.9,
+      "win_first_P2_pct": 38.3,
+      "x_P1": 0.67,
+      "x_P2": 0.59
+     },
+     {
+      "reading": "m15_RB_STATE",
+      "bin": "oversold falling",
+      "n": 159,
+      "win_first_P1_pct": 44.6,
+      "win_first_P2_pct": 37.9,
+      "x_P1": 0.68,
+      "x_P2": 0.59
+     },
+     {
+      "reading": "m15_RSI_STATE",
+      "bin": "oversold falling",
+      "n": 159,
+      "win_first_P1_pct": 44.6,
+      "win_first_P2_pct": 37.9,
+      "x_P1": 0.68,
+      "x_P2": 0.59
+     },
+     {
+      "reading": "m15_rsi",
+      "bin": "2.43..24.9",
+      "n": 151,
+      "win_first_P1_pct": 45.5,
+      "win_first_P2_pct": 41.7,
+      "x_P1": 0.7,
+      "x_P2": 0.65
+     },
+     {
+      "reading": "m15_rb_rsi",
+      "bin": "2.43..24.9",
+      "n": 151,
+      "win_first_P1_pct": 45.5,
+      "win_first_P2_pct": 41.7,
+      "x_P1": 0.7,
+      "x_P2": 0.65
+     },
+     {
+      "reading": "m15_stoch_d",
+      "bin": "0.182..5.97",
+      "n": 151,
+      "win_first_P1_pct": 48.4,
+      "win_first_P2_pct": 43.8,
+      "x_P1": 0.74,
+      "x_P2": 0.68
+     },
+     {
+      "reading": "h1_rsi_ch3",
+      "bin": "-34.1..-10.8",
+      "n": 151,
+      "win_first_P1_pct": 48.9,
+      "win_first_P2_pct": 40.4,
+      "x_P1": 0.75,
+      "x_P2": 0.63
+     },
+     {
+      "reading": "h1_rb_rsi_ch3",
+      "bin": "-34.1..-10.8",
+      "n": 151,
+      "win_first_P1_pct": 48.9,
+      "win_first_P2_pct": 40.4,
+      "x_P1": 0.75,
+      "x_P2": 0.63
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "-0.71..-0.22",
+      "n": 151,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 46.7,
+      "x_P1": 0.76,
+      "x_P2": 0.72
+     }
+    ]
+   }
+  },
+  "P_1x": {
+   "auc_graded_P1": 0.733,
+   "auc_graded_P2": 0.72,
+   "grades": [
+    {
+     "graded_half": "P1",
+     "grade": "A (top 1%)",
+     "bars": 5,
+     "per_month": 0.8,
+     "hit_rate_pct": 60.0,
+     "lift": 12.38,
+     "t075_median_mult": 0.86,
+     "t075_pct_doubled": 0.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 0.0,
+     "t150_median_mult": 1.03,
+     "t150_pct_doubled": 0.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 0.0,
+     "broke_first_pct": 0.0
+    },
+    {
+     "graded_half": "P1",
+     "grade": "B (top 5%)",
+     "bars": 82,
+     "per_month": 13.6,
+     "hit_rate_pct": 17.07,
+     "lift": 3.52,
+     "t075_median_mult": 0.7,
+     "t075_pct_doubled": 15.9,
+     "t075_pct_4x": 2.4,
+     "t075_pct_lost_half": 15.9,
+     "t150_median_mult": 0.69,
+     "t150_pct_doubled": 18.3,
+     "t150_pct_4x": 3.7,
+     "t150_pct_lost_half": 31.7,
+     "broke_first_pct": 20.7
+    },
+    {
+     "graded_half": "P1",
+     "grade": "C (top 15%)",
+     "bars": 426,
+     "per_month": 70.8,
+     "hit_rate_pct": 11.27,
+     "lift": 2.32,
+     "t075_median_mult": 0.73,
+     "t075_pct_doubled": 11.6,
+     "t075_pct_4x": 2.7,
+     "t075_pct_lost_half": 14.5,
+     "t150_median_mult": 0.69,
+     "t150_pct_doubled": 14.5,
+     "t150_pct_4x": 3.6,
+     "t150_pct_lost_half": 28.4,
+     "broke_first_pct": 25.1
+    },
+    {
+     "graded_half": "P1",
+     "grade": "D (rest)",
+     "bars": 4107,
+     "per_month": 682.3,
+     "hit_rate_pct": 3.87,
+     "lift": 0.8,
+     "t075_median_mult": 0.71,
+     "t075_pct_doubled": 11.8,
+     "t075_pct_4x": 2.8,
+     "t075_pct_lost_half": 18.9,
+     "t150_median_mult": 0.58,
+     "t150_pct_doubled": 10.8,
+     "t150_pct_4x": 3.0,
+     "t150_pct_lost_half": 38.2,
+     "broke_first_pct": 18.8
+    },
+    {
+     "graded_half": "P1",
+     "grade": "ALL",
+     "bars": 4620,
+     "per_month": 767.5,
+     "hit_rate_pct": 4.85,
+     "lift": 1.0,
+     "t075_median_mult": 0.71,
+     "t075_pct_doubled": 11.9,
+     "t075_pct_4x": 2.8,
+     "t075_pct_lost_half": 18.4,
+     "t150_median_mult": 0.59,
+     "t150_pct_doubled": 11.3,
+     "t150_pct_4x": 3.0,
+     "t150_pct_lost_half": 37.1,
+     "broke_first_pct": 19.4
+    },
+    {
+     "graded_half": "P2",
+     "grade": "A (top 1%)",
+     "bars": 20,
+     "per_month": 3.4,
+     "hit_rate_pct": 10.0,
+     "lift": 2.75,
+     "t075_median_mult": 0.77,
+     "t075_pct_doubled": 5.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 0.0,
+     "t150_median_mult": 0.73,
+     "t150_pct_doubled": 25.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 5.0,
+     "broke_first_pct": 10.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "B (top 5%)",
+     "bars": 191,
+     "per_month": 32.6,
+     "hit_rate_pct": 8.9,
+     "lift": 2.45,
+     "t075_median_mult": 0.74,
+     "t075_pct_doubled": 4.7,
+     "t075_pct_4x": 1.0,
+     "t075_pct_lost_half": 8.4,
+     "t150_median_mult": 0.61,
+     "t150_pct_doubled": 10.5,
+     "t150_pct_4x": 3.7,
+     "t150_pct_lost_half": 19.9,
+     "broke_first_pct": 23.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "C (top 15%)",
+     "bars": 730,
+     "per_month": 124.7,
+     "hit_rate_pct": 6.71,
+     "lift": 1.85,
+     "t075_median_mult": 0.73,
+     "t075_pct_doubled": 6.2,
+     "t075_pct_4x": 1.5,
+     "t075_pct_lost_half": 9.6,
+     "t150_median_mult": 0.63,
+     "t150_pct_doubled": 10.2,
+     "t150_pct_4x": 2.3,
+     "t150_pct_lost_half": 20.9,
+     "broke_first_pct": 27.9
+    },
+    {
+     "graded_half": "P2",
+     "grade": "D (rest)",
+     "bars": 3574,
+     "per_month": 610.4,
+     "hit_rate_pct": 2.69,
+     "lift": 0.74,
+     "t075_median_mult": 0.72,
+     "t075_pct_doubled": 7.6,
+     "t075_pct_4x": 2.9,
+     "t075_pct_lost_half": 15.3,
+     "t150_median_mult": 0.6,
+     "t150_pct_doubled": 7.6,
+     "t150_pct_4x": 2.8,
+     "t150_pct_lost_half": 30.6,
+     "broke_first_pct": 19.5
+    },
+    {
+     "graded_half": "P2",
+     "grade": "ALL",
+     "bars": 4515,
+     "per_month": 771.1,
+     "hit_rate_pct": 3.63,
+     "lift": 1.0,
+     "t075_median_mult": 0.72,
+     "t075_pct_doubled": 7.2,
+     "t075_pct_4x": 2.6,
+     "t075_pct_lost_half": 14.1,
+     "t150_median_mult": 0.61,
+     "t150_pct_doubled": 8.2,
+     "t150_pct_4x": 2.7,
+     "t150_pct_lost_half": 28.5,
+     "broke_first_pct": 21.0
+    }
+   ],
+   "deciles": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.18,
+     "decile 2": 0.09,
+     "decile 3": 0.4,
+     "decile 4": 0.58,
+     "decile 5": 0.45,
+     "decile 6": 0.85,
+     "decile 7": 1.34,
+     "decile 8": 1.56,
+     "decile 9": 1.83,
+     "decile 10": 2.72
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.12,
+     "decile 3": 0.49,
+     "decile 4": 0.37,
+     "decile 5": 0.67,
+     "decile 6": 1.04,
+     "decile 7": 1.47,
+     "decile 8": 1.83,
+     "decile 9": 1.65,
+     "decile 10": 2.38
+    }
+   ],
+   "raise_odds": [
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "0.88..1.05",
+     "bin (P2 edges)": "0.951..1.11",
+     "odds_x_learned_P1": 1.3,
+     "odds_x_learned_P2": 1.3
+    },
+    {
+     "reading": "up_from_20bar_low_atr",
+     "bin (P1 edges)": "2.29..inf",
+     "bin (P2 edges)": "2.56..inf",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.19
+    },
+    {
+     "reading": "mktH1_macd_htf_hist_atr",
+     "bin (P1 edges)": "-inf..-0.187",
+     "bin (P2 edges)": "-inf..-0.195",
+     "odds_x_learned_P1": 1.2,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "mktD_MACD_STATE",
+     "bin (P1 edges)": "bear widening",
+     "bin (P2 edges)": "bear widening",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.25
+    },
+    {
+     "reading": "h1_volume_x",
+     "bin (P1 edges)": "0.888..1",
+     "bin (P2 edges)": "0.894..1.01",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "mktD_macd_hist_atr",
+     "bin (P1 edges)": "-inf..-0.187",
+     "bin (P2 edges)": "-inf..-0.195",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "mktD_RSI_STATE",
+     "bin (P1 edges)": "strong falling",
+     "bin (P2 edges)": "strong falling",
+     "odds_x_learned_P1": 1.22,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "D_RSI_STATE",
+     "bin (P1 edges)": "strong rising",
+     "bin (P2 edges)": "strong rising",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "0.0915..0.233",
+     "bin (P2 edges)": "0.0885..0.221",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.24
+    },
+    {
+     "reading": "D_rb_daily_rsi",
+     "bin (P1 edges)": "53.2..59.4",
+     "bin (P2 edges)": "60.8..66.8",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.35
+    },
+    {
+     "reading": "D_MACD_STATE",
+     "bin (P1 edges)": "bull widening",
+     "bin (P2 edges)": "bull widening",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "h4_stoch_k",
+     "bin (P1 edges)": "86.2..95.5",
+     "bin (P2 edges)": "89..96.2",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.23
+    },
+    {
+     "reading": "h1_macd_hist_ch3",
+     "bin (P1 edges)": "0.0564..0.127",
+     "bin (P2 edges)": "0.057..0.126",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.22
+    },
+    {
+     "reading": "m15_stoch_ch2",
+     "bin (P1 edges)": "-inf..-22.1",
+     "bin (P2 edges)": "-inf..-23.4",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "mktD_vs_ema50_atr",
+     "bin (P1 edges)": "-0.354..0.13",
+     "bin (P2 edges)": "2.06..2.44",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.11
+    }
+   ],
+   "lower_odds": [
+    {
+     "reading": "h4_rb_daily_rsi",
+     "bin (P1 edges)": "43.8..46.7",
+     "bin (P2 edges)": "43.5..48.4",
+     "odds_x_learned_P1": 0.83,
+     "odds_x_learned_P2": 0.83
+    },
+    {
+     "reading": "D_rb_daily_rsi",
+     "bin (P1 edges)": "43.8..46.7",
+     "bin (P2 edges)": "43.5..48.3",
+     "odds_x_learned_P1": 0.86,
+     "odds_x_learned_P2": 0.86
+    },
+    {
+     "reading": "bars_since_20bar_high",
+     "bin (P1 edges)": "2..5",
+     "bin (P2 edges)": "1..4",
+     "odds_x_learned_P1": 0.81,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "mktD_MACD_STATE",
+     "bin (P1 edges)": "bear narrowing",
+     "bin (P2 edges)": "bear narrowing",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.82
+    },
+    {
+     "reading": "h4_vs_sma200_atr",
+     "bin (P1 edges)": "4.45..inf",
+     "bin (P2 edges)": "10.8..inf",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "mktD_RSI_STATE",
+     "bin (P1 edges)": "weak rising",
+     "bin (P2 edges)": "weak rising",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "D_volume_x",
+     "bin (P1 edges)": "0.558..0.724",
+     "bin (P2 edges)": "0.513..0.737",
+     "odds_x_learned_P1": 0.85,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "-0.4..-0.227",
+     "bin (P2 edges)": "-0.391..-0.18",
+     "odds_x_learned_P1": 0.79,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "h4_rb_pctb",
+     "bin (P1 edges)": "0.254..0.389",
+     "bin (P2 edges)": "0.245..0.349",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "D_pos_in_20bar_range",
+     "bin (P1 edges)": "0.627..0.789",
+     "bin (P2 edges)": "0.791..0.908",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "0.774..0.88",
+     "bin (P2 edges)": "0.855..0.951",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "h4_pos_in_20bar_range",
+     "bin (P1 edges)": "-inf..0.0699",
+     "bin (P2 edges)": "-inf..0.0654",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "5..10",
+     "bin (P2 edges)": "7..11",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.82
+    },
+    {
+     "reading": "mktD_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.87
+    },
+    {
+     "reading": "D_MACD_STATE",
+     "bin (P1 edges)": "bull narrowing",
+     "bin (P2 edges)": "bull narrowing",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.87
+    }
+   ],
+   "group_removal": [
+    {
+     "group removed": "lower timeframes (15m, 3m)",
+     "AUC lost (graded P1)": 0.0097,
+     "AUC lost (graded P2)": 0.0104
+    },
+    {
+     "group removed": "1h location (EMAs, range)",
+     "AUC lost (graded P1)": 0.0028,
+     "AUC lost (graded P2)": 0.0024
+    },
+    {
+     "group removed": "volume",
+     "AUC lost (graded P1)": 0.004,
+     "AUC lost (graded P2)": 0.0017
+    },
+    {
+     "group removed": "time of day / weekday",
+     "AUC lost (graded P1)": 0.0011,
+     "AUC lost (graded P2)": 0.0005
+    },
+    {
+     "group removed": "session levels (open, prior day, 20-bar)",
+     "AUC lost (graded P1)": -0.0001,
+     "AUC lost (graded P2)": -0.0003
+    },
+    {
+     "group removed": "daily chart",
+     "AUC lost (graded P1)": -0.0005,
+     "AUC lost (graded P2)": -0.0004
+    },
+    {
+     "group removed": "market (daily + hourly)",
+     "AUC lost (graded P1)": -0.0037,
+     "AUC lost (graded P2)": -0.0042
+    },
+    {
+     "group removed": "1h indicator readings",
+     "AUC lost (graded P1)": -0.003,
+     "AUC lost (graded P2)": -0.0059
+    },
+    {
+     "group removed": "4h chart",
+     "AUC lost (graded P1)": 0.0019,
+     "AUC lost (graded P2)": -0.0099
+    }
+   ],
+   "lookalikes": {
+    "win_first_base_pct": {
+     "P1": 60.9,
+     "P2": 52.7
+    },
+    "strengtheners": [
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-0.565..-0.0574",
+      "n": 170,
+      "win_first_P1_pct": 78.4,
+      "win_first_P2_pct": 71.4,
+      "x_P1": 1.29,
+      "x_P2": 1.35
+     },
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "-0.565..-0.0574",
+      "n": 170,
+      "win_first_P1_pct": 78.4,
+      "win_first_P2_pct": 71.4,
+      "x_P1": 1.29,
+      "x_P2": 1.35
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "-0.393..-0.0718",
+      "n": 170,
+      "win_first_P1_pct": 77.8,
+      "win_first_P2_pct": 70.7,
+      "x_P1": 1.28,
+      "x_P2": 1.34
+     },
+     {
+      "reading": "h4_move5_atr",
+      "bin": "3.17..7.53",
+      "n": 169,
+      "win_first_P1_pct": 81.6,
+      "win_first_P2_pct": 67.2,
+      "x_P1": 1.34,
+      "x_P2": 1.27
+     },
+     {
+      "reading": "m15_rb_pctb",
+      "bin": "0.369..0.601",
+      "n": 169,
+      "win_first_P1_pct": 77.4,
+      "win_first_P2_pct": 69.2,
+      "x_P1": 1.27,
+      "x_P2": 1.31
+     },
+     {
+      "reading": "mktD_rb_rsi_ch3",
+      "bin": "1.68..4.28",
+      "n": 161,
+      "win_first_P1_pct": 76.9,
+      "win_first_P2_pct": 66.4,
+      "x_P1": 1.26,
+      "x_P2": 1.26
+     },
+     {
+      "reading": "mktH1_macd_htf_hist_atr",
+      "bin": "-0.543..-0.158",
+      "n": 160,
+      "win_first_P1_pct": 84.5,
+      "win_first_P2_pct": 64.7,
+      "x_P1": 1.39,
+      "x_P2": 1.23
+     },
+     {
+      "reading": "mktD_MACD_STATE",
+      "bin": "bear widening",
+      "n": 230,
+      "win_first_P1_pct": 74.4,
+      "win_first_P2_pct": 65.8,
+      "x_P1": 1.22,
+      "x_P2": 1.25
+     },
+     {
+      "reading": "mktD_macd_hist_atr",
+      "bin": "-0.543..-0.158",
+      "n": 164,
+      "win_first_P1_pct": 84.7,
+      "win_first_P2_pct": 63.8,
+      "x_P1": 1.39,
+      "x_P2": 1.21
+     },
+     {
+      "reading": "m3_MACD_HTF_STATE",
+      "bin": "bear",
+      "n": 232,
+      "win_first_P1_pct": 73.3,
+      "win_first_P2_pct": 74.5,
+      "x_P1": 1.2,
+      "x_P2": 1.41
+     },
+     {
+      "reading": "D_rb_rsi_ch3",
+      "bin": "7.14..16.2",
+      "n": 159,
+      "win_first_P1_pct": 75.6,
+      "win_first_P2_pct": 63.2,
+      "x_P1": 1.24,
+      "x_P2": 1.2
+     },
+     {
+      "reading": "h1_macd_htf_hist_atr",
+      "bin": "0.214..0.376",
+      "n": 158,
+      "win_first_P1_pct": 72.5,
+      "win_first_P2_pct": 62.9,
+      "x_P1": 1.19,
+      "x_P2": 1.19
+     }
+    ],
+    "eliminators": [
+     {
+      "reading": "m15_move5_atr",
+      "bin": "2.57..6.44",
+      "n": 169,
+      "win_first_P1_pct": 30.2,
+      "win_first_P2_pct": 24.6,
+      "x_P1": 0.5,
+      "x_P2": 0.47
+     },
+     {
+      "reading": "m3_vs_ema50_atr",
+      "bin": "4.78..14.3",
+      "n": 169,
+      "win_first_P1_pct": 33.3,
+      "win_first_P2_pct": 24.8,
+      "x_P1": 0.55,
+      "x_P2": 0.47
+     },
+     {
+      "reading": "m15_vs_ema20_atr",
+      "bin": "3.29..8.58",
+      "n": 169,
+      "win_first_P1_pct": 35.7,
+      "win_first_P2_pct": 31.5,
+      "x_P1": 0.59,
+      "x_P2": 0.6
+     },
+     {
+      "reading": "m3_rsi",
+      "bin": "71.3..99.6",
+      "n": 169,
+      "win_first_P1_pct": 38.0,
+      "win_first_P2_pct": 26.9,
+      "x_P1": 0.62,
+      "x_P2": 0.51
+     },
+     {
+      "reading": "m3_rb_rsi",
+      "bin": "71.3..99.6",
+      "n": 169,
+      "win_first_P1_pct": 38.0,
+      "win_first_P2_pct": 26.9,
+      "x_P1": 0.62,
+      "x_P2": 0.51
+     },
+     {
+      "reading": "m3_vs_ema20_atr",
+      "bin": "2.43..6.67",
+      "n": 169,
+      "win_first_P1_pct": 38.5,
+      "win_first_P2_pct": 28.2,
+      "x_P1": 0.63,
+      "x_P2": 0.53
+     },
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "0.381..1.19",
+      "n": 169,
+      "win_first_P1_pct": 38.8,
+      "win_first_P2_pct": 25.8,
+      "x_P1": 0.64,
+      "x_P2": 0.49
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "0.381..1.19",
+      "n": 169,
+      "win_first_P1_pct": 38.8,
+      "win_first_P2_pct": 25.8,
+      "x_P1": 0.64,
+      "x_P2": 0.49
+     },
+     {
+      "reading": "h1_move5_atr",
+      "bin": "3.36..9.83",
+      "n": 169,
+      "win_first_P1_pct": 37.0,
+      "win_first_P2_pct": 35.0,
+      "x_P1": 0.61,
+      "x_P2": 0.66
+     },
+     {
+      "reading": "m15_stoch_d",
+      "bin": "94.8..99.8",
+      "n": 169,
+      "win_first_P1_pct": 41.7,
+      "win_first_P2_pct": 24.8,
+      "x_P1": 0.68,
+      "x_P2": 0.47
+     },
+     {
+      "reading": "m3_RSI_STATE",
+      "bin": "overbought rising",
+      "n": 142,
+      "win_first_P1_pct": 41.7,
+      "win_first_P2_pct": 31.9,
+      "x_P1": 0.68,
+      "x_P2": 0.61
+     },
+     {
+      "reading": "m3_RB_STATE",
+      "bin": "overbought rising",
+      "n": 142,
+      "win_first_P1_pct": 41.7,
+      "win_first_P2_pct": 31.9,
+      "x_P1": 0.68,
+      "x_P2": 0.61
+     }
+    ]
+   }
+  },
+  "P_3x": {
+   "auc_graded_P1": 0.599,
+   "auc_graded_P2": 0.667,
+   "grades": [
+    {
+     "graded_half": "P1",
+     "grade": "A (top 1%)",
+     "bars": 1,
+     "per_month": 0.2,
+     "hit_rate_pct": 0.0,
+     "lift": 0.0,
+     "t075_median_mult": 3.75,
+     "t075_pct_doubled": 100.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 0.0,
+     "t150_median_mult": 3.43,
+     "t150_pct_doubled": 100.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 0.0,
+     "broke_first_pct": 0.0
+    },
+    {
+     "graded_half": "P1",
+     "grade": "B (top 5%)",
+     "bars": 109,
+     "per_month": 18.1,
+     "hit_rate_pct": 0.92,
+     "lift": 0.76,
+     "t075_median_mult": 0.86,
+     "t075_pct_doubled": 21.5,
+     "t075_pct_4x": 0.9,
+     "t075_pct_lost_half": 14.0,
+     "t150_median_mult": 0.82,
+     "t150_pct_doubled": 21.5,
+     "t150_pct_4x": 1.9,
+     "t150_pct_lost_half": 28.0,
+     "broke_first_pct": 15.6
+    },
+    {
+     "graded_half": "P1",
+     "grade": "C (top 15%)",
+     "bars": 444,
+     "per_month": 73.8,
+     "hit_rate_pct": 2.25,
+     "lift": 1.86,
+     "t075_median_mult": 0.79,
+     "t075_pct_doubled": 16.1,
+     "t075_pct_4x": 4.0,
+     "t075_pct_lost_half": 11.9,
+     "t150_median_mult": 0.69,
+     "t150_pct_doubled": 11.4,
+     "t150_pct_4x": 2.8,
+     "t150_pct_lost_half": 31.3,
+     "broke_first_pct": 20.0
+    },
+    {
+     "graded_half": "P1",
+     "grade": "D (rest)",
+     "bars": 4066,
+     "per_month": 675.4,
+     "hit_rate_pct": 1.11,
+     "lift": 0.91,
+     "t075_median_mult": 0.7,
+     "t075_pct_doubled": 11.1,
+     "t075_pct_4x": 2.7,
+     "t075_pct_lost_half": 19.2,
+     "t150_median_mult": 0.57,
+     "t150_pct_doubled": 10.9,
+     "t150_pct_4x": 3.1,
+     "t150_pct_lost_half": 38.0,
+     "broke_first_pct": 19.5
+    },
+    {
+     "graded_half": "P1",
+     "grade": "ALL",
+     "bars": 4620,
+     "per_month": 767.5,
+     "hit_rate_pct": 1.21,
+     "lift": 1.0,
+     "t075_median_mult": 0.71,
+     "t075_pct_doubled": 11.9,
+     "t075_pct_4x": 2.8,
+     "t075_pct_lost_half": 18.4,
+     "t150_median_mult": 0.59,
+     "t150_pct_doubled": 11.3,
+     "t150_pct_4x": 3.0,
+     "t150_pct_lost_half": 37.1,
+     "broke_first_pct": 19.4
+    },
+    {
+     "graded_half": "P2",
+     "grade": "A (top 1%)",
+     "bars": 2,
+     "per_month": 0.3,
+     "hit_rate_pct": 0.0,
+     "lift": 0.0,
+     "t075_median_mult": 0.52,
+     "t075_pct_doubled": 0.0,
+     "t075_pct_4x": 0.0,
+     "t075_pct_lost_half": 50.0,
+     "t150_median_mult": 0.82,
+     "t150_pct_doubled": 0.0,
+     "t150_pct_4x": 0.0,
+     "t150_pct_lost_half": 0.0,
+     "broke_first_pct": 0.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "B (top 5%)",
+     "bars": 143,
+     "per_month": 24.4,
+     "hit_rate_pct": 0.7,
+     "lift": 0.79,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 5.6,
+     "t075_pct_4x": 0.7,
+     "t075_pct_lost_half": 7.7,
+     "t150_median_mult": 0.67,
+     "t150_pct_doubled": 16.1,
+     "t150_pct_4x": 2.8,
+     "t150_pct_lost_half": 11.2,
+     "broke_first_pct": 25.2
+    },
+    {
+     "graded_half": "P2",
+     "grade": "C (top 15%)",
+     "bars": 629,
+     "per_month": 107.4,
+     "hit_rate_pct": 1.11,
+     "lift": 1.26,
+     "t075_median_mult": 0.75,
+     "t075_pct_doubled": 4.8,
+     "t075_pct_4x": 0.5,
+     "t075_pct_lost_half": 8.3,
+     "t150_median_mult": 0.64,
+     "t150_pct_doubled": 7.5,
+     "t150_pct_4x": 1.7,
+     "t150_pct_lost_half": 16.5,
+     "broke_first_pct": 26.1
+    },
+    {
+     "graded_half": "P2",
+     "grade": "D (rest)",
+     "bars": 3741,
+     "per_month": 638.9,
+     "hit_rate_pct": 0.86,
+     "lift": 0.97,
+     "t075_median_mult": 0.71,
+     "t075_pct_doubled": 7.7,
+     "t075_pct_4x": 3.1,
+     "t075_pct_lost_half": 15.3,
+     "t150_median_mult": 0.6,
+     "t150_pct_doubled": 8.0,
+     "t150_pct_4x": 2.9,
+     "t150_pct_lost_half": 31.2,
+     "broke_first_pct": 20.0
+    },
+    {
+     "graded_half": "P2",
+     "grade": "ALL",
+     "bars": 4515,
+     "per_month": 771.1,
+     "hit_rate_pct": 0.89,
+     "lift": 1.0,
+     "t075_median_mult": 0.72,
+     "t075_pct_doubled": 7.2,
+     "t075_pct_4x": 2.6,
+     "t075_pct_lost_half": 14.1,
+     "t150_median_mult": 0.61,
+     "t150_pct_doubled": 8.2,
+     "t150_pct_4x": 2.7,
+     "t150_pct_lost_half": 28.5,
+     "broke_first_pct": 21.0
+    }
+   ],
+   "deciles": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.54,
+     "decile 2": 0.36,
+     "decile 3": 1.79,
+     "decile 4": 0.71,
+     "decile 5": 0.18,
+     "decile 6": 1.07,
+     "decile 7": 0.54,
+     "decile 8": 1.61,
+     "decile 9": 1.25,
+     "decile 10": 1.96
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.25,
+     "decile 4": 1.0,
+     "decile 5": 0.75,
+     "decile 6": 1.25,
+     "decile 7": 2.5,
+     "decile 8": 1.75,
+     "decile 9": 1.25,
+     "decile 10": 1.25
+    }
+   ],
+   "raise_odds": [
+    {
+     "reading": "day_range_atr",
+     "bin (P1 edges)": "0.73..0.879",
+     "bin (P2 edges)": "0.738..0.939",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.16
+    },
+    {
+     "reading": "D_rb_rsi",
+     "bin (P1 edges)": "57.1..62.2",
+     "bin (P2 edges)": "63.8..69.4",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "h4_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "19..inf",
+     "bin (P2 edges)": "19..inf",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.12
+    },
+    {
+     "reading": "h4_rb_rsi",
+     "bin (P1 edges)": "54.4..61.8",
+     "bin (P2 edges)": "60.1..68.1",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.15
+    },
+    {
+     "reading": "h4_rsi",
+     "bin (P1 edges)": "54.4..61.8",
+     "bin (P2 edges)": "60.1..68.1",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.15
+    },
+    {
+     "reading": "h4_RSI_STATE",
+     "bin (P1 edges)": "strong rising",
+     "bin (P2 edges)": "strong rising",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "h4_vs_ema50_atr",
+     "bin (P1 edges)": "0.733..1.93",
+     "bin (P2 edges)": "2.32..3.99",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.21
+    },
+    {
+     "reading": "D_rb_daily_rsi",
+     "bin (P1 edges)": "53.2..59.4",
+     "bin (P2 edges)": "60.8..66.8",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "h4_rb_pctb",
+     "bin (P1 edges)": "0.114..0.254",
+     "bin (P2 edges)": "0.114..0.245",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.12
+    },
+    {
+     "reading": "vs_prev_low_atr",
+     "bin (P1 edges)": "0.592..0.895",
+     "bin (P2 edges)": "0.652..1",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "D_rb_pctb",
+     "bin (P1 edges)": "-inf..0.138",
+     "bin (P2 edges)": "-inf..0.146",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h4_stoch_ch2",
+     "bin (P1 edges)": "23.8..inf",
+     "bin (P2 edges)": "21.1..inf",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h4_pos_in_20bar_range",
+     "bin (P1 edges)": "0.952..inf",
+     "bin (P2 edges)": "0.964..inf",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "h1_vs_sma200_atr",
+     "bin (P1 edges)": "1.83..4.3",
+     "bin (P2 edges)": "5.66..9.4",
+     "odds_x_learned_P1": 1.09,
+     "odds_x_learned_P2": 1.17
+    }
+   ],
+   "lower_odds": [
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "0..2",
+     "bin (P2 edges)": "0..3",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "D_stoch_ch2",
+     "bin (P1 edges)": "-13.7..-4.15",
+     "bin (P2 edges)": "-9.78..-3.82",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "day_range_atr",
+     "bin (P1 edges)": "0.3..0.401",
+     "bin (P2 edges)": "0.272..0.369",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "h4_stoch_d",
+     "bin (P1 edges)": "68.5..82.8",
+     "bin (P2 edges)": "78.7..87.5",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "m15_macd_htf_hist_atr",
+     "bin (P1 edges)": "-0.0975..0.0116",
+     "bin (P2 edges)": "-0.0943..0.013",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "h1_macd_hist_atr",
+     "bin (P1 edges)": "-0.0975..0.0116",
+     "bin (P2 edges)": "-0.0943..0.013",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "D_rsi_ch3",
+     "bin (P1 edges)": "2.74..5.75",
+     "bin (P2 edges)": "2.64..5.68",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "-0.4..-0.227",
+     "bin (P2 edges)": "-0.391..-0.18",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h4_macd_hist_ch3",
+     "bin (P1 edges)": "-0.07..-0.00143",
+     "bin (P2 edges)": "-0.062..0.00745",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "D_macd_hist_atr",
+     "bin (P1 edges)": "-0.157..-0.0613",
+     "bin (P2 edges)": "-0.182..-0.0454",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "h4_macd_htf_hist_atr",
+     "bin (P1 edges)": "-0.157..-0.0613",
+     "bin (P2 edges)": "-0.182..-0.0454",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "D_volume_x",
+     "bin (P1 edges)": "0.558..0.724",
+     "bin (P2 edges)": "0.513..0.737",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "h1_volume_x",
+     "bin (P1 edges)": "-inf..0.612",
+     "bin (P2 edges)": "-inf..0.612",
+     "odds_x_learned_P1": 0.87,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "h1_RB_STATE",
+     "bin (P1 edges)": "middle falling",
+     "bin (P2 edges)": "middle falling",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "D_stoch_d",
+     "bin (P1 edges)": "12.4..24.9",
+     "bin (P2 edges)": "8.39..21.7",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.94
+    }
+   ],
+   "group_removal": [
+    {
+     "group removed": "lower timeframes (15m, 3m)",
+     "AUC lost (graded P1)": 0.0041,
+     "AUC lost (graded P2)": 0.0403
+    },
+    {
+     "group removed": "daily chart",
+     "AUC lost (graded P1)": 0.0334,
+     "AUC lost (graded P2)": 0.0291
+    },
+    {
+     "group removed": "4h chart",
+     "AUC lost (graded P1)": 0.0102,
+     "AUC lost (graded P2)": 0.0215
+    },
+    {
+     "group removed": "session levels (open, prior day, 20-bar)",
+     "AUC lost (graded P1)": 0.0038,
+     "AUC lost (graded P2)": 0.0031
+    },
+    {
+     "group removed": "1h location (EMAs, range)",
+     "AUC lost (graded P1)": 0.0021,
+     "AUC lost (graded P2)": 0.0017
+    },
+    {
+     "group removed": "volume",
+     "AUC lost (graded P1)": -0.0014,
+     "AUC lost (graded P2)": 0.0014
+    },
+    {
+     "group removed": "time of day / weekday",
+     "AUC lost (graded P1)": -0.0007,
+     "AUC lost (graded P2)": 0.0003
+    },
+    {
+     "group removed": "1h indicator readings",
+     "AUC lost (graded P1)": -0.0111,
+     "AUC lost (graded P2)": -0.008
+    },
+    {
+     "group removed": "market (daily + hourly)",
+     "AUC lost (graded P1)": -0.039,
+     "AUC lost (graded P2)": -0.0642
+    }
+   ],
+   "lookalikes": {
+    "win_first_base_pct": {
+     "P1": 70.5,
+     "P2": 54.1
+    },
+    "strengtheners": [
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "-0.708..-0.105",
+      "n": 159,
+      "win_first_P1_pct": 87.5,
+      "win_first_P2_pct": 74.8,
+      "x_P1": 1.24,
+      "x_P2": 1.38
+     },
+     {
+      "reading": "m15_macd_hist_atr",
+      "bin": "-0.708..-0.105",
+      "n": 159,
+      "win_first_P1_pct": 87.5,
+      "win_first_P2_pct": 74.8,
+      "x_P1": 1.24,
+      "x_P2": 1.38
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "-0.443..-0.102",
+      "n": 159,
+      "win_first_P1_pct": 86.8,
+      "win_first_P2_pct": 77.4,
+      "x_P1": 1.23,
+      "x_P2": 1.43
+     },
+     {
+      "reading": "h4_volume_x",
+      "bin": "0.744..0.903",
+      "n": 158,
+      "win_first_P1_pct": 85.7,
+      "win_first_P2_pct": 65.7,
+      "x_P1": 1.22,
+      "x_P2": 1.21
+     },
+     {
+      "reading": "m15_rb_pctb",
+      "bin": "-0.312..0.341",
+      "n": 159,
+      "win_first_P1_pct": 85.9,
+      "win_first_P2_pct": 65.3,
+      "x_P1": 1.22,
+      "x_P2": 1.21
+     },
+     {
+      "reading": "h1_RB_STATE",
+      "bin": "middle falling",
+      "n": 131,
+      "win_first_P1_pct": 84.9,
+      "win_first_P2_pct": 65.8,
+      "x_P1": 1.21,
+      "x_P2": 1.22
+     },
+     {
+      "reading": "h1_rb_rsi_ch3",
+      "bin": "-13.4..-1.65",
+      "n": 159,
+      "win_first_P1_pct": 85.0,
+      "win_first_P2_pct": 65.8,
+      "x_P1": 1.21,
+      "x_P2": 1.22
+     },
+     {
+      "reading": "h1_rsi_ch3",
+      "bin": "-13.4..-1.65",
+      "n": 159,
+      "win_first_P1_pct": 85.0,
+      "win_first_P2_pct": 65.8,
+      "x_P1": 1.21,
+      "x_P2": 1.22
+     },
+     {
+      "reading": "m15_stoch_k",
+      "bin": "0.37..58.8",
+      "n": 159,
+      "win_first_P1_pct": 84.8,
+      "win_first_P2_pct": 66.7,
+      "x_P1": 1.2,
+      "x_P2": 1.23
+     },
+     {
+      "reading": "m15_stoch_d",
+      "bin": "7.2..56.5",
+      "n": 159,
+      "win_first_P1_pct": 84.5,
+      "win_first_P2_pct": 67.9,
+      "x_P1": 1.2,
+      "x_P2": 1.25
+     },
+     {
+      "reading": "m3_pos_in_20bar_range",
+      "bin": "0.358..0.666",
+      "n": 159,
+      "win_first_P1_pct": 84.5,
+      "win_first_P2_pct": 70.5,
+      "x_P1": 1.2,
+      "x_P2": 1.3
+     },
+     {
+      "reading": "m15_vs_ema20_atr",
+      "bin": "-1.95..0.381",
+      "n": 159,
+      "win_first_P1_pct": 84.7,
+      "win_first_P2_pct": 68.3,
+      "x_P1": 1.2,
+      "x_P2": 1.26
+     }
+    ],
+    "eliminators": [
+     {
+      "reading": "m3_vs_ema20_atr",
+      "bin": "2.21..6.67",
+      "n": 159,
+      "win_first_P1_pct": 40.5,
+      "win_first_P2_pct": 28.2,
+      "x_P1": 0.57,
+      "x_P2": 0.52
+     },
+     {
+      "reading": "m3_rsi",
+      "bin": "69.7..99.4",
+      "n": 159,
+      "win_first_P1_pct": 43.2,
+      "win_first_P2_pct": 28.7,
+      "x_P1": 0.61,
+      "x_P2": 0.53
+     },
+     {
+      "reading": "m3_rb_rsi",
+      "bin": "69.7..99.4",
+      "n": 159,
+      "win_first_P1_pct": 43.2,
+      "win_first_P2_pct": 28.7,
+      "x_P1": 0.61,
+      "x_P2": 0.53
+     },
+     {
+      "reading": "m15_stoch_k",
+      "bin": "96.3..100",
+      "n": 159,
+      "win_first_P1_pct": 45.2,
+      "win_first_P2_pct": 31.6,
+      "x_P1": 0.64,
+      "x_P2": 0.58
+     },
+     {
+      "reading": "h4_volume_x",
+      "bin": "1.3..3.91",
+      "n": 158,
+      "win_first_P1_pct": 45.1,
+      "win_first_P2_pct": 35.5,
+      "x_P1": 0.64,
+      "x_P2": 0.66
+     },
+     {
+      "reading": "h1_macd_hist_ch3",
+      "bin": "0.254..0.868",
+      "n": 159,
+      "win_first_P1_pct": 47.6,
+      "win_first_P2_pct": 35.0,
+      "x_P1": 0.68,
+      "x_P2": 0.65
+     },
+     {
+      "reading": "h1_rb_rsi_ch3",
+      "bin": "9.37..39.4",
+      "n": 159,
+      "win_first_P1_pct": 48.6,
+      "win_first_P2_pct": 31.5,
+      "x_P1": 0.69,
+      "x_P2": 0.58
+     },
+     {
+      "reading": "m15_pos_in_20bar_range",
+      "bin": "0.967..1",
+      "n": 159,
+      "win_first_P1_pct": 48.6,
+      "win_first_P2_pct": 31.1,
+      "x_P1": 0.69,
+      "x_P2": 0.58
+     },
+     {
+      "reading": "h1_rsi_ch3",
+      "bin": "9.37..39.4",
+      "n": 159,
+      "win_first_P1_pct": 48.6,
+      "win_first_P2_pct": 31.5,
+      "x_P1": 0.69,
+      "x_P2": 0.58
+     },
+     {
+      "reading": "m3_macd_htf_hist_atr",
+      "bin": "0.347..1.19",
+      "n": 159,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 27.4,
+      "x_P1": 0.71,
+      "x_P2": 0.51
+     },
+     {
+      "reading": "m3_move5_atr",
+      "bin": "1.9..4.88",
+      "n": 159,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 34.7,
+      "x_P1": 0.71,
+      "x_P2": 0.64
+     },
+     {
+      "reading": "day_range_pos",
+      "bin": "0.959..1",
+      "n": 159,
+      "win_first_P1_pct": 50.0,
+      "win_first_P2_pct": 31.9,
+      "x_P1": 0.71,
+      "x_P2": 0.59
+     }
+    ]
+   }
+  }
+ },
+ "signals": {
+  "table": [
+   {
+    "signal": "volume_surge",
+    "side": "calls",
+    "half": "P1",
+    "entries": 56,
+    "per_month": 9.3,
+    "bars_firing_pct": 0.83,
+    "C_1x_rate_pct": 19.64,
+    "C_1x_lift": 3.0,
+    "C_3x_rate_pct": 5.36,
+    "C_3x_lift": 2.81,
+    "went_our_way_first_pct": 95.5,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   },
+   {
+    "signal": "volume_surge",
+    "side": "calls",
+    "half": "P2",
+    "entries": 70,
+    "per_month": 12.0,
+    "bars_firing_pct": 0.92,
+    "C_1x_rate_pct": 20.0,
+    "C_1x_lift": 3.53,
+    "C_3x_rate_pct": 7.14,
+    "C_3x_lift": 3.51,
+    "went_our_way_first_pct": 91.7,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   },
+   {
+    "signal": "stoch_turn_up",
+    "side": "calls",
+    "half": "P1",
+    "entries": 152,
+    "per_month": 25.3,
+    "bars_firing_pct": 2.82,
+    "C_1x_rate_pct": 14.47,
+    "C_1x_lift": 2.21,
+    "C_3x_rate_pct": 6.58,
+    "C_3x_lift": 3.45,
+    "went_our_way_first_pct": 63.9,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   },
+   {
+    "signal": "stoch_turn_up",
+    "side": "calls",
+    "half": "P2",
+    "entries": 131,
+    "per_month": 22.4,
+    "bars_firing_pct": 2.4,
+    "C_1x_rate_pct": 8.4,
+    "C_1x_lift": 1.48,
+    "C_3x_rate_pct": 3.05,
+    "C_3x_lift": 1.5,
+    "went_our_way_first_pct": 68.1,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   },
+   {
+    "signal": "overbought_fade",
+    "side": "puts",
+    "half": "P1",
+    "entries": 113,
+    "per_month": 18.8,
+    "bars_firing_pct": 2.15,
+    "C_1x_rate_pct": null,
+    "C_1x_lift": null,
+    "C_3x_rate_pct": null,
+    "C_3x_lift": null,
+    "went_our_way_first_pct": 70.4,
+    "P_1x_rate_pct": 11.5,
+    "P_1x_lift": 2.37,
+    "P_3x_rate_pct": 3.54,
+    "P_3x_lift": 2.92
+   },
+   {
+    "signal": "overbought_fade",
+    "side": "puts",
+    "half": "P2",
+    "entries": 134,
+    "per_month": 22.9,
+    "bars_firing_pct": 2.4,
+    "C_1x_rate_pct": null,
+    "C_1x_lift": null,
+    "C_3x_rate_pct": null,
+    "C_3x_lift": null,
+    "went_our_way_first_pct": 65.7,
+    "P_1x_rate_pct": 2.99,
+    "P_1x_lift": 0.82,
+    "P_3x_rate_pct": 0.0,
+    "P_3x_lift": 0.0
+   },
+   {
+    "signal": "rsi_hook",
+    "side": "calls",
+    "half": "P1",
+    "entries": 75,
+    "per_month": 12.5,
+    "bars_firing_pct": 0.82,
+    "C_1x_rate_pct": 12.0,
+    "C_1x_lift": 1.84,
+    "C_3x_rate_pct": 2.67,
+    "C_3x_lift": 1.4,
+    "went_our_way_first_pct": 57.5,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   },
+   {
+    "signal": "rsi_hook",
+    "side": "calls",
+    "half": "P2",
+    "entries": 68,
+    "per_month": 11.6,
+    "bars_firing_pct": 0.74,
+    "C_1x_rate_pct": 10.29,
+    "C_1x_lift": 1.82,
+    "C_3x_rate_pct": 5.88,
+    "C_3x_lift": 2.89,
+    "went_our_way_first_pct": 80.5,
+    "P_1x_rate_pct": null,
+    "P_1x_lift": null,
+    "P_3x_rate_pct": null,
+    "P_3x_lift": null
+   }
+  ],
+  "defined": [
+   {
+    "name": "volume_surge",
+    "side": "C",
+    "when": "h1_volume_x > 2.0 and m15_volume_x > 1.5",
+    "note": "heavy volume on the 1h and 15m bars"
+   },
+   {
+    "name": "stoch_turn_up",
+    "side": "C",
+    "when": "h1_STOCH_STATE == '<20 rising' and h4_MACD_STATE != 'bear widening'",
+    "note": "1h stochastic turning up from below 20, 4h MACD not falling harder"
+   },
+   {
+    "name": "overbought_fade",
+    "side": "P",
+    "when": "h1_stoch_k > 80 and h1_stoch_ch2 < 0 and h1_MACD_STATE == 'bull narrowing'",
+    "note": "1h stochastic rolling over above 80 while 1h MACD momentum fades"
+   },
+   {
+    "name": "rsi_hook",
+    "side": "C",
+    "when": "(python) plugins/signals/example_rsi_hook.py",
+    "note": "1h RSI hooks up over its lower band; yesterday's daily RSI < 70; 4h MACD not bear widening"
+   }
+  ]
+ },
+ "exhaustion": {
+  "C_0.75": {
+   "in_leg_bars": 2378,
+   "spent_base_pct": {
+    "P1": 10.5,
+    "P2": 8.8
+   },
+   "auc": {
+    "P1": 0.784,
+    "P2": 0.792
+   },
+   "spent_lift_by_decile": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.07,
+     "decile 4": 0.45,
+     "decile 5": 0.45,
+     "decile 6": 1.2,
+     "decile 7": 1.12,
+     "decile 8": 2.01,
+     "decile 9": 2.17,
+     "decile 10": 2.53
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.1,
+     "decile 2": 0.1,
+     "decile 3": 0.1,
+     "decile 4": 0.21,
+     "decile 5": 0.31,
+     "decile 6": 1.14,
+     "decile 7": 1.35,
+     "decile 8": 1.13,
+     "decile 9": 2.38,
+     "decile 10": 3.18
+    }
+   ],
+   "says_spent": [
+    {
+     "reading": "bars_since_20bar_high",
+     "bin (P1 edges)": "0..1",
+     "bin (P2 edges)": "0..1",
+     "odds_x_learned_P1": 1.19,
+     "odds_x_learned_P2": 1.24
+    },
+    {
+     "reading": "h4_volume_x",
+     "bin (P1 edges)": "0.714..0.826",
+     "bin (P2 edges)": "0.734..0.835",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "D_rsi_ch3",
+     "bin (P1 edges)": "8.3..12.5",
+     "bin (P2 edges)": "9.37..14.8",
+     "odds_x_learned_P1": 1.17,
+     "odds_x_learned_P2": 1.13
+    },
+    {
+     "reading": "vs_prev_high_atr",
+     "bin (P1 edges)": "-0.097..0.0462",
+     "bin (P2 edges)": "-0.0691..0.0973",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "0.0269..0.0712",
+     "bin (P2 edges)": "0.0285..0.0659",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "m15_stoch_d",
+     "bin (P1 edges)": "88.3..92.6",
+     "bin (P2 edges)": "90.1..93.9",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h1_STOCH_STATE",
+     "bin (P1 edges)": ">80 rising",
+     "bin (P2 edges)": ">80 rising",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h1_move5_atr",
+     "bin (P1 edges)": "1.37..1.9",
+     "bin (P2 edges)": "1.49..2.15",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.12
+    },
+    {
+     "reading": "h1_macd_htf_hist_atr",
+     "bin (P1 edges)": "0.358..inf",
+     "bin (P2 edges)": "0.549..inf",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h4_pos_in_20bar_range",
+     "bin (P1 edges)": "0.163..0.334",
+     "bin (P2 edges)": "0.259..0.652",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.09
+    }
+   ],
+   "says_more_left": [
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "0.299..0.464",
+     "bin (P2 edges)": "0.279..0.431",
+     "odds_x_learned_P1": 0.85,
+     "odds_x_learned_P2": 0.89
+    },
+    {
+     "reading": "h1_MACD_STATE",
+     "bin (P1 edges)": "bear narrowing",
+     "bin (P2 edges)": "bear narrowing",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "bars_since_20bar_high",
+     "bin (P1 edges)": "4..10",
+     "bin (P2 edges)": "3..10",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "h1_volume_x",
+     "bin (P1 edges)": "-inf..0.571",
+     "bin (P2 edges)": "-inf..0.55",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "D_macd_hist_ch3",
+     "bin (P1 edges)": "-0.189..-0.106",
+     "bin (P2 edges)": "-0.155..-0.0656",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.9
+    },
+    {
+     "reading": "mktH1_macd_hist_atr",
+     "bin (P1 edges)": "-0.0293..0.0332",
+     "bin (P2 edges)": "-0.022..0.0433",
+     "odds_x_learned_P1": 0.86,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h4_MACD_STATE",
+     "bin (P1 edges)": "bear widening",
+     "bin (P2 edges)": "bear widening",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "mktH1_rb_rsi_ch3",
+     "bin (P1 edges)": "-3.92..-1.22",
+     "bin (P2 edges)": "-3.14..-0.616",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "mktH1_rsi_ch3",
+     "bin (P1 edges)": "-3.92..-1.22",
+     "bin (P2 edges)": "-3.14..-0.616",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "m15_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.93
+    }
+   ]
+  },
+  "C_1.5": {
+   "in_leg_bars": 3176,
+   "spent_base_pct": {
+    "P1": 5.6,
+    "P2": 3.8
+   },
+   "auc": {
+    "P1": 0.826,
+    "P2": 0.821
+   },
+   "spent_lift_by_decile": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.0,
+     "decile 4": 0.0,
+     "decile 5": 0.22,
+     "decile 6": 0.55,
+     "decile 7": 1.76,
+     "decile 8": 1.98,
+     "decile 9": 2.31,
+     "decile 10": 3.17
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.0,
+     "decile 4": 0.17,
+     "decile 5": 0.52,
+     "decile 6": 0.69,
+     "decile 7": 1.04,
+     "decile 8": 1.03,
+     "decile 9": 2.94,
+     "decile 10": 3.61
+    }
+   ],
+   "says_spent": [
+    {
+     "reading": "bars_since_20bar_high",
+     "bin (P1 edges)": "0..2",
+     "bin (P2 edges)": "0..1",
+     "odds_x_learned_P1": 1.22,
+     "odds_x_learned_P2": 1.32
+    },
+    {
+     "reading": "h1_rsi",
+     "bin (P1 edges)": "67.7..73.2",
+     "bin (P2 edges)": "68..73.8",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "h1_rb_rsi",
+     "bin (P1 edges)": "67.7..73.2",
+     "bin (P2 edges)": "68..73.8",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "h4_stoch_d",
+     "bin (P1 edges)": "85.5..91.7",
+     "bin (P2 edges)": "89.2..93.1",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "h1_STOCH_STATE",
+     "bin (P1 edges)": ">80 rising",
+     "bin (P2 edges)": ">80 rising",
+     "odds_x_learned_P1": 1.18,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "m15_stoch_d",
+     "bin (P1 edges)": "91.3..95.3",
+     "bin (P2 edges)": "90.5..95.3",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "h1_rsi_ch3",
+     "bin (P1 edges)": "2.55..5.02",
+     "bin (P2 edges)": "1.72..3.81",
+     "odds_x_learned_P1": 1.09,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h1_rb_rsi_ch3",
+     "bin (P1 edges)": "2.55..5.02",
+     "bin (P2 edges)": "1.72..3.81",
+     "odds_x_learned_P1": 1.09,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "m15_stoch_d",
+     "bin (P1 edges)": "85.5..91.3",
+     "bin (P2 edges)": "83.7..90.5",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "mktH1_macd_hist_atr",
+     "bin (P1 edges)": "-0.209..-0.112",
+     "bin (P2 edges)": "-0.234..-0.137",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.09
+    }
+   ],
+   "says_more_left": [
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "0.238..0.347",
+     "bin (P2 edges)": "0.285..0.429",
+     "odds_x_learned_P1": 0.88,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "mktH1_macd_hist_ch3",
+     "bin (P1 edges)": "0.114..0.192",
+     "bin (P2 edges)": "0.101..0.172",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "mktH1_macd_hist_atr",
+     "bin (P1 edges)": "-0.0365..0.026",
+     "bin (P2 edges)": "-0.0571..0.0211",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "mktD_rb_daily_rsi",
+     "bin (P1 edges)": "42.9..44.7",
+     "bin (P2 edges)": "59.5..61.9",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "h4_volume_x",
+     "bin (P1 edges)": "1.39..inf",
+     "bin (P2 edges)": "1.55..inf",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "m15_vs_ema50_atr",
+     "bin (P1 edges)": "1.41..2.29",
+     "bin (P2 edges)": "1.48..2.24",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "gap_open_atr",
+     "bin (P1 edges)": "0.0013..inf",
+     "bin (P2 edges)": "0.00125..inf",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "m15_macd_hist_ch3",
+     "bin (P1 edges)": "-inf..-0.169",
+     "bin (P2 edges)": "-inf..-0.176",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "4..8",
+     "bin (P2 edges)": "6..10",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "h4_vs_ema50_atr",
+     "bin (P1 edges)": "2.44..3.79",
+     "bin (P2 edges)": "3.79..5.11",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.92
+    }
+   ]
+  },
+  "P_0.75": {
+   "in_leg_bars": 1759,
+   "spent_base_pct": {
+    "P1": 9.6,
+    "P2": 12.8
+   },
+   "auc": {
+    "P1": 0.707,
+    "P2": 0.695
+   },
+   "spent_lift_by_decile": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.0,
+     "decile 2": 0.09,
+     "decile 3": 0.18,
+     "decile 4": 1.06,
+     "decile 5": 1.15,
+     "decile 6": 0.8,
+     "decile 7": 1.58,
+     "decile 8": 1.06,
+     "decile 9": 2.13,
+     "decile 10": 1.94
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.13,
+     "decile 3": 0.67,
+     "decile 4": 0.79,
+     "decile 5": 0.79,
+     "decile 6": 1.35,
+     "decile 7": 1.32,
+     "decile 8": 1.35,
+     "decile 9": 1.46,
+     "decile 10": 2.12
+    }
+   ],
+   "says_spent": [
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "0..1",
+     "bin (P2 edges)": "0..3",
+     "odds_x_learned_P1": 1.15,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "D_rb_rsi",
+     "bin (P1 edges)": "45.3..47.2",
+     "bin (P2 edges)": "47.2..51.5",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.12
+    },
+    {
+     "reading": "h4_MACD_STATE",
+     "bin (P1 edges)": "bear widening",
+     "bin (P2 edges)": "bear widening",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "-inf..0.479",
+     "bin (P2 edges)": "-inf..0.445",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "D_move5_atr",
+     "bin (P1 edges)": "-2.02..-1.36",
+     "bin (P2 edges)": "-2.02..-1.1",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.12
+    },
+    {
+     "reading": "h4_vs_ema20_atr",
+     "bin (P1 edges)": "-0.985..-0.36",
+     "bin (P2 edges)": "-0.991..0.0459",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h1_pos_in_20bar_range",
+     "bin (P1 edges)": "0.0322..0.0636",
+     "bin (P2 edges)": "0.017..0.0368",
+     "odds_x_learned_P1": 1.08,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "h1_macd_htf_hist_atr",
+     "bin (P1 edges)": "-0.317..-0.141",
+     "bin (P2 edges)": "-0.336..-0.186",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.08
+    },
+    {
+     "reading": "h4_stoch_ch2",
+     "bin (P1 edges)": "-39.5..-24.3",
+     "bin (P2 edges)": "-47.3..-25.4",
+     "odds_x_learned_P1": 1.08,
+     "odds_x_learned_P2": 1.15
+    },
+    {
+     "reading": "h4_move5_atr",
+     "bin (P1 edges)": "-3.67..-2.4",
+     "bin (P2 edges)": "-3.86..-2.96",
+     "odds_x_learned_P1": 1.07,
+     "odds_x_learned_P2": 1.07
+    }
+   ],
+   "says_more_left": [
+    {
+     "reading": "h1_vs_sma200_atr",
+     "bin (P1 edges)": "-3.77..-1.86",
+     "bin (P2 edges)": "-1.82..0.137",
+     "odds_x_learned_P1": 0.91,
+     "odds_x_learned_P2": 0.88
+    },
+    {
+     "reading": "up_from_20bar_low_atr",
+     "bin (P1 edges)": "0.299..0.439",
+     "bin (P2 edges)": "0.237..0.424",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "mktD_pos_in_20bar_range",
+     "bin (P1 edges)": "0.0756..0.179",
+     "bin (P2 edges)": "0.0698..0.115",
+     "odds_x_learned_P1": 0.89,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h4_MACD_STATE",
+     "bin (P1 edges)": "bear narrowing",
+     "bin (P2 edges)": "bear narrowing",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h1_pos_in_20bar_range",
+     "bin (P1 edges)": "0.176..0.294",
+     "bin (P2 edges)": "0.111..0.253",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h4_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "h1_move5_atr",
+     "bin (P1 edges)": "0.341..inf",
+     "bin (P2 edges)": "0.155..inf",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "mktH1_rb_rsi_ch3",
+     "bin (P1 edges)": "-8.88..-5.9",
+     "bin (P2 edges)": "-10.5..-7.3",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "mktH1_rsi_ch3",
+     "bin (P1 edges)": "-8.88..-5.9",
+     "bin (P2 edges)": "-10.5..-7.3",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "D_move5_atr",
+     "bin (P1 edges)": "-0.607..0.114",
+     "bin (P2 edges)": "-0.265..0.15",
+     "odds_x_learned_P1": 0.92,
+     "odds_x_learned_P2": 0.93
+    }
+   ]
+  },
+  "P_1.5": {
+   "in_leg_bars": 2279,
+   "spent_base_pct": {
+    "P1": 5.7,
+    "P2": 4.6
+   },
+   "auc": {
+    "P1": 0.793,
+    "P2": 0.792
+   },
+   "spent_lift_by_decile": [
+    {
+     "graded_half": "P1",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.0,
+     "decile 4": 0.36,
+     "decile 5": 0.24,
+     "decile 6": 0.61,
+     "decile 7": 1.35,
+     "decile 8": 2.92,
+     "decile 9": 1.71,
+     "decile 10": 2.8
+    },
+    {
+     "graded_half": "P2",
+     "decile 1": 0.0,
+     "decile 2": 0.0,
+     "decile 3": 0.25,
+     "decile 4": 0.0,
+     "decile 5": 0.76,
+     "decile 6": 0.52,
+     "decile 7": 1.03,
+     "decile 8": 2.55,
+     "decile 9": 1.8,
+     "decile 10": 3.06
+    }
+   ],
+   "says_spent": [
+    {
+     "reading": "bars_since_20bar_low",
+     "bin (P1 edges)": "0..1",
+     "bin (P2 edges)": "0..1",
+     "odds_x_learned_P1": 1.16,
+     "odds_x_learned_P2": 1.19
+    },
+    {
+     "reading": "rv",
+     "bin (P1 edges)": "-inf..0.5",
+     "bin (P2 edges)": "-inf..0.599",
+     "odds_x_learned_P1": 1.12,
+     "odds_x_learned_P2": 1.18
+    },
+    {
+     "reading": "h1_STOCH_STATE",
+     "bin (P1 edges)": "<20 falling",
+     "bin (P2 edges)": "<20 falling",
+     "odds_x_learned_P1": 1.25,
+     "odds_x_learned_P2": 1.11
+    },
+    {
+     "reading": "D_macd_hist_ch3",
+     "bin (P1 edges)": "-0.155..-0.0755",
+     "bin (P2 edges)": "-0.174..-0.0845",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.14
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "-0.302..-0.2",
+     "bin (P2 edges)": "-0.278..-0.114",
+     "odds_x_learned_P1": 1.25,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "h4_pos_in_20bar_range",
+     "bin (P1 edges)": "-inf..0.0218",
+     "bin (P2 edges)": "-inf..0.017",
+     "odds_x_learned_P1": 1.11,
+     "odds_x_learned_P2": 1.1
+    },
+    {
+     "reading": "mktD_vs_ema50_atr",
+     "bin (P1 edges)": "0.00538..inf",
+     "bin (P2 edges)": "2.07..inf",
+     "odds_x_learned_P1": 1.1,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "m3_stoch_d",
+     "bin (P1 edges)": "8.15..15.5",
+     "bin (P2 edges)": "7.29..12.8",
+     "odds_x_learned_P1": 1.13,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "h1_rb_rsi",
+     "bin (P1 edges)": "-inf..23.3",
+     "bin (P2 edges)": "-inf..22",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.09
+    },
+    {
+     "reading": "h1_rsi",
+     "bin (P1 edges)": "-inf..23.3",
+     "bin (P2 edges)": "-inf..22",
+     "odds_x_learned_P1": 1.14,
+     "odds_x_learned_P2": 1.09
+    }
+   ],
+   "says_more_left": [
+    {
+     "reading": "weekday",
+     "bin (P1 edges)": "3..4",
+     "bin (P2 edges)": "3..4",
+     "odds_x_learned_P1": 0.86,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "h4_vs_sma200_atr",
+     "bin (P1 edges)": "-4.78..-1.63",
+     "bin (P2 edges)": "-7.83..-4.15",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.92
+    },
+    {
+     "reading": "h4_MACD_STATE",
+     "bin (P1 edges)": "bull narrowing",
+     "bin (P2 edges)": "bull narrowing",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.91
+    },
+    {
+     "reading": "down_from_20bar_high_atr",
+     "bin (P1 edges)": "1.06..1.38",
+     "bin (P2 edges)": "0.845..1.16",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "h4_vs_ema20_atr",
+     "bin (P1 edges)": "-2.64..-1.99",
+     "bin (P2 edges)": "-2.72..-1.98",
+     "odds_x_learned_P1": 0.94,
+     "odds_x_learned_P2": 0.93
+    },
+    {
+     "reading": "h4_RB_STATE",
+     "bin (P1 edges)": "middle rising",
+     "bin (P2 edges)": "middle rising",
+     "odds_x_learned_P1": 0.9,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "m15_stoch_ch2",
+     "bin (P1 edges)": "-21.5..-10.4",
+     "bin (P2 edges)": "-25.8..-12.4",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "mktH1_macd_htf_hist_atr",
+     "bin (P1 edges)": "-0.0238..0.0146",
+     "bin (P2 edges)": "-0.136..-0.061",
+     "odds_x_learned_P1": 0.95,
+     "odds_x_learned_P2": 0.94
+    },
+    {
+     "reading": "D_rb_daily_rsi",
+     "bin (P1 edges)": "50..54.4",
+     "bin (P2 edges)": "52.8..58.5",
+     "odds_x_learned_P1": 0.93,
+     "odds_x_learned_P2": 0.95
+    },
+    {
+     "reading": "h4_macd_hist_atr",
+     "bin (P1 edges)": "0.0793..0.268",
+     "bin (P2 edges)": "0.126..0.277",
+     "odds_x_learned_P1": 0.95,
+     "odds_x_learned_P2": 0.95
+    }
+   ]
+  }
+ },
+ "trade_check": {
+  "label": "C_1x",
+  "signal": "volume_surge",
+  "entries": "signal volume_surge",
+  "side": "C",
+  "same_day": false,
+  "trail_k": 0.75,
+  "grades": [
+   "A",
+   "B"
+  ],
+  "min_premium": 0.2,
+  "dropped_tiny_premium": 0,
+  "exhaustion_compared": true,
+  "table": [
+   {
+    "half": "P1",
+    "entries": "signal volume_surge",
+    "exit": "momentum trail",
+    "trades": 53,
+    "median_mult": 1.88,
+    "mean_mult_cap20": 2.61,
+    "pct_doubled": 43.4,
+    "pct_4x": 18.9,
+    "pct_lost_half": 3.8,
+    "median_hold_bars": 17.0,
+    "pct_censored": 0.0
+   },
+   {
+    "half": "P1",
+    "entries": "signal volume_surge",
+    "exit": "trail + exhaustion",
+    "trades": 53,
+    "median_mult": 1.69,
+    "mean_mult_cap20": 2.2,
+    "pct_doubled": 37.7,
+    "pct_4x": 9.4,
+    "pct_lost_half": 3.8,
+    "median_hold_bars": 7.0,
+    "pct_censored": 0.0
+   },
+   {
+    "half": "P1",
+    "entries": "all bars (baseline)",
+    "exit": "momentum trail",
+    "trades": 4270,
+    "median_mult": 0.73,
+    "mean_mult_cap20": 1.31,
+    "pct_doubled": 14.4,
+    "pct_4x": 6.2,
+    "pct_lost_half": 15.5,
+    "median_hold_bars": 12.0,
+    "pct_censored": 0.0
+   },
+   {
+    "half": "P2",
+    "entries": "signal volume_surge",
+    "exit": "momentum trail",
+    "trades": 70,
+    "median_mult": 2.2,
+    "mean_mult_cap20": 2.6,
+    "pct_doubled": 55.7,
+    "pct_4x": 18.6,
+    "pct_lost_half": 2.9,
+    "median_hold_bars": 13.5,
+    "pct_censored": 1.4
+   },
+   {
+    "half": "P2",
+    "entries": "signal volume_surge",
+    "exit": "trail + exhaustion",
+    "trades": 70,
+    "median_mult": 1.68,
+    "mean_mult_cap20": 2.04,
+    "pct_doubled": 42.9,
+    "pct_4x": 8.6,
+    "pct_lost_half": 2.9,
+    "median_hold_bars": 8.0,
+    "pct_censored": 0.0
+   },
+   {
+    "half": "P2",
+    "entries": "all bars (baseline)",
+    "exit": "momentum trail",
+    "trades": 4510,
+    "median_mult": 0.75,
+    "mean_mult_cap20": 1.2,
+    "pct_doubled": 14.7,
+    "pct_4x": 4.5,
+    "pct_lost_half": 16.3,
+    "median_hold_bars": 12.0,
+    "pct_censored": 3.0
+   }
+  ],
+  "monthly": [
+   {
+    "month": "2025-05",
+    "exit_rule": "momentum trail",
+    "trades": 2,
+    "median_mult": 9.84,
+    "pct_doubled": 100.0,
+    "units_won": 17.69
+   },
+   {
+    "month": "2025-05",
+    "exit_rule": "trail + exhaustion",
+    "trades": 2,
+    "median_mult": 9.98,
+    "pct_doubled": 100.0,
+    "units_won": 17.96
+   },
+   {
+    "month": "2025-06",
+    "exit_rule": "momentum trail",
+    "trades": 15,
+    "median_mult": 2.09,
+    "pct_doubled": 53.33,
+    "units_won": 29.68
+   },
+   {
+    "month": "2025-06",
+    "exit_rule": "trail + exhaustion",
+    "trades": 15,
+    "median_mult": 1.82,
+    "pct_doubled": 40.0,
+    "units_won": 14.15
+   },
+   {
+    "month": "2025-07",
+    "exit_rule": "momentum trail",
+    "trades": 10,
+    "median_mult": 1.59,
+    "pct_doubled": 40.0,
+    "units_won": 8.07
+   },
+   {
+    "month": "2025-07",
+    "exit_rule": "trail + exhaustion",
+    "trades": 10,
+    "median_mult": 1.43,
+    "pct_doubled": 30.0,
+    "units_won": 5.33
+   },
+   {
+    "month": "2025-08",
+    "exit_rule": "momentum trail",
+    "trades": 13,
+    "median_mult": 1.51,
+    "pct_doubled": 30.77,
+    "units_won": 15.2
+   },
+   {
+    "month": "2025-08",
+    "exit_rule": "trail + exhaustion",
+    "trades": 13,
+    "median_mult": 1.71,
+    "pct_doubled": 30.77,
+    "units_won": 14.97
+   },
+   {
+    "month": "2025-09",
+    "exit_rule": "momentum trail",
+    "trades": 10,
+    "median_mult": 1.17,
+    "pct_doubled": 30.0,
+    "units_won": 8.2
+   },
+   {
+    "month": "2025-09",
+    "exit_rule": "trail + exhaustion",
+    "trades": 10,
+    "median_mult": 1.19,
+    "pct_doubled": 30.0,
+    "units_won": 6.01
+   },
+   {
+    "month": "2025-10",
+    "exit_rule": "momentum trail",
+    "trades": 3,
+    "median_mult": 3.19,
+    "pct_doubled": 66.67,
+    "units_won": 6.36
+   },
+   {
+    "month": "2025-10",
+    "exit_rule": "trail + exhaustion",
+    "trades": 3,
+    "median_mult": 2.21,
+    "pct_doubled": 66.67,
+    "units_won": 5.3
+   },
+   {
+    "month": "2025-11",
+    "exit_rule": "momentum trail",
+    "trades": 14,
+    "median_mult": 2.56,
+    "pct_doubled": 64.29,
+    "units_won": 23.12
+   },
+   {
+    "month": "2025-11",
+    "exit_rule": "trail + exhaustion",
+    "trades": 14,
+    "median_mult": 2.23,
+    "pct_doubled": 57.14,
+    "units_won": 18.05
+   },
+   {
+    "month": "2025-12",
+    "exit_rule": "momentum trail",
+    "trades": 8,
+    "median_mult": 1.04,
+    "pct_doubled": 37.5,
+    "units_won": 4.72
+   },
+   {
+    "month": "2025-12",
+    "exit_rule": "trail + exhaustion",
+    "trades": 8,
+    "median_mult": 1.2,
+    "pct_doubled": 37.5,
+    "units_won": 3.99
+   },
+   {
+    "month": "2026-01",
+    "exit_rule": "momentum trail",
+    "trades": 13,
+    "median_mult": 3.0,
+    "pct_doubled": 69.23,
+    "units_won": 31.72
+   },
+   {
+    "month": "2026-01",
+    "exit_rule": "trail + exhaustion",
+    "trades": 13,
+    "median_mult": 2.07,
+    "pct_doubled": 53.85,
+    "units_won": 17.03
+   },
+   {
+    "month": "2026-02",
+    "exit_rule": "momentum trail",
+    "trades": 16,
+    "median_mult": 1.0,
+    "pct_doubled": 25.0,
+    "units_won": 12.31
+   },
+   {
+    "month": "2026-02",
+    "exit_rule": "trail + exhaustion",
+    "trades": 16,
+    "median_mult": 1.04,
+    "pct_doubled": 25.0,
+    "units_won": 7.4
+   },
+   {
+    "month": "2026-03",
+    "exit_rule": "momentum trail",
+    "trades": 11,
+    "median_mult": 2.59,
+    "pct_doubled": 72.73,
+    "units_won": 21.65
+   },
+   {
+    "month": "2026-03",
+    "exit_rule": "trail + exhaustion",
+    "trades": 11,
+    "median_mult": 1.63,
+    "pct_doubled": 36.36,
+    "units_won": 11.63
+   },
+   {
+    "month": "2026-04",
+    "exit_rule": "momentum trail",
+    "trades": 8,
+    "median_mult": 2.22,
+    "pct_doubled": 75.0,
+    "units_won": 18.73
+   },
+   {
+    "month": "2026-04",
+    "exit_rule": "trail + exhaustion",
+    "trades": 8,
+    "median_mult": 1.67,
+    "pct_doubled": 50.0,
+    "units_won": 15.04
+   }
+  ],
+  "by_ticker": [
+   {
+    "ticker": "SYNC",
+    "trades": 25,
+    "median_mult": 2.77,
+    "pct_doubled": 68.0,
+    "units_won": 60.5
+   },
+   {
+    "ticker": "SYNE",
+    "trades": 28,
+    "median_mult": 1.93,
+    "pct_doubled": 42.86,
+    "units_won": 50.04
+   },
+   {
+    "ticker": "SYNA",
+    "trades": 27,
+    "median_mult": 2.15,
+    "pct_doubled": 51.85,
+    "units_won": 34.65
+   },
+   {
+    "ticker": "SYND",
+    "trades": 23,
+    "median_mult": 2.09,
+    "pct_doubled": 56.52,
+    "units_won": 30.94
+   },
+   {
+    "ticker": "SYNB",
+    "trades": 20,
+    "median_mult": 1.63,
+    "pct_doubled": 30.0,
+    "units_won": 21.3
+   }
+  ],
+  "best": [
+   {
+    "ticker": "SYNE",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-05-16 15:30",
+    "entry_price": 196.8039,
+    "strike": 196.8039,
+    "expiry": "2025-05-23",
+    "premium": 3.9304,
+    "exit_time": "2025-05-20 11:30",
+    "exit_price": 258.9874,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 62.2995,
+    "multiple": 15.851,
+    "return_pct": 1485.1,
+    "hold_bars": 10,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-21 11:30",
+    "entry_price": 291.1891,
+    "strike": 291.1891,
+    "expiry": "2026-04-24",
+    "premium": 10.1704,
+    "exit_time": "2026-04-24 16:00",
+    "exit_price": 392.2698,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 101.0817,
+    "multiple": 9.939,
+    "return_pct": 893.9,
+    "hold_bars": 26,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-01-06 15:30",
+    "entry_price": 159.1332,
+    "strike": 159.1332,
+    "expiry": "2026-01-09",
+    "premium": 3.0263,
+    "exit_time": "2026-01-09 13:30",
+    "exit_price": 188.2386,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 29.1156,
+    "multiple": 9.621,
+    "return_pct": 862.1,
+    "hold_bars": 19,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-24 15:30",
+    "entry_price": 202.1167,
+    "strike": 202.1167,
+    "expiry": "2026-02-27",
+    "premium": 10.0125,
+    "exit_time": "2026-02-27 16:00",
+    "exit_price": 285.5935,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 83.4774,
+    "multiple": 8.337,
+    "return_pct": 733.7,
+    "hold_bars": 22,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-08 15:30",
+    "entry_price": 164.5162,
+    "strike": 164.5162,
+    "expiry": "2025-08-15",
+    "premium": 5.0831,
+    "exit_time": "2025-08-14 12:30",
+    "exit_price": 200.9771,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 36.5016,
+    "multiple": 7.181,
+    "return_pct": 618.1,
+    "hold_bars": 25,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNE",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-03 10:30",
+    "entry_price": 286.1743,
+    "strike": 286.1743,
+    "expiry": "2025-06-06",
+    "premium": 18.1367,
+    "exit_time": "2025-06-06 16:00",
+    "exit_price": 413.2134,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 127.04,
+    "multiple": 7.005,
+    "return_pct": 600.5,
+    "hold_bars": 27,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNE",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-04 12:30",
+    "entry_price": 344.7642,
+    "strike": 344.7642,
+    "expiry": "2025-06-13",
+    "premium": 31.6454,
+    "exit_time": "2025-06-13 16:00",
+    "exit_price": 541.9707,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 197.2077,
+    "multiple": 6.232,
+    "return_pct": 523.2,
+    "hold_bars": 53,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-01-09 11:30",
+    "entry_price": 93.876,
+    "strike": 93.876,
+    "expiry": "2026-01-16",
+    "premium": 3.4761,
+    "exit_time": "2026-01-16 16:00",
+    "exit_price": 114.4704,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 20.5947,
+    "multiple": 5.925,
+    "return_pct": 492.5,
+    "hold_bars": 40,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-01-07 14:30",
+    "entry_price": 82.291,
+    "strike": 82.291,
+    "expiry": "2026-01-16",
+    "premium": 2.8035,
+    "exit_time": "2026-01-12 13:30",
+    "exit_price": 98.7152,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 16.4864,
+    "multiple": 5.881,
+    "return_pct": 488.1,
+    "hold_bars": 20,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-21 15:30",
+    "entry_price": 331.3745,
+    "strike": 331.3745,
+    "expiry": "2026-04-24",
+    "premium": 10.5645,
+    "exit_time": "2026-04-24 16:00",
+    "exit_price": 392.2698,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 60.8964,
+    "multiple": 5.764,
+    "return_pct": 476.4,
+    "hold_bars": 22,
+    "grade": "D"
+   }
+  ],
+  "worst": [
+   {
+    "ticker": "SYNE",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-21 10:30",
+    "entry_price": 572.7789,
+    "strike": 572.7789,
+    "expiry": "2026-04-24",
+    "premium": 31.8496,
+    "exit_time": "2026-04-24 16:00",
+    "exit_price": 580.2865,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 7.7685,
+    "multiple": 0.244,
+    "return_pct": -75.6,
+    "hold_bars": 27,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-24 10:30",
+    "entry_price": 80.3,
+    "strike": 80.3,
+    "expiry": "2025-10-03",
+    "premium": 3.662,
+    "exit_time": "2025-09-30 12:30",
+    "exit_price": 78.6511,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 1.6884,
+    "multiple": 0.461,
+    "return_pct": -53.9,
+    "hold_bars": 30,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-24 10:30",
+    "entry_price": 123.6411,
+    "strike": 123.6411,
+    "expiry": "2025-06-27",
+    "premium": 4.6393,
+    "exit_time": "2025-06-26 11:30",
+    "exit_price": 121.7557,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.2033,
+    "multiple": 0.475,
+    "return_pct": -52.5,
+    "hold_bars": 15,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-24 15:30",
+    "entry_price": 87.4379,
+    "strike": 87.4379,
+    "expiry": "2026-02-27",
+    "premium": 7.3654,
+    "exit_time": "2026-02-27 16:00",
+    "exit_price": 90.9793,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 3.5466,
+    "multiple": 0.482,
+    "return_pct": -51.8,
+    "hold_bars": 22,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNE",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-12-16 10:30",
+    "entry_price": 523.3961,
+    "strike": 523.3961,
+    "expiry": "2025-12-19",
+    "premium": 25.862,
+    "exit_time": "2025-12-16 12:30",
+    "exit_price": 500.6898,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 14.553,
+    "multiple": 0.563,
+    "return_pct": -43.7,
+    "hold_bars": 2,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNE",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-13 10:30",
+    "entry_price": 719.5928,
+    "strike": 719.5928,
+    "expiry": "2026-02-20",
+    "premium": 51.206,
+    "exit_time": "2026-02-13 13:30",
+    "exit_price": 677.2595,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 29.4187,
+    "multiple": 0.575,
+    "return_pct": -42.5,
+    "hold_bars": 3,
+    "grade": "B"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-11 15:30",
+    "entry_price": 165.7249,
+    "strike": 165.7249,
+    "expiry": "2025-09-19",
+    "premium": 7.5169,
+    "exit_time": "2025-09-12 12:30",
+    "exit_price": 159.7542,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 4.4438,
+    "multiple": 0.591,
+    "return_pct": -40.9,
+    "hold_bars": 4,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNC",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-20 15:30",
+    "entry_price": 224.4462,
+    "strike": 224.4462,
+    "expiry": "2026-02-27",
+    "premium": 14.255,
+    "exit_time": "2026-02-23 16:00",
+    "exit_price": 215.7853,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 8.5446,
+    "multiple": 0.599,
+    "return_pct": -40.1,
+    "hold_bars": 8,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-12-16 10:30",
+    "entry_price": 89.4216,
+    "strike": 89.4216,
+    "expiry": "2025-12-19",
+    "premium": 4.1089,
+    "exit_time": "2025-12-16 15:30",
+    "exit_price": 86.8317,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.4697,
+    "multiple": 0.601,
+    "return_pct": -39.9,
+    "hold_bars": 5,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYND",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-10-30 14:30",
+    "entry_price": 116.9273,
+    "strike": 116.9273,
+    "expiry": "2025-11-07",
+    "premium": 5.4529,
+    "exit_time": "2025-10-31 12:30",
+    "exit_price": 112.899,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 3.2803,
+    "multiple": 0.602,
+    "return_pct": -39.8,
+    "hold_bars": 5,
+    "grade": "C"
+   }
+  ],
+  "tail_concentration": {
+   "profit_share_top3_days_pct": 19.1,
+   "profit_share_top3_tickers_pct": 70.0,
+   "median_mult_without_top3_days": 1.97
+  },
+  "multiples_trail": [
+   3.944,
+   4.889,
+   2.451,
+   2.346,
+   0.788,
+   2.558,
+   1.484,
+   1.36,
+   0.628,
+   1.877,
+   0.461,
+   4.246,
+   5.085,
+   2.644,
+   1.454,
+   2.553,
+   1.318,
+   0.645,
+   1.553,
+   3.011,
+   1.002,
+   2.527,
+   1.044,
+   5.398,
+   1.146,
+   3.092,
+   2.149,
+   1.567,
+   1.429,
+   0.761,
+   1.69,
+   0.729,
+   0.688,
+   1.733,
+   1.246,
+   0.699,
+   4.125,
+   0.601,
+   1.873,
+   5.881,
+   5.925,
+   2.503,
+   4.143,
+   1.965,
+   1.006,
+   0.482,
+   2.256,
+   4.634,
+   0.475,
+   3.19,
+   7.181,
+   1.511,
+   0.591,
+   5.196,
+   2.037,
+   3.189,
+   2.101,
+   1.406,
+   0.794,
+   3.316,
+   9.621,
+   2.768,
+   0.966,
+   0.724,
+   0.599,
+   8.337,
+   2.935,
+   2.591,
+   3.346,
+   2.289,
+   9.939,
+   5.764,
+   2.093,
+   1.824,
+   3.398,
+   0.683,
+   0.951,
+   4.316,
+   3.945,
+   1.411,
+   0.602,
+   4.735,
+   3.329,
+   3.296,
+   1.294,
+   2.353,
+   1.574,
+   0.706,
+   2.007,
+   2.995,
+   0.602,
+   1.073,
+   4.817,
+   3.827,
+   2.11,
+   15.851,
+   3.836,
+   7.005,
+   6.232,
+   1.997,
+   0.966,
+   1.98,
+   0.695,
+   3.617,
+   1.882,
+   2.01,
+   0.938,
+   0.937,
+   5.565,
+   0.815,
+   2.564,
+   1.571,
+   0.563,
+   3.156,
+   3.437,
+   0.856,
+   3.199,
+   0.707,
+   0.575,
+   1.397,
+   0.664,
+   4.779,
+   0.244
+  ],
+  "trades_file": "studies/_example/results/trades.csv",
+  "n_trades": 246,
+  "trades_preview": [
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-06 13:30",
+    "entry_price": 70.8233,
+    "strike": 70.8233,
+    "expiry": "2025-06-13",
+    "premium": 1.2713,
+    "exit_time": "2025-06-12 14:30",
+    "exit_price": 75.8229,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 5.014,
+    "multiple": 3.944,
+    "return_pct": 294.4,
+    "hold_bars": 29,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-20 15:30",
+    "entry_price": 71.1576,
+    "strike": 71.1576,
+    "expiry": "2025-06-27",
+    "premium": 1.476,
+    "exit_time": "2025-06-25 10:30",
+    "exit_price": 78.3358,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 7.2159,
+    "multiple": 4.889,
+    "return_pct": 388.9,
+    "hold_bars": 16,
+    "grade": "B"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-27 11:30",
+    "entry_price": 77.3837,
+    "strike": 77.3837,
+    "expiry": "2025-07-04",
+    "premium": 2.4893,
+    "exit_time": "2025-07-01 10:30",
+    "exit_price": 83.0728,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 6.1011,
+    "multiple": 2.451,
+    "return_pct": 145.1,
+    "hold_bars": 13,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-07 10:30",
+    "entry_price": 83.019,
+    "strike": 83.019,
+    "expiry": "2025-07-11",
+    "premium": 2.6843,
+    "exit_time": "2025-07-10 11:30",
+    "exit_price": 89.1773,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 6.2977,
+    "multiple": 2.346,
+    "return_pct": 134.6,
+    "hold_bars": 22,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-10 10:30",
+    "entry_price": 90.3644,
+    "strike": 90.3644,
+    "expiry": "2025-07-18",
+    "premium": 3.4985,
+    "exit_time": "2025-07-10 15:30",
+    "exit_price": 89.2835,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.7585,
+    "multiple": 0.788,
+    "return_pct": -21.2,
+    "hold_bars": 5,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-11 13:30",
+    "entry_price": 89.9665,
+    "strike": 89.9665,
+    "expiry": "2025-07-18",
+    "premium": 3.0174,
+    "exit_time": "2025-07-16 13:30",
+    "exit_price": 97.4827,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 7.7186,
+    "multiple": 2.558,
+    "return_pct": 155.8,
+    "hold_bars": 21,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-24 13:30",
+    "entry_price": 79.0854,
+    "strike": 79.0854,
+    "expiry": "2025-08-01",
+    "premium": 3.1142,
+    "exit_time": "2025-07-28 10:30",
+    "exit_price": 82.2183,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 4.6214,
+    "multiple": 1.484,
+    "return_pct": 48.4,
+    "hold_bars": 11,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-05 10:30",
+    "entry_price": 80.2117,
+    "strike": 80.2117,
+    "expiry": "2025-08-08",
+    "premium": 2.3183,
+    "exit_time": "2025-08-07 13:30",
+    "exit_price": 82.899,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 3.1535,
+    "multiple": 1.36,
+    "return_pct": 36.0,
+    "hold_bars": 17,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-11 10:30",
+    "entry_price": 85.5834,
+    "strike": 85.5834,
+    "expiry": "2025-09-19",
+    "premium": 3.1047,
+    "exit_time": "2025-09-11 15:30",
+    "exit_price": 83.4822,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 1.9502,
+    "multiple": 0.628,
+    "return_pct": -37.2,
+    "hold_bars": 5,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-15 16:00",
+    "entry_price": 82.3377,
+    "strike": 82.3377,
+    "expiry": "2025-09-19",
+    "premium": 2.3333,
+    "exit_time": "2025-09-18 14:30",
+    "exit_price": 86.5419,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 4.3791,
+    "multiple": 1.877,
+    "return_pct": 87.7,
+    "hold_bars": 19,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-24 10:30",
+    "entry_price": 80.3,
+    "strike": 80.3,
+    "expiry": "2025-10-03",
+    "premium": 3.662,
+    "exit_time": "2025-09-30 12:30",
+    "exit_price": 78.6511,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 1.6884,
+    "multiple": 0.461,
+    "return_pct": -53.9,
+    "hold_bars": 30,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-03 10:30",
+    "entry_price": 81.1917,
+    "strike": 81.1917,
+    "expiry": "2025-11-07",
+    "premium": 2.7715,
+    "exit_time": "2025-11-06 15:30",
+    "exit_price": 92.9447,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 11.7675,
+    "multiple": 4.246,
+    "return_pct": 324.6,
+    "hold_bars": 26,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-07 10:30",
+    "entry_price": 94.9419,
+    "strike": 94.9419,
+    "expiry": "2025-11-14",
+    "premium": 3.8694,
+    "exit_time": "2025-11-11 12:30",
+    "exit_price": 114.5399,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 19.6745,
+    "multiple": 5.085,
+    "return_pct": 408.5,
+    "hold_bars": 16,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-10 11:30",
+    "entry_price": 103.5127,
+    "strike": 103.5127,
+    "expiry": "2025-11-14",
+    "premium": 4.1826,
+    "exit_time": "2025-11-12 12:30",
+    "exit_price": 114.1874,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 11.0587,
+    "multiple": 2.644,
+    "return_pct": 164.4,
+    "hold_bars": 15,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-12 14:30",
+    "entry_price": 112.447,
+    "strike": 112.447,
+    "expiry": "2025-11-21",
+    "premium": 6.2762,
+    "exit_time": "2025-11-14 12:30",
+    "exit_price": 118.4014,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 9.1241,
+    "multiple": 1.454,
+    "return_pct": 45.4,
+    "hold_bars": 12,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-24 10:30",
+    "entry_price": 113.4844,
+    "strike": 113.4844,
+    "expiry": "2025-11-28",
+    "premium": 5.2735,
+    "exit_time": "2025-11-27 13:30",
+    "exit_price": 126.8124,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 13.462,
+    "multiple": 2.553,
+    "return_pct": 155.3,
+    "hold_bars": 24,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-11-28 15:30",
+    "entry_price": 122.4578,
+    "strike": 122.4578,
+    "expiry": "2025-12-05",
+    "premium": 5.7439,
+    "exit_time": "2025-12-03 15:30",
+    "exit_price": 128.5319,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 7.5695,
+    "multiple": 1.318,
+    "return_pct": 31.8,
+    "hold_bars": 21,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-12-16 10:30",
+    "entry_price": 134.6524,
+    "strike": 134.6524,
+    "expiry": "2025-12-19",
+    "premium": 4.0327,
+    "exit_time": "2025-12-16 12:30",
+    "exit_price": 131.8952,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.5993,
+    "multiple": 0.645,
+    "return_pct": -35.5,
+    "hold_bars": 2,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-11 11:30",
+    "entry_price": 109.8537,
+    "strike": 109.8537,
+    "expiry": "2026-02-20",
+    "premium": 4.9433,
+    "exit_time": "2026-02-12 10:30",
+    "exit_price": 114.8212,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 7.6791,
+    "multiple": 1.553,
+    "return_pct": 55.3,
+    "hold_bars": 6,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-12 10:30",
+    "entry_price": 112.8376,
+    "strike": 112.8376,
+    "expiry": "2026-02-20",
+    "premium": 5.1659,
+    "exit_time": "2026-02-13 10:30",
+    "exit_price": 127.5453,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 15.5523,
+    "multiple": 3.011,
+    "return_pct": 201.1,
+    "hold_bars": 7,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-02-19 10:30",
+    "entry_price": 133.9944,
+    "strike": 133.9944,
+    "expiry": "2026-02-27",
+    "premium": 6.8998,
+    "exit_time": "2026-02-23 11:30",
+    "exit_price": 136.1673,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 6.9118,
+    "multiple": 1.002,
+    "return_pct": 0.2,
+    "hold_bars": 15,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-03-09 14:30",
+    "entry_price": 120.3692,
+    "strike": 120.3692,
+    "expiry": "2026-03-13",
+    "premium": 3.7702,
+    "exit_time": "2026-03-12 13:30",
+    "exit_price": 129.7646,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 9.5274,
+    "multiple": 2.527,
+    "return_pct": 152.7,
+    "hold_bars": 20,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-03-26 10:30",
+    "entry_price": 122.1018,
+    "strike": 122.1018,
+    "expiry": "2026-04-03",
+    "premium": 3.5916,
+    "exit_time": "2026-03-30 15:30",
+    "exit_price": 123.847,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 3.7512,
+    "multiple": 1.044,
+    "return_pct": 4.4,
+    "hold_bars": 19,
+    "grade": "B"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-03-31 15:30",
+    "entry_price": 127.7009,
+    "strike": 127.7009,
+    "expiry": "2026-04-03",
+    "premium": 2.509,
+    "exit_time": "2026-04-03 13:30",
+    "exit_price": 141.237,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 13.5443,
+    "multiple": 5.398,
+    "return_pct": 439.8,
+    "hold_bars": 19,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-10 10:30",
+    "entry_price": 131.3654,
+    "strike": 131.3654,
+    "expiry": "2026-04-17",
+    "premium": 4.6145,
+    "exit_time": "2026-04-13 12:30",
+    "exit_price": 133.5518,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 5.2903,
+    "multiple": 1.146,
+    "return_pct": 14.6,
+    "hold_bars": 9,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-21 10:30",
+    "entry_price": 137.3847,
+    "strike": 137.3847,
+    "expiry": "2026-04-24",
+    "premium": 3.9692,
+    "exit_time": "2026-04-24 16:00",
+    "exit_price": 149.6552,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 12.2709,
+    "multiple": 3.092,
+    "return_pct": 209.2,
+    "hold_bars": 27,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNA",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-04-23 15:30",
+    "entry_price": 139.1372,
+    "strike": 139.1372,
+    "expiry": "2026-05-01",
+    "premium": 5.0188,
+    "exit_time": "2026-04-30 16:00",
+    "exit_price": 149.8608,
+    "exit_reason": "data ended (censored)",
+    "option_value_at_exit": 10.7865,
+    "multiple": 2.149,
+    "return_pct": 114.9,
+    "hold_bars": 36,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-09 11:30",
+    "entry_price": 74.9906,
+    "strike": 74.9906,
+    "expiry": "2025-06-13",
+    "premium": 3.3798,
+    "exit_time": "2025-06-11 15:30",
+    "exit_price": 79.564,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 5.2975,
+    "multiple": 1.567,
+    "return_pct": 56.7,
+    "hold_bars": 18,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-06-16 16:00",
+    "entry_price": 68.7077,
+    "strike": 68.7077,
+    "expiry": "2025-06-20",
+    "premium": 3.0978,
+    "exit_time": "2025-06-20 16:00",
+    "exit_price": 73.1355,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 4.428,
+    "multiple": 1.429,
+    "return_pct": 42.9,
+    "hold_bars": 28,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-03 10:30",
+    "entry_price": 77.2024,
+    "strike": 77.2024,
+    "expiry": "2025-07-11",
+    "premium": 2.8663,
+    "exit_time": "2025-07-03 14:30",
+    "exit_price": 76.0714,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.1807,
+    "multiple": 0.761,
+    "return_pct": -23.9,
+    "hold_bars": 4,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-03 14:30",
+    "entry_price": 76.1196,
+    "strike": 76.1196,
+    "expiry": "2025-07-11",
+    "premium": 2.6948,
+    "exit_time": "2025-07-07 10:30",
+    "exit_price": 79.5766,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 4.5544,
+    "multiple": 1.69,
+    "return_pct": 69.0,
+    "hold_bars": 10,
+    "grade": "B"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-07-10 10:30",
+    "entry_price": 78.5589,
+    "strike": 78.5589,
+    "expiry": "2025-07-18",
+    "premium": 2.7101,
+    "exit_time": "2025-07-10 11:30",
+    "exit_price": 77.0869,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 1.9766,
+    "multiple": 0.729,
+    "return_pct": -27.1,
+    "hold_bars": 1,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-05 10:30",
+    "entry_price": 69.7032,
+    "strike": 69.7032,
+    "expiry": "2025-08-08",
+    "premium": 2.9738,
+    "exit_time": "2025-08-08 16:00",
+    "exit_price": 71.7483,
+    "exit_reason": "option expiry",
+    "option_value_at_exit": 2.0454,
+    "multiple": 0.688,
+    "return_pct": -31.2,
+    "hold_bars": 27,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-13 10:30",
+    "entry_price": 68.9172,
+    "strike": 68.9172,
+    "expiry": "2025-08-22",
+    "premium": 4.1447,
+    "exit_time": "2025-08-18 13:30",
+    "exit_price": 75.025,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 7.1808,
+    "multiple": 1.733,
+    "return_pct": 73.3,
+    "hold_bars": 24,
+    "grade": "C"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-15 10:30",
+    "entry_price": 73.2776,
+    "strike": 73.2776,
+    "expiry": "2025-08-22",
+    "premium": 2.729,
+    "exit_time": "2025-08-18 13:30",
+    "exit_price": 75.0722,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 3.4007,
+    "multiple": 1.246,
+    "return_pct": 24.6,
+    "hold_bars": 10,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-08-21 10:30",
+    "entry_price": 70.1505,
+    "strike": 70.1505,
+    "expiry": "2025-08-29",
+    "premium": 2.9663,
+    "exit_time": "2025-08-21 12:30",
+    "exit_price": 68.4163,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.0729,
+    "multiple": 0.699,
+    "return_pct": -30.1,
+    "hold_bars": 2,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P1",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-09-26 16:00",
+    "entry_price": 68.2855,
+    "strike": 68.2855,
+    "expiry": "2025-10-03",
+    "premium": 2.6152,
+    "exit_time": "2025-10-03 11:30",
+    "exit_price": 79.065,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 10.7872,
+    "multiple": 4.125,
+    "return_pct": 312.5,
+    "hold_bars": 30,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2025-12-16 10:30",
+    "entry_price": 89.4216,
+    "strike": 89.4216,
+    "expiry": "2025-12-19",
+    "premium": 4.1089,
+    "exit_time": "2025-12-16 15:30",
+    "exit_price": 86.8317,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 2.4697,
+    "multiple": 0.601,
+    "return_pct": -39.9,
+    "hold_bars": 5,
+    "grade": "D"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-01-01 14:30",
+    "entry_price": 79.5761,
+    "strike": 79.5761,
+    "expiry": "2026-01-09",
+    "premium": 3.1405,
+    "exit_time": "2026-01-05 16:00",
+    "exit_price": 84.626,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 5.8831,
+    "multiple": 1.873,
+    "return_pct": 87.3,
+    "hold_bars": 16,
+    "grade": "A"
+   },
+   {
+    "ticker": "SYNB",
+    "half": "P2",
+    "side": "call",
+    "entries": "signal volume_surge",
+    "exit_rule": "momentum trail",
+    "entry_time": "2026-01-07 14:30",
+    "entry_price": 82.291,
+    "strike": 82.291,
+    "expiry": "2026-01-16",
+    "premium": 2.8035,
+    "exit_time": "2026-01-12 13:30",
+    "exit_price": 98.7152,
+    "exit_reason": "momentum trail",
+    "option_value_at_exit": 16.4864,
+    "multiple": 5.881,
+    "return_pct": 488.1,
+    "hold_bars": 20,
+    "grade": "D"
+   }
+  ],
+  "status": "pre-registered (first run with this prereg)",
+  "prereg": {
+   "idea": "heavy volume on the 1h and 15m bars comes before up-moves worth buying calls for",
+   "entry": "buy the ATM call at the 1h close on the first bar of each volume_surge signal",
+   "exit": "sell when price turns 0.75 day-ATR off its best point since entry, or at expiry",
+   "measure": "median option multiple, % doubled, % lost half \u2014 signal entries vs all bars, each half",
+   "pass_mark": "signal median multiple at least 1.2x the all-bars median in BOTH halves",
+   "label": "C_1x",
+   "grades": "A, B",
+   "trail_k": "0.75",
+   "exhaustion": "yes",
+   "min_premium": "0.20",
+   "signal": "volume_surge",
+   "same_day": "no"
+  }
+ },
+ "seconds": 28.6
+}

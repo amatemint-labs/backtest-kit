@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="330" viewBox="0 0 1040 330" role="img" aria-label="How a study flows: data, indicators, snapshot, scorecard, trade check, report; the census feeds labels to the scorecard and your signals feed the trade check.">
+  <style>
+    .bg { fill: #161615; }
+    .box { fill: #1f1f1e; stroke: #3a3936; stroke-width: 1.2; }
+    .key { fill: #18263a; stroke: #3987e5; stroke-width: 1.4; }
+    .side { fill: #2e1d15; stroke: #d95926; stroke-width: 1.2; }
+    .t { fill: #f0efec; font: 600 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .s { fill: #c3c2b7; font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .n { fill: #8a8984; font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: 0.6px; }
+    .a { stroke: #8a8984; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    .ah { fill: #8a8984; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="ah" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1040" height="330" rx="14"/>
+
+  <text class="n" x="24" y="34">ONE STUDY, END TO END</text>
+
+  <!-- main row -->
+  <rect class="box" x="24" y="56" width="148" height="96" rx="10"/>
+  <text class="t" x="40" y="86">Market data</text>
+  <text class="s" x="40" y="108">Alpaca, TradeStation,</text>
+  <text class="s" x="40" y="124">TradingView export</text>
+  <text class="s" x="40" y="140">1m → 3m … 1D</text>
+
+  <rect class="box" x="196" y="56" width="148" height="96" rx="10"/>
+  <text class="t" x="212" y="86">Indicators</text>
+  <text class="s" x="212" y="108">built-ins and your</text>
+  <text class="s" x="212" y="124">plug-ins, higher time-</text>
+  <text class="s" x="212" y="140">frames from closed bars</text>
+
+  <rect class="box" x="368" y="56" width="148" height="96" rx="10"/>
+  <text class="t" x="384" y="86">Snapshot</text>
+  <text class="s" x="384" y="108">graded readings on</text>
+  <text class="s" x="384" y="124">every timeframe, plus</text>
+  <text class="s" x="384" y="140">the market and session</text>
+
+  <rect class="key" x="540" y="56" width="148" height="96" rx="10"/>
+  <text class="t" x="556" y="86">Scorecard</text>
+  <text class="s" x="556" y="108">learn on one half,</text>
+  <text class="s" x="556" y="124">grade the other, swap;</text>
+  <text class="s" x="556" y="140">A / B / C grades</text>
+
+  <rect class="key" x="712" y="56" width="148" height="96" rx="10"/>
+  <text class="t" x="728" y="86">Trade check</text>
+  <text class="s" x="728" y="108">pre-registered entries</text>
+  <text class="s" x="728" y="124">vs every bar, priced</text>
+  <text class="s" x="728" y="140">as options, both halves</text>
+
+  <rect class="box" x="884" y="56" width="132" height="96" rx="10"/>
+  <text class="t" x="900" y="86">Report</text>
+  <text class="s" x="900" y="108">report.html</text>
+  <text class="s" x="900" y="124">trades.csv</text>
+  <text class="s" x="900" y="140">summary.json</text>
+
+  <path class="a" d="M172,104 L194,104"/>
+  <path class="a" d="M344,104 L366,104"/>
+  <path class="a" d="M516,104 L538,104"/>
+  <path class="a" d="M688,104 L710,104"/>
+  <path class="a" d="M860,104 L882,104"/>
+
+  <!-- side inputs -->
+  <rect class="side" x="196" y="206" width="320" height="86" rx="10"/>
+  <text class="t" x="212" y="236">Winner census and labels</text>
+  <text class="s" x="212" y="258">every swing leg priced as an at-the-money option;</text>
+  <text class="s" x="212" y="274">each bar labelled "does a winner start soon?"</text>
+
+  <rect class="side" x="712" y="206" width="148" height="86" rx="10"/>
+  <text class="t" x="728" y="236">Your signals</text>
+  <text class="s" x="728" y="258">one-line rules in</text>
+  <text class="s" x="728" y="274">study.toml or a file</text>
+
+  <path class="a" d="M98,152 L98,249 L194,249"/>
+  <path class="a" d="M516,249 L614,249 L614,154"/>
+  <path class="a" d="M786,206 L786,154"/>
+</svg>

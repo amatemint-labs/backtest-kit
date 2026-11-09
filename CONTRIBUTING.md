@@ -1,7 +1,7 @@
 # Contributing
 
-Thanks for helping. Backtest Kit's value is that its numbers can be trusted, so contributions are
-held to a few non-negotiable rules.
+Thanks for your interest in Backtest Kit. People use it to decide which trading ideas deserve real
+money, so a few rules apply to every change.
 
 ## Setup
 
@@ -11,7 +11,7 @@ uv run pytest            # about a minute; must pass
 uv run kit smoke         # end-to-end self-test
 ```
 
-## Rules
+## Ground rules
 
 1. **Read-only.** No code may place, change or cancel orders, request trading scopes, or contact
    a non-market-data endpoint. `tests/test_no_orders.py` enforces this; do not weaken it.

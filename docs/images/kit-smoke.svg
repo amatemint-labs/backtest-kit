@@ -1,0 +1,120 @@
+<svg class="rich-terminal" viewBox="0 0 1507 440.4" xmlns="http://www.w3.org/2000/svg">
+    <!-- Generated with Rich https://www.textualize.io -->
+    <style>
+
+    @font-face {
+        font-family: "Fira Code";
+        src: local("FiraCode-Regular"),
+                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Regular.woff2") format("woff2"),
+                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Regular.woff") format("woff");
+        font-style: normal;
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: "Fira Code";
+        src: local("FiraCode-Bold"),
+                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff2/FiraCode-Bold.woff2") format("woff2"),
+                url("https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/woff/FiraCode-Bold.woff") format("woff");
+        font-style: bold;
+        font-weight: 700;
+    }
+
+    .terminal-4065221320-matrix {
+        font-family: Fira Code, monospace;
+        font-size: 20px;
+        line-height: 24.4px;
+        font-variant-east-asian: full-width;
+    }
+
+    .terminal-4065221320-title {
+        font-size: 18px;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .terminal-4065221320-r1 { fill: #8fc1ae;font-weight: bold }
+.terminal-4065221320-r2 { fill: #c5c8c6 }
+.terminal-4065221320-r3 { fill: #6cc56c;font-weight: bold }
+    </style>
+
+    <defs>
+    <clipPath id="terminal-4065221320-clip-terminal">
+      <rect x="0" y="0" width="1487.3999999999999" height="389.4" />
+    </clipPath>
+    <clipPath id="terminal-4065221320-line-0">
+    <rect x="0" y="1.5" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-1">
+    <rect x="0" y="25.9" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-2">
+    <rect x="0" y="50.3" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-3">
+    <rect x="0" y="74.7" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-4">
+    <rect x="0" y="99.1" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-5">
+    <rect x="0" y="123.5" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-6">
+    <rect x="0" y="147.9" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-7">
+    <rect x="0" y="172.3" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-8">
+    <rect x="0" y="196.7" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-9">
+    <rect x="0" y="221.1" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-10">
+    <rect x="0" y="245.5" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-11">
+    <rect x="0" y="269.9" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-12">
+    <rect x="0" y="294.3" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-13">
+    <rect x="0" y="318.7" width="1488.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-4065221320-line-14">
+    <rect x="0" y="343.1" width="1488.4" height="24.65"/>
+            </clipPath>
+    </defs>
+
+    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1505" height="438.4" rx="8"/><text class="terminal-4065221320-title" fill="#c5c8c6" text-anchor="middle" x="752" y="27">kit&#160;smoke</text>
+            <g transform="translate(26,22)">
+            <circle cx="0" cy="0" r="7" fill="#ff5f57"/>
+            <circle cx="22" cy="0" r="7" fill="#febc2e"/>
+            <circle cx="44" cy="0" r="7" fill="#28c840"/>
+            </g>
+        
+    <g transform="translate(9, 41)" clip-path="url(#terminal-4065221320-clip-terminal)">
+    
+    <g class="terminal-4065221320-matrix">
+    <text class="terminal-4065221320-r1" x="0" y="20" textLength="219.6" clip-path="url(#terminal-4065221320-line-0)">$&#160;uv&#160;run&#160;kit&#160;smoke</text><text class="terminal-4065221320-r2" x="1488.4" y="20" textLength="12.2" clip-path="url(#terminal-4065221320-line-0)">
+</text><text class="terminal-4065221320-r2" x="0" y="44.4" textLength="536.8" clip-path="url(#terminal-4065221320-line-1)">kit&#160;smoke&#160;—&#160;end-to-end&#160;check&#160;on&#160;made-up&#160;data</text><text class="terminal-4065221320-r2" x="1488.4" y="44.4" textLength="12.2" clip-path="url(#terminal-4065221320-line-1)">
+</text><text class="terminal-4065221320-r2" x="1488.4" y="68.8" textLength="12.2" clip-path="url(#terminal-4065221320-line-2)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="93.2" textLength="73.2" clip-path="url(#terminal-4065221320-line-3)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="93.2" textLength="500.2" clip-path="url(#terminal-4065221320-line-3)">&#160;synthetic&#160;data:&#160;6&#160;tickers,&#160;1h&#160;bars:&#160;1827</text><text class="terminal-4065221320-r2" x="1488.4" y="93.2" textLength="12.2" clip-path="url(#terminal-4065221320-line-3)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="117.6" textLength="73.2" clip-path="url(#terminal-4065221320-line-4)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="117.6" textLength="805.2" clip-path="url(#terminal-4065221320-line-4)">&#160;indicator&#160;ranges:&#160;Stochastic,&#160;RSI,&#160;MACD&#160;computed&#160;on&#160;1,827&#160;1h&#160;bars</text><text class="terminal-4065221320-r2" x="1488.4" y="117.6" textLength="12.2" clip-path="url(#terminal-4065221320-line-4)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="142" textLength="73.2" clip-path="url(#terminal-4065221320-line-5)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="142" textLength="1146.8" clip-path="url(#terminal-4065221320-line-5)">&#160;no&#160;lookahead&#160;(closed&#160;mode):&#160;14&#160;readings&#160;unchanged&#160;on&#160;914&#160;bars&#160;when&#160;later&#160;prices&#160;are&#160;scrambled</text><text class="terminal-4065221320-r2" x="1488.4" y="142" textLength="12.2" clip-path="url(#terminal-4065221320-line-5)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="166.4" textLength="73.2" clip-path="url(#terminal-4065221320-line-6)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="166.4" textLength="1073.6" clip-path="url(#terminal-4065221320-line-6)">&#160;read-only&#160;guard:&#160;anything&#160;but&#160;market-data&#160;reads&#160;is&#160;refused&#160;before&#160;it&#160;leaves&#160;the&#160;machine</text><text class="terminal-4065221320-r2" x="1488.4" y="166.4" textLength="12.2" clip-path="url(#terminal-4065221320-line-6)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="190.8" textLength="73.2" clip-path="url(#terminal-4065221320-line-7)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="190.8" textLength="1317.6" clip-path="url(#terminal-4065221320-line-7)">&#160;TradeStation&#160;fetcher&#160;(mock&#160;API):&#160;8,190&#160;bars&#160;in&#160;4&#160;requests&#160;after&#160;a&#160;throttle;&#160;re-run&#160;fetched&#160;0&#160;(resume&#160;works)</text><text class="terminal-4065221320-r2" x="1488.4" y="190.8" textLength="12.2" clip-path="url(#terminal-4065221320-line-7)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="215.2" textLength="73.2" clip-path="url(#terminal-4065221320-line-8)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="215.2" textLength="890.6" clip-path="url(#terminal-4065221320-line-8)">&#160;scorecard&#160;held&#160;out:&#160;C_1x&#160;AUC&#160;0.728&#160;/&#160;0.723&#160;on&#160;halves&#160;the&#160;model&#160;never&#160;saw</text><text class="terminal-4065221320-r2" x="1488.4" y="215.2" textLength="12.2" clip-path="url(#terminal-4065221320-line-8)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="239.6" textLength="73.2" clip-path="url(#terminal-4065221320-line-9)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="239.6" textLength="1354.2" clip-path="url(#terminal-4065221320-line-9)">&#160;planted&#160;pattern&#160;found:&#160;heavy&#160;volume&#160;raises&#160;the&#160;call&#160;odds&#160;in&#160;both&#160;halves,&#160;and&#160;removing&#160;volume&#160;costs&#160;AUC&#160;in&#160;both</text><text class="terminal-4065221320-r2" x="1488.4" y="239.6" textLength="12.2" clip-path="url(#terminal-4065221320-line-9)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="264" textLength="73.2" clip-path="url(#terminal-4065221320-line-10)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="264" textLength="902.8" clip-path="url(#terminal-4065221320-line-10)">&#160;trade&#160;check&#160;(pre-registered):&#160;pre-registered&#160;(first&#160;run&#160;with&#160;this&#160;prereg)</text><text class="terminal-4065221320-r2" x="1488.4" y="264" textLength="12.2" clip-path="url(#terminal-4065221320-line-10)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="288.4" textLength="73.2" clip-path="url(#terminal-4065221320-line-11)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="288.4" textLength="1012.6" clip-path="url(#terminal-4065221320-line-11)">&#160;signal&#160;from&#160;study.toml:&#160;volume_surge:&#160;call-leg&#160;lift&#160;x3.0&#160;/&#160;x3.53&#160;in&#160;the&#160;two&#160;halves</text><text class="terminal-4065221320-r2" x="1488.4" y="288.4" textLength="12.2" clip-path="url(#terminal-4065221320-line-11)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="312.8" textLength="73.2" clip-path="url(#terminal-4065221320-line-12)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="312.8" textLength="1012.6" clip-path="url(#terminal-4065221320-line-12)">&#160;trade&#160;log:&#160;326&#160;trades&#160;written&#160;to&#160;trades.csv&#160;(entry,&#160;exit,&#160;reason,&#160;option&#160;multiple)</text><text class="terminal-4065221320-r2" x="1488.4" y="312.8" textLength="12.2" clip-path="url(#terminal-4065221320-line-12)">
+</text><text class="terminal-4065221320-r3" x="24.4" y="337.2" textLength="73.2" clip-path="url(#terminal-4065221320-line-13)">[PASS]</text><text class="terminal-4065221320-r2" x="97.6" y="337.2" textLength="488" clip-path="url(#terminal-4065221320-line-13)">&#160;HTML&#160;report:&#160;studies/_smoke/report.html</text><text class="terminal-4065221320-r2" x="1488.4" y="337.2" textLength="12.2" clip-path="url(#terminal-4065221320-line-13)">
+</text><text class="terminal-4065221320-r2" x="1488.4" y="361.6" textLength="12.2" clip-path="url(#terminal-4065221320-line-14)">
+</text><text class="terminal-4065221320-r3" x="0" y="386" textLength="122" clip-path="url(#terminal-4065221320-line-15)">ALL&#160;PASSED</text><text class="terminal-4065221320-r2" x="122" y="386" textLength="549" clip-path="url(#terminal-4065221320-line-15)">&#160;in&#160;38.4s.&#160;Report:&#160;studies/_smoke/report.html</text><text class="terminal-4065221320-r2" x="1488.4" y="386" textLength="12.2" clip-path="url(#terminal-4065221320-line-15)">
+</text>
+    </g>
+    </g>
+</svg>

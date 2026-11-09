@@ -1,6 +1,7 @@
 {
  "study": "_example",
- "built": "2026-11-08T23:45:07.550222-05:00",
+ "title": "Sample study (synthetic data)",
+ "built": "2026-11-09T00:19:38.236366-05:00",
  "versions": {
   "stoch": "Stochastic 14/1/3",
   "rsi": "RSI 14",
@@ -6915,8 +6916,8 @@
    "idea": "heavy volume on the 1h and 15m bars comes before up-moves worth buying calls for",
    "entry": "buy the ATM call at the 1h close on the first bar of each volume_surge signal",
    "exit": "sell when price turns 0.75 day-ATR off its best point since entry, or at expiry",
-   "measure": "median option multiple, % doubled, % lost half \u2014 signal entries vs all bars, each half",
-   "pass_mark": "signal median multiple at least 1.2x the all-bars median in BOTH halves",
+   "measure": "median option multiple, % doubled and % lost half for signal entries vs all bars, in each half",
+   "pass_mark": "signal median multiple at least 1.2x the all-bars median in both halves",
    "label": "C_1x",
    "grades": "A, B",
    "trail_k": "0.75",
@@ -6926,5 +6927,5 @@
    "same_day": "no"
   }
  },
- "seconds": 28.6
+ "seconds": 143.7
 }

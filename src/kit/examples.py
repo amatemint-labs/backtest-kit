@@ -9,6 +9,7 @@ from . import config
 from .data import synthetic
 
 STUDY = """# Sample study on SYNTHETIC data (made-up tickers SYNA..SYNE, market SYNSPY). Numbers mean nothing about markets.
+title = "Sample study (synthetic data)"
 tickers = []
 market = "SYNSPY"
 start = "2025-05-01"
@@ -43,8 +44,8 @@ PREREG = """# Pre-registration: sample-study (synthetic data)
 idea: heavy volume on the 1h and 15m bars comes before up-moves worth buying calls for
 entry: buy the ATM call at the 1h close on the first bar of each volume_surge signal
 exit: sell when price turns 0.75 day-ATR off its best point since entry, or at expiry
-measure: median option multiple, % doubled, % lost half — signal entries vs all bars, each half
-pass_mark: signal median multiple at least 1.2x the all-bars median in BOTH halves
+measure: median option multiple, % doubled and % lost half for signal entries vs all bars, in each half
+pass_mark: signal median multiple at least 1.2x the all-bars median in both halves
 
 ## Settings the kit reads (change only before running)
 label: C_1x
@@ -57,29 +58,29 @@ signal: volume_surge
 ## Verdict (append after running; never edit above this line)
 """
 
-README = """# Sample study (synthetic data)
+README = """# Sample study
 
-Everything in this folder was produced by `uv run kit examples` on the kit's **made-up** dataset
-(tickers SYNA–SYNE and a market proxy SYNSPY, one year of 1-minute bars with one planted pattern:
-heavy volume before some up-moves). **Nothing here is a real price or says anything about markets** —
-it shows what a study produces, so you know what to expect from your own.
+Everything in this folder was produced by `uv run kit examples` on the kit's synthetic dataset: five
+made-up tickers (SYNA to SYNE) and a made-up market index (SYNSPY), one year of 1-minute bars, with a
+single pattern planted in the data. Some up-moves are preceded by heavy volume; down-moves get no such
+warning. None of the prices are real, so the numbers say nothing about markets. The folder exists to
+show what a study produces.
 
-| File | What it is |
+| File | Contents |
 |---|---|
-| `study.toml` | The settings: indicators (3 bundled + the example plug-in `rsi_bands`), three expression signals, one plug-in signal |
-| `prereg.md` | The pre-registration: the idea, the one-line entry and exit, the measure and the pass mark — written before running |
-| `report.html` | The one-page report: census, scorecards, lift tables, look-alikes, your signals, exhaustion, the trade check and its trades |
-| `trades.csv` | Every trade the trade check took: entry/exit time and price, option expiry and premium, exit reason, option multiple |
-| `summary.json` | Every table in the report, machine-readable (what Claude reads with `kit report sample-study --json`) |
+| `study.toml` | Settings: the indicators (the three built-ins plus the example plug-in `rsi_bands`), three signals written as expressions, and one signal written as a plug-in |
+| `prereg.md` | The pre-registration, written before the run: the idea, the entry and exit, the measure and the pass mark |
+| `report.html` | The report. Open it in a browser |
+| `trades.csv` | Every trade the trade check took, with entry and exit, option expiry and premium, exit reason and option multiple |
+| `summary.json` | Every table in the report in machine-readable form |
 
-Open `report.html` in a browser. Things worth noticing:
-- **The scorecard finds the planted pattern** ("volume_x" bins raise the call odds in both halves) — that is
-  the kit proving it can find a real effect on time it never learned from.
-- **Signals**: `volume_surge` shows ~3x lift in both halves (the planted tell); `stoch_turn_up` and
-  `overbought_fade` show what an ordinary idea looks like on data with no such edge.
-- **The trade check** compares the signal's entries with ALL bars on the same exits; even a real tell does
-  not automatically make money once priced as an option — that is the point of pricing it.
-- **Tail concentration**: how much of the profit came from the top 3 days / tickers.
+A few things to look for in the report. The scorecard finds the planted pattern on the half of the
+data it did not learn from: volume readings raise the odds of a winning call in both halves. The
+`volume_surge` signal shows roughly three times the base rate in both halves, while
+`overbought_fade` works in the first half and fails in the second, which is what an idea that does not
+hold up looks like. The trade check compares each signal's entries with entering on every bar under
+the same exit, and the tail-concentration table shows how much of the profit came from a handful of
+days or tickers.
 """
 
 

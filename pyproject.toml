@@ -1,7 +1,7 @@
 [project]
 name = "backtest-kit"
 version = "1.0.0"
-description = "Honest, local options backtesting for discretionary traders: your own indicators, every bar, priced as options, graded out of sample."
+description = "Test trading ideas against every bar of history, priced as the options you would actually trade."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11,<3.14"

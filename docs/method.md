@@ -1,13 +1,14 @@
 # The method
 
-Backtest Kit follows a **winners-first** method: list every move that paid, describe what the charts
-looked like before it, measure how often those same looks appear without a winner following, and
-grade only on time the model never saw. Trades are simulated last, priced as options, with exits
-that follow momentum.
+Backtest Kit starts from the moves that paid rather than from a rule. It lists every swing that would
+have made money on an option, describes what the charts looked like just before each one, measures
+how often those same conditions appeared without a winner following, and grades everything on a
+period the model did not learn from. Trades are simulated last, priced as options, with exits that
+follow momentum.
 
 ## Pipeline
 
-| # | Stage | Produces | The rule that keeps it honest |
+| # | Stage | Produces | Safeguard |
 |---|---|---|---|
 | 1 | Bars | 1-minute bars → 3m, 15m, 1h, 4h, 1D (+2D, 1W, 1M) per ticker | Every bar stamped with its **close** time (New York); regular hours only |
 | 2 | Indicators | Bundled + plug-in indicators on every timeframe | Higher timeframes only from bars closed by *t* |
@@ -130,14 +131,19 @@ Requires `prereg.md` with `idea`, `entry`, `exit`, `measure` and `pass_mark` fil
   without the top 3 days); results by month and by ticker; the 10 best and worst trades; and every
   trade in `results/trades.csv`. Entries whose modelled premium is under `min_premium` are dropped.
 
-## Validation discipline
+## Validation
 
-- **Two halves of time.** Everything must hold in both (`split` in `study.toml`).
-- **Sealed holdout.** `holdout_start` keeps the final stretch untouched; `--open-holdout` opens it
-  and logs the event; opening it twice is flagged.
-- **Pre-registration.** Write the idea and its pass mark before running; the kit fingerprints the
-  prereg and labels later edits as exploratory.
-- **Count your tests.** Scan 600 combinations and about 30 will look like winners at 5% by luck.
-- **Compare like with like.** Exit rules are compared on the same entries.
-- **Report what is still open.** Censored trades are neither wins nor losses.
-- **Last gate: small live size.** A backtest earns a small live test, nothing more.
+Every result is reported for both halves of the history (`split` in `study.toml`), and a result
+that holds in only one of them should be treated as noise. You can also seal the most recent stretch
+of data with `holdout_start`; it stays out of every run until you pass `--open-holdout`, and the kit
+logs each time you do.
+
+Write the idea and its pass mark in `prereg.md` before running the trade check. The kit records a
+fingerprint of the file, and a result produced after the file was edited is labelled exploratory.
+
+Keep count of how many ideas you test. Out of 600 combinations, about 30 will clear a 5% significance
+bar by chance alone, so the lift tables report how many combinations they examined.
+
+Exit rules are always compared on the same entries, and trades that were still open when the data
+ended are reported as censored rather than counted as wins or losses. A backtest that survives all of
+this has earned a small live test, not a large one.

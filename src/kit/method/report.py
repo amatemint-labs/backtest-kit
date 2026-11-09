@@ -10,7 +10,7 @@ CSS = """
 main{max-width:1100px;margin:0 auto;padding:24px 16px 64px}h1{font-size:26px;margin:0 0 4px}h2{font-size:19px;margin:36px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
 h3{font-size:15px;margin:20px 0 6px}p,li{color:var(--fg)}.muted{color:var(--muted);font-size:13px}
 .warn{background:var(--warnbg);border-left:3px solid var(--warn);padding:10px 14px;margin:14px 0;border-radius:4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 12px}.kpi b{display:block;font-size:20px}
 .tw{overflow-x:auto;margin:6px 0 14px}table{border-collapse:collapse;font-size:13px;min-width:50%}
 th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:right;white-space:nowrap}th{color:var(--muted);font-weight:600;text-align:right}
@@ -30,11 +30,28 @@ def _fmt(v):
     return html.escape(str(v))
 
 
+HEADERS = {
+    "graded_half": "half", "per_month": "per month", "hit_rate_pct": "hit rate %", "broke_first_pct": "broke first %",
+    "t075_median_mult": "median × (0.75 trail)", "t075_pct_doubled": "doubled %", "t075_pct_4x": "4x+ %",
+    "t075_pct_lost_half": "lost half %", "t150_median_mult": "median × (1.5 trail)", "t150_pct_doubled": "doubled % (1.5)",
+    "t150_pct_4x": "4x+ % (1.5)", "t150_pct_lost_half": "lost half % (1.5)", "sd075_median_mult": "median × (same day)",
+    "sd075_pct_doubled": "doubled %", "sd075_pct_4x": "4x+ %", "sd075_pct_lost_half": "lost half %",
+    "odds_x_learned_P1": "odds × (learned on P1)", "odds_x_learned_P2": "odds × (learned on P2)",
+    "median_mult": "median ×", "mean_mult_cap20": "mean × (capped 20)", "pct_doubled": "doubled %", "pct_4x": "4x+ %",
+    "pct_lost_half": "lost half %", "median_hold_bars": "median hold (bars)", "pct_censored": "censored %",
+    "weaker_lift": "weaker-half lift", "win_first_P1_pct": "won first % (P1)", "win_first_P2_pct": "won first % (P2)",
+}
+
+
+def header(c) -> str:
+    return HEADERS.get(str(c), str(c).replace("_", " "))
+
+
 def table(rows, lift_cols=(), max_rows=60) -> str:
     if not rows:
         return '<p class="muted">Nothing met the minimum counts.</p>'
     cols = list(rows[0].keys())
-    h = ["<div class='tw'><table><tr>" + "".join(f"<th>{html.escape(str(c))}</th>" for c in cols) + "</tr>"]
+    h = ["<div class='tw'><table><tr>" + "".join(f"<th>{html.escape(header(c))}</th>" for c in cols) + "</tr>"]
     for r in rows[:max_rows]:
         cells = []
         for c in cols:
@@ -82,8 +99,8 @@ def histogram(mults, title="Option multiple at exit (1.0 = break-even)") -> str:
 def render(S: dict) -> str:
     e = html.escape
     out = [f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
-           f"<title>Study {e(S['study'])}</title><style>{CSS}</style></head><body><main>"]
-    out.append(f"<h1>Study: {e(S['study'])}</h1><p class='muted'>Built {e(S['built'][:16])} · "
+           f"<title>{e(S.get('title') or S['study'])}</title><style>{CSS}</style></head><body><main>"]
+    out.append(f"<h1>{e(S.get('title') or S['study'])}</h1><p class='muted'>Built {e(S['built'][:16])} · "
                + " · ".join(e(v) for v in S["versions"].values()) + f" · higher timeframes: <b>{e(S['mode'])}</b></p>")
     labs = list(S.get("scorecard", {}).keys())
     out.append("<nav>" + "".join(f"<a href='#{l}'>{l}</a>" for l in labs) + "<a href='#census'>census</a><a href='#lift'>lift</a><a href='#exit'>exits</a><a href='#signals'>signals</a><a href='#trade'>trade check</a><a href='#check'>checklist</a></nav>")
@@ -93,11 +110,11 @@ def render(S: dict) -> str:
                f"<div class='kpi'><span class='muted'>1h bars</span><b>{S['bars']:,}</b></div>"
                + "".join(f"<div class='kpi'><span class='muted'>Half {p}</span><b>{v['months']} mo</b><span class='muted'>{v['from'][:10]} → {v['to'][:10]}</span></div>" for p, v in P.items())
                + f"<div class='kpi'><span class='muted'>Holdout</span><b>{e(S.get('holdout') or 'none set')}</b></div></div>")
-    out.append("<div class='warn'><b>Read before believing anything here.</b> Option results are <b>modelled</b> "
-               "(Black-Scholes, no bid/ask spread, constant IV) — good for ranking setups, not for deciding money. "
-               f"The lift tables tested <b>{S.get('lift_cells_tested', 0):,}</b> state cells; about "
-               f"<b>{S.get('lift_expected_false_at_5pct', 0):,}</b> would look 'significant' at 5% by luck alone. "
-               "Only what holds in BOTH halves is shown, and even that is a candidate until a pre-registered forward test.</div>")
+    out.append("<div class='warn'><b>About these numbers.</b> Option prices are modelled with Black-Scholes, with no "
+               "bid/ask spread and constant implied volatility, so use them to compare setups rather than to size positions. "
+               f"The lift tables tested {S.get('lift_cells_tested', 0):,} state combinations; at the 5% level about "
+               f"{S.get('lift_expected_false_at_5pct', 0):,} of them would look significant by chance. Only results that "
+               "hold in both halves are shown, and they remain hypotheses until a pre-registered forward test.</div>")
     out.append(f"<p class='muted'>Label: {e(S['label_definition'])}. '1x' = the option gained 1x its cost (doubled); '3x' = +300%.</p>")
     br = S.get("base_rates_pct", {})
     out.append("<h3>Base rates (how often a label is true on an ordinary bar)</h3>" +

@@ -3,8 +3,8 @@
 idea: heavy volume on the 1h and 15m bars comes before up-moves worth buying calls for
 entry: buy the ATM call at the 1h close on the first bar of each volume_surge signal
 exit: sell when price turns 0.75 day-ATR off its best point since entry, or at expiry
-measure: median option multiple, % doubled, % lost half — signal entries vs all bars, each half
-pass_mark: signal median multiple at least 1.2x the all-bars median in BOTH halves
+measure: median option multiple, % doubled and % lost half for signal entries vs all bars, in each half
+pass_mark: signal median multiple at least 1.2x the all-bars median in both halves
 
 ## Settings the kit reads (change only before running)
 label: C_1x

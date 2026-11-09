@@ -220,7 +220,7 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
 
     # ── census ──
     legs_in = LEGS
-    summary = {"study": name, "built": pd.Timestamp.now(tz=config.TZ).isoformat(), "versions": vers, "mode": mode,
+    summary = {"study": name, "title": cfg.get("title") or f"Study: {name}", "built": pd.Timestamp.now(tz=config.TZ).isoformat(), "versions": vers, "mode": mode,
                "tickers": sorted(D.ticker.unique().tolist()), "market": market if mkt[0] is not None else None,
                "bars": len(D), "split": str(split.date()), "periods": {p: {"from": str(g.ts.min()), "to": str(g.ts.max()), "bars": len(g), "months": round(months[p], 1)} for p, g in D.groupby("period")},
                "holdout": holdout_note, "label_definition": "a >=Nx option leg (1h zigzag, 0.75 or 1.5 day-ATR) starts within the next 0-3 bars",

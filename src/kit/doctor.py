@@ -74,7 +74,7 @@ def run(s: config.Settings, online: bool = True) -> dict:
     counts = {tf: len(store.tickers(s.data_dir, tf)) for tf in ("3m", "15m", "1h", "4h", "1D")}
     have = sum(counts.values()) > 0
     checks.append(_c("Bar data", "ok" if have else "warn", ", ".join(f"{tf}: {n} tickers" for tf, n in counts.items()),
-                     "Run `kit fetch` after signing in (or `kit smoke` to try made-up data)."))
+                     "Run `kit fetch` (crypto from Alpaca needs no login; stocks and futures need a sign-in), or `kit smoke` to try made-up data."))
     mk = store.read(s.data_dir, "1D", s.market) is not None
     checks.append(_c(f"Market ticker ({s.market})", "ok" if mk else "warn", "present" if mk else "no daily bars",
                      f"`kit fetch --tickers {s.market}`"))

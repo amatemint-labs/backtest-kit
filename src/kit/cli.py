@@ -1,5 +1,5 @@
 """`kit` — one command line for the whole kit. Every command prints a plain summary; add --json
-for a machine-readable result (what Claude reads). Progress messages go to stderr with --json."""
+for a machine-readable result (what an AI assistant reads). Progress messages go to stderr with --json."""
 from __future__ import annotations
 
 import argparse
@@ -42,7 +42,7 @@ def cmd_doctor(args) -> int:
         if c.get("fix") and c["status"] != "ok":
             lines.append(f"         -> {c['fix']}")
     lines += ["", "Ready to run `kit smoke`." if res["ready_for_smoke"] else "Fix the FAIL lines above first.",
-              "Ready to fetch real data." if res["ready_for_fetch"] else "Real data needs the TODO lines above (TradeStation key + login)."]
+              "Ready to fetch real data." if res["ready_for_fetch"] else "For TradeStation data, finish the TODO lines above. Crypto from Alpaca needs no login: `kit fetch --source alpaca --tickers BTC/USD`."]
     return _emit(args, res, lines, res["ready_for_smoke"])
 
 
@@ -96,20 +96,35 @@ def cmd_login(args) -> int:
     return _emit(args, res, [f"Signed in. Refresh token saved in {res['refresh_token_saved_in']}. Scopes: {res['scopes']} (market data only — no trading)."])
 
 
+SOURCE_ASSETS = {"alpaca": ("stock", "crypto"), "tradestation": ("stock", "future"), "databento": ("stock", "future")}
+
+
 def cmd_fetch(args) -> int:
+    from . import assets
     from .data import store, tradestation
     s = config.load()
     log = _log(args)
+    insts = {tk: assets.make(tk, args.asset, args.multiplier) for tk in _tickers(args, s)}
+    bad = [f"{tk} ({i.asset})" for tk, i in insts.items() if i.asset not in SOURCE_ASSETS[args.source]]
+    if bad:
+        msg = (f"{args.source} does not carry {', '.join(bad)}. Sources: alpaca = stocks + crypto, "
+               "tradestation = stocks + futures (@ES), databento = stocks + futures (ES.c.0). "
+               "If the guess is wrong, pass --asset stock|future|crypto.")
+        return _emit(args, {"error": msg}, [msg], False)
+    for i in insts.values():
+        assets.save(s.data_dir, i)
+        if i.asset != "stock":
+            log(f"{i.symbol}: {i.asset}, session {i.session.name}" + (f", ${i.multiplier:g} per point" if i.asset == "future" else ""))
     if args.source == "alpaca":
         from .data import alpaca
         try:
-            cli = alpaca.Alpaca(log=log)
+            cli = alpaca.Alpaca(log=log, keys_required=any(i.asset == "stock" for i in insts.values()))
         except PermissionError as e:
             return _emit(args, {"error": str(e)}, [str(e)], False)
         out = []
-        for tk in _tickers(args, s):
+        for tk in insts:
             log(f"{tk}:")
-            r = alpaca.fetch_minutes(cli, s.data_dir, tk, args.start or s.start, log=log)
+            r = alpaca.fetch_minutes(cli, s.data_dir, tk, args.start or s.start, log=log, asset=insts[tk].asset)
             if not args.no_build:
                 r["built"] = store.build_timeframes(s.data_dir, tk, s.timeframes)
             out.append(r)
@@ -118,8 +133,8 @@ def cmd_fetch(args) -> int:
     if args.source == "databento":
         from .data import databento_opt
         out = []
-        for tk in _tickers(args, s):
-            r = databento_opt.fetch_minutes(s.data_dir, tk, args.start or s.start, log=log)
+        for tk in insts:
+            r = databento_opt.fetch_minutes(s.data_dir, tk, args.start or s.start, log=log, asset=insts[tk].asset)
             if not args.no_build:
                 r["built"] = store.build_timeframes(s.data_dir, tk, s.timeframes)
             out.append(r)
@@ -127,12 +142,14 @@ def cmd_fetch(args) -> int:
     ts = tradestation.TradeStation(s, log=log)
     out, lines = [], []
     try:
-        for tk in _tickers(args, s):
+        for tk in insts:
             log(f"{tk}:")
             r = {"ticker": tk}
+            ses = insts[tk].session
             if not args.daily_only:
-                r["minutes"] = tradestation.fetch_minutes(ts, s.data_dir, tk, args.start or s.start, window_days=s.ts_window_days, log=log)
-            r["daily_bars"] = tradestation.fetch_daily(ts, s.data_dir, tk, args.daily_start or "2015-01-01")
+                r["minutes"] = tradestation.fetch_minutes(ts, s.data_dir, tk, args.start or s.start, window_days=s.ts_window_days,
+                                                          log=log, session=ses)
+            r["daily_bars"] = tradestation.fetch_daily(ts, s.data_dir, tk, args.daily_start or "2015-01-01", session=ses)
             if not args.no_build:
                 r["built"] = store.build_timeframes(s.data_dir, tk, s.timeframes)
             out.append(r)
@@ -168,7 +185,7 @@ def cmd_snapshot_options(args) -> int:
 # ── TradingView ───────────────────────────────────────────────────────────────
 def cmd_import_tv(args) -> int:
     from .data import tradingview
-    r = tradingview.import_csv(Path(args.csv), config.load().data_dir, args.ticker, args.tf)
+    r = tradingview.import_csv(Path(args.csv), config.load().data_dir, args.ticker, args.tf, args.asset)
     return _emit(args, r, [f"Imported {r['bars']:,} {r['tf']} bars of {r['ticker']} ({r['first'][:10]} .. {r['last'][:10]}).",
                            f"Indicator columns found: {', '.join(r['indicator_columns']) or 'none — add the indicators to the chart before exporting'}"])
 
@@ -177,7 +194,7 @@ def cmd_match_check(args) -> int:
     from .data import tradingview
     mp = dict(x.split("=", 1) for x in (args.map or []))
     r = tradingview.match_check(Path(args.csv), config.load().data_dir, args.ticker, args.tf, mp, args.warmup, args.ema_seed,
-                                indicators=args.indicator, tolerance=args.tol)
+                                indicators=args.indicator, tolerance=args.tol, asset=args.asset)
     lines = [f"kit match-check — {r['ticker']} {r['tf']}, {r['bars_in_export']:,} bars, warm-up from {r['warm_source']}", ""]
     for t in r["table"]:
         if t.get("bars"):
@@ -277,7 +294,7 @@ def cmd_columns(args) -> int:
 def cmd_examples(args) -> int:
     from .examples import build
     r = build(config.load(), log=_log(args))
-    return _emit(args, r, [f"Sample study written to {r['folder']}: {', '.join(r['files'])}"])
+    return _emit(args, r, [f"Sample study written to {e['folder']}: {', '.join(e['files'])}" for e in r["examples"].values()])
 
 
 # ── method ────────────────────────────────────────────────────────────────────
@@ -345,14 +362,17 @@ def main(argv=None) -> int:
     sp = add("login", cmd_login, "sign in to TradeStation in your browser (read-only market data)")
     sp.add_argument("broker", choices=["tradestation", "alpaca"])
     sp.add_argument("--reset-key", action="store_true", help="forget the stored API key and sign-in first")
-    sp = add("fetch", cmd_fetch, "download bars from TradeStation (resumes where it stopped)")
+    sp = add("fetch", cmd_fetch, "download bars (stocks, futures, crypto); resumes where it stopped")
     sp.add_argument("--tickers", help="comma list; default = tickers in kit.toml")
     sp.add_argument("--start", help="first date for minute bars (default kit.toml start)")
     sp.add_argument("--daily-start", help="first date for daily bars (default 2015-01-01)")
     sp.add_argument("--daily-only", action="store_true")
     sp.add_argument("--no-build", action="store_true", help="do not rebuild 3m/15m/1h/4h/1D afterwards")
     sp.add_argument("--source", choices=["tradestation", "alpaca", "databento"], default="tradestation",
-                    help="alpaca = FREE (your own free account); databento = OPTIONAL paid vendor (asks before spending)")
+                    help="alpaca = FREE (stocks need a free account; crypto needs no key); databento = OPTIONAL paid vendor (asks before spending)")
+    sp.add_argument("--asset", choices=["auto", "stock", "future", "crypto"], default="auto",
+                    help="asset class; auto guesses from the symbol (BTC/USD = crypto, @ES / ESZ26 / ES.c.0 = future)")
+    sp.add_argument("--multiplier", type=float, help="futures: dollars per point (known roots like ES, NQ, CL, GC are filled in)")
     sp = add("build", cmd_build, "rebuild timeframes from downloaded minute/daily bars")
     sp.add_argument("--tickers")
     sp = add("snapshot-options", cmd_snapshot_options, "save today's option chains (real quotes from now on)")
@@ -363,6 +383,7 @@ def main(argv=None) -> int:
     sp.add_argument("csv")
     sp.add_argument("--ticker")
     sp.add_argument("--tf", help="timeframe (inferred from bar spacing if left out)")
+    sp.add_argument("--asset", choices=["auto", "stock", "future", "crypto"], default="auto", help="sets the session used for bar times")
     sp = add("match-check", cmd_match_check, "compare the Python ports with your TradingView values bar by bar")
     sp.add_argument("csv")
     sp.add_argument("--ticker")
@@ -372,6 +393,7 @@ def main(argv=None) -> int:
     sp.add_argument("--ema-seed", choices=["sma", "first"], default="sma")
     sp.add_argument("--indicator", action="append", help="which indicator(s) to compare (default: all whose columns are in the export)")
     sp.add_argument("--tol", type=float, default=0.5, help="allowed difference per bar (default 0.5)")
+    sp.add_argument("--asset", choices=["auto", "stock", "future", "crypto"], default="auto", help="sets the session used for bar times")
     sp = add("webhook-log", cmd_webhook_log, "OPTIONAL: log TradingView alert webhooks to a local file (this Mac only by default)")
     sp.add_argument("--port", type=int, default=8765)
     sp.add_argument("--host", default="127.0.0.1", help="leave as 127.0.0.1 unless you know why")
@@ -387,7 +409,7 @@ def main(argv=None) -> int:
     sp.add_argument("--note", help="the setup in one line")
     sp = add("columns", cmd_columns, "list the columns a signal can use (for a study, or a synthetic sample)")
     sp.add_argument("name", nargs="?")
-    add("examples", cmd_examples, "rebuild examples/sample-study (report, trades, results) on synthetic data")
+    add("examples", cmd_examples, "rebuild the sample studies in examples/ (report, trades, results) on synthetic data")
     sp = add("census", cmd_census, "every swing leg priced as an option; winners by horizon")
     sp.add_argument("--tickers")
     sp.add_argument("--start")

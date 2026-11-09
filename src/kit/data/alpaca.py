@@ -1,4 +1,4 @@
-"""FREE data source: Alpaca Market Data API (Basic plan), READ-ONLY.
+"""FREE data source: Alpaca Market Data API (Basic plan), READ-ONLY. US stocks and crypto.
 
 What it gives (checked 2026-11-08 on docs.alpaca.markets and alpaca.markets/data):
   * free with an Alpaca account (paper accounts get the Basic plan too), API key in headers
@@ -7,11 +7,15 @@ What it gives (checked 2026-11-08 on docs.alpaca.markets and alpaca.markets/data
   * 200 API calls per minute; up to 10,000 bars per request (pages via next_page_token)
   * options: only "indicative" (not real exchange) data on the free plan, from Feb 2024; no
     historical bid/ask — the kit does not use it
+  * crypto (BTC/USD, ETH/USD, ...): /v1beta3/crypto/us/bars, 24/7 minute bars; Alpaca says historical
+    crypto data needs no key. Minutes with no trades come back with volume 0, priced from quotes.
+    How far back the history goes is not documented; check `first` in the fetch result.
 How to get keys: sign up at alpaca.markets -> Paper Trading dashboard -> "API Keys" -> generate.
 Then `uv run kit login alpaca` (the keys are stored in Keychain) and `uv run kit fetch --source alpaca`.
 
-This module can only send GET requests to data.alpaca.markets/v2/stocks/bars. Anything else raises
-ReadOnlyViolation before it leaves the machine (the trading API is never contacted).
+This module can only send GET requests to data.alpaca.markets/v2/stocks/bars and
+/v1beta3/crypto/us/bars. Anything else raises ReadOnlyViolation before it leaves the machine (the
+trading API is never contacted).
 """
 from __future__ import annotations
 
@@ -30,30 +34,34 @@ from .tradestation import ReadOnlyViolation
 
 DATA = "https://data.alpaca.markets"
 BARS_PATH = "/v2/stocks/bars"
+CRYPTO_BARS_PATH = "/v1beta3/crypto/us/bars"
 
 
 def check_request(method: str, url: str) -> None:
     u = urllib.parse.urlparse(url)
-    if method.upper() != "GET" or f"{u.scheme}://{u.netloc}" != DATA or u.path != BARS_PATH:
-        raise ReadOnlyViolation(f"refused {method} {u.netloc}{u.path}: this kit only reads Alpaca stock bars")
+    if method.upper() != "GET" or f"{u.scheme}://{u.netloc}" != DATA or u.path not in (BARS_PATH, CRYPTO_BARS_PATH):
+        raise ReadOnlyViolation(f"refused {method} {u.netloc}{u.path}: this kit only reads Alpaca stock and crypto bars")
 
 
 class Alpaca:
     def __init__(self, transport: httpx.BaseTransport | None = None, sleep: Callable[[float], None] = time.sleep,
-                 per_minute: int = 150, log: Callable[[str], None] = lambda m: None):
+                 per_minute: int = 150, log: Callable[[str], None] = lambda m: None, keys_required: bool = True):
         kid, sec = secrets.get("ALPACA_KEY_ID"), secrets.get("ALPACA_SECRET_KEY")
-        if not (kid and sec):
+        if not (kid and sec) and keys_required:
             raise PermissionError("No Alpaca keys stored. Run `kit login alpaca` (free account, Paper Trading -> API Keys).")
-        self.headers = {"APCA-API-KEY-ID": kid, "APCA-API-SECRET-KEY": sec}
+        self.headers = {"APCA-API-KEY-ID": kid, "APCA-API-SECRET-KEY": sec} if kid and sec else {}
         self.http = httpx.Client(transport=transport, timeout=60.0)
         self.sleep, self.gap, self.log, self._last = sleep, 60.0 / per_minute, log, 0.0
 
-    def get_bars(self, symbol: str, start: datetime, end: datetime, adjustment: str = "split") -> pd.DataFrame:
-        url = DATA + BARS_PATH
+    def get_bars(self, symbol: str, start: datetime, end: datetime, adjustment: str = "split",
+                 asset: str = "stock") -> pd.DataFrame:
+        crypto = asset == "crypto"
+        url = DATA + (CRYPTO_BARS_PATH if crypto else BARS_PATH)
         check_request("GET", url)
         params = {"symbols": symbol, "timeframe": "1Min", "start": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                  "end": end.strftime("%Y-%m-%dT%H:%M:%SZ"), "limit": 10000, "adjustment": adjustment,
-                  "feed": "sip", "sort": "asc"}
+                  "end": end.strftime("%Y-%m-%dT%H:%M:%SZ"), "limit": 10000, "sort": "asc"}
+        if not crypto:
+            params |= {"adjustment": adjustment, "feed": "sip"}
         rows, token, delay = [], None, 2.0
         while True:
             if token:
@@ -84,12 +92,14 @@ class Alpaca:
         ts = pd.to_datetime(df["t"], utc=True) + pd.Timedelta(minutes=1)
         out = pd.DataFrame({"ts": ts.dt.tz_convert(TZ), "open": df["o"], "high": df["h"], "low": df["l"],
                             "close": df["c"], "volume": df["v"]})
-        return store.rth(out)
+        return store.in_session(out, "crypto" if crypto else "us_equity")
 
 
 def fetch_minutes(cli: Alpaca, data_dir: Path, symbol: str, start: str, now: datetime | None = None,
-                  window_days: int = 30, log: Callable[[str], None] = print) -> dict:
+                  window_days: int = 30, log: Callable[[str], None] = print, asset: str = "stock") -> dict:
     """1-minute bars from `start` until 20 minutes ago into raw/1m/<symbol>; resumes like the TradeStation fetch."""
+    from ..assets import SESSIONS, ASSET_SESSION
+    session = SESSIONS[ASSET_SESSION[asset]]
     now = now or datetime.now(timezone.utc)
     end_all = now - timedelta(minutes=20)              # the free plan needs SIP requests to end 15+ minutes ago
     p = store.path(data_dir, "1m", symbol, raw=True)
@@ -106,10 +116,8 @@ def fetch_minutes(cli: Alpaca, data_dir: Path, symbol: str, start: str, now: dat
         cur = lo
         while cur < hi:
             nxt = min(hi, cur + timedelta(days=window_days))
-            df = cli.get_bars(symbol, cur, nxt)
-            now_et = pd.Timestamp(now).tz_convert(TZ)
-            if now_et.hour * 60 + now_et.minute < 16 * 60 + 5:
-                df = df[df["ts"] < now_et.normalize()]        # never store an unfinished session
+            df = cli.get_bars(symbol, cur, nxt, asset=asset)
+            df = store.drop_unfinished(df, session, now)       # never store an unfinished session
             if len(df):
                 cache = df if cache is None or cache.empty else pd.concat([cache, df], ignore_index=True)
                 store.write(cache, p)

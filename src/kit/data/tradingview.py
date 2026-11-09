@@ -78,29 +78,41 @@ def infer_tf(ts_open: pd.Series) -> str:
     return best
 
 
-def to_close_stamps(df: pd.DataFrame, tf: str) -> pd.DataFrame:
-    """TradingView stamps bars at their OPEN; the kit uses CLOSE times."""
+def _session_for(data_dir: Path, ticker: str, asset: str | None):
+    from .. import assets
+    inst = assets.make(ticker, asset) if asset and asset != "auto" else assets.lookup(data_dir, ticker)
+    return inst.session
+
+
+def to_close_stamps(df: pd.DataFrame, tf: str, session=None) -> pd.DataFrame:
+    """TradingView stamps bars at their OPEN; the kit uses CLOSE times. The last bar of a session is
+    cut at the session close (16:00 New York for US stocks, 17:00 for CME futures)."""
+    ses = store._session(session)
     out = df.copy()
     if TF_SECONDS[tf] < 86400:
         close = out["ts_raw"] + pd.to_timedelta(TF_SECONDS[tf], unit="s")
-        day_end = out["ts_raw"].dt.normalize() + pd.Timedelta(hours=16)
+        day_end = ses.session_close(ses.trade_date(out["ts_raw"] + pd.Timedelta(minutes=1))).to_numpy()
         out["ts"] = close.where(close <= day_end, day_end)
     else:
-        day = out["ts_raw"].dt.tz_localize(None).dt.normalize()
-        if tf == "1W":     # TradingView stamps the week's first day; it closes Friday
-            day = day + pd.to_timedelta((4 - day.dt.day_of_week) % 7, unit="D")
-        elif tf in ("1M", "3M"):
-            day = day + pd.offsets.BMonthEnd(0) if tf == "1M" else day + pd.offsets.BQuarterEnd(0)
-        out["ts"] = (day + pd.Timedelta(hours=16)).dt.tz_localize(TZ)
+        raw = out["ts_raw"]
+        day = (raw.dt.tz_convert(TZ).dt.tz_localize(None) if raw.dt.tz is not None else raw).dt.normalize()
+        week7 = len(ses.weekdays) == 7
+        if tf == "1W":     # TradingView stamps the week's first day; it closes Friday (Sunday for crypto)
+            day = day + pd.to_timedelta(((6 if week7 else 4) - day.dt.day_of_week) % 7, unit="D")
+        elif tf == "1M":
+            day = day + (pd.offsets.MonthEnd(0) if week7 else pd.offsets.BMonthEnd(0))
+        elif tf == "3M":
+            day = day + (pd.offsets.QuarterEnd(0) if week7 else pd.offsets.BQuarterEnd(0))
+        out["ts"] = ses.session_close(day.reset_index(drop=True)).to_numpy()
     return out
 
 
-def import_csv(path: Path, data_dir: Path, ticker: str | None = None, tf: str | None = None) -> dict:
+def import_csv(path: Path, data_dir: Path, ticker: str | None = None, tf: str | None = None, asset: str | None = None) -> dict:
     path = Path(path)
     df = read_csv(path)
     tf = norm_tf(tf) if tf else infer_tf(df["ts_raw"])
     ticker = ticker or guess_ticker(path)
-    df = to_close_stamps(df, tf)
+    df = to_close_stamps(df, tf, _session_for(data_dir, ticker, asset))
     dest = store.path(data_dir, tf, ticker).parent.parent.parent / "tv" / tf / f"{store.safe(ticker)}.parquet"
     dest.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(dest, index=False)
@@ -120,13 +132,14 @@ def _pick(df: pd.DataFrame, names: list[str]) -> str | None:
 
 def match_check(path: Path, data_dir: Path, ticker: str | None = None, tf: str | None = None, mapping: dict | None = None,
                 warmup: int = 300, ema_seed: str = "sma", top: int = 10, indicators: list[str] | None = None,
-                tolerance: float = 0.5) -> dict:
+                tolerance: float = 0.5, asset: str | None = None) -> dict:
     """Compare the Python ports (TradingView-replica mode) with the values in the export, bar by bar."""
     path = Path(path)
     df = read_csv(path)
     tf = norm_tf(tf) if tf else infer_tf(df["ts_raw"])
     ticker = ticker or guess_ticker(path)
-    df = to_close_stamps(df, tf)
+    ses = _session_for(data_dir, ticker, asset)
+    df = to_close_stamps(df, tf, ses)
     bars = df[["ts", "open", "high", "low", "close", "volume"]].copy()
     # Prefer the kit's own (longer) store for warm-up and higher timeframes; else build from the CSV.
     stored = store.read(data_dir, tf, ticker)
@@ -141,9 +154,9 @@ def match_check(path: Path, data_dir: Path, ticker: str | None = None, tf: str |
             return s
         # build it from the export's own bars (its warm-up will be shorter)
         if TF_SECONDS[norm_tf(htf)] < 86400:
-            return store.resample_intraday(bars, htf)
-        d = bars if TF_SECONDS[tf] >= 86400 else _daily_from_intraday(bars)
-        return store.resample_daily(d, htf)
+            return store.resample_intraday(bars, htf, ses)
+        d = bars if TF_SECONDS[tf] >= 86400 else store.daily_from_minutes(bars, ses)
+        return store.resample_daily(d, htf, ses)
 
     from ..plugin import registry, resolve
     if not indicators:      # every indicator that declares TradingView columns found in this export
@@ -183,12 +196,3 @@ def match_check(path: Path, data_dir: Path, ticker: str | None = None, tf: str |
             "indicators": {i.name: i.version for i in chosen},
             "warmup_skipped": warmup if source == "csv" else 0, "mode": "tv (TradingView replica)", "ema_seed": ema_seed,
             "table": rows, "worst": worst}
-
-
-def _daily_from_intraday(bars: pd.DataFrame) -> pd.DataFrame:
-    day = bars["ts"].dt.normalize()
-    g = bars.assign(day=day).groupby("day")
-    out = pd.DataFrame({"open": g["open"].first(), "high": g["high"].max(), "low": g["low"].min(),
-                        "close": g["close"].last(), "volume": g["volume"].sum()}).reset_index()
-    out["ts"] = out["day"] + pd.Timedelta(hours=16)
-    return out[store.COLS]

@@ -31,7 +31,11 @@ end = ""                  # empty = the latest bar you have
 split = ""                # P1 = before this date, P2 = from it. Empty = the middle month of your data
 holdout_start = ""        # e.g. "2026-08-01": bars from here are SEALED until `kit study run --open-holdout`
 mode = "closed"           # higher-timeframe values: "closed" (last closed bar) or "forming" (as seen live)
-labels = ["C_1x", "C_3x", "P_1x", "P_3x"]   # also available: "C_sameday1x", "P_sameday1x" (day-size legs that end the same session)
+trade_as = "auto"         # "options" (at-the-money options; stocks only), "underlying" (the shares, futures
+                          # contracts or coins themselves), or "auto" (options if every ticker is a stock)
+labels = []               # empty = the defaults for trade_as. Options: C_1x, C_3x, P_1x, P_3x (option gained 1x / 3x);
+                          # underlying: C_2atr, C_4atr, P_2atr, P_4atr (a 2 / 4 daily-ATR move). Add C_sameday1x etc.
+                          # (or C_sameday2atr) for day-size legs that end the same session
 group_removal = true      # the slow part: refits once per reading group
 min_state_n = 200         # a state must appear this often in EACH half to be shown in lift tables
 indicators = ["stoch", "rsi", "macd"]      # add your own plug-ins by name (`kit indicators` lists them)
@@ -117,11 +121,14 @@ def load_cfg(s: config.Settings, name: str) -> dict:
 
 
 def _build(args):
-    data_dir, tk, market, mode, names = args
+    data_dir, tk, market, mode, names, trade_as = args
     try:
-        return snapshot.build_intraday(Path(data_dir), tk, market, mode, names=names)
+        return snapshot.build_intraday(Path(data_dir), tk, market, mode, names=names, trade_as=trade_as)
     except FileNotFoundError:
         return None
+    except Exception as e:      # some exceptions cannot be sent back from a worker, which would hang the pool
+        import traceback
+        raise RuntimeError(f"{tk}: {type(e).__name__}: {e}\n{traceback.format_exc()}") from None
 
 
 def _jsonable(x):
@@ -155,7 +162,18 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
         tickers = tickers[:max_tickers]
     if not tickers:
         raise FileNotFoundError("no 1h bars in your store yet. Run `kit fetch` (or `kit smoke` to try synthetic data).")
-    log(f"study {name}: {len(tickers)} tickers, market {market}, higher timeframes '{mode}'")
+    from ..assets import lookup
+    kinds = {tk: lookup(s.data_dir, tk).asset for tk in tickers}
+    trade_as = cfg.get("trade_as", "auto")
+    if trade_as == "auto":
+        trade_as = "options" if all(k == "stock" for k in kinds.values()) else "underlying"
+    if trade_as not in ("options", "underlying"):
+        raise ValueError('trade_as must be "options", "underlying" or "auto"')
+    if trade_as == "options" and any(k != "stock" for k in kinds.values()):
+        bad = [t for t, k in kinds.items() if k != "stock"]
+        raise ValueError(f"options are modelled for stocks only; {bad} are futures/crypto — use trade_as = \"underlying\"")
+    log(f"study {name}: {len(tickers)} tickers ({', '.join(sorted(set(kinds.values())))}), traded as {trade_as}, "
+        f"market {market}, higher timeframes '{mode}'")
     names = cfg.get("indicators") or DEFAULT_INDICATORS
     vers = versions(names)
     log(f"  indicators: {', '.join(vers.values())}")
@@ -163,7 +181,7 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
     if mkt[0] is None:
         log(f"  note: no bars for market ticker {market}; market readings left out")
     nw = config.workers(s, len(tickers))
-    args = [(str(s.data_dir), tk, mkt, mode, names) for tk in tickers]
+    args = [(str(s.data_dir), tk, mkt, mode, names, trade_as) for tk in tickers]
     if nw > 1:
         with mp.get_context("spawn").Pool(nw) as pool:
             res = pool.map(_build, args, chunksize=1)
@@ -223,10 +241,14 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
     summary = {"study": name, "title": cfg.get("title") or f"Study: {name}", "built": pd.Timestamp.now(tz=config.TZ).isoformat(), "versions": vers, "mode": mode,
                "tickers": sorted(D.ticker.unique().tolist()), "market": market if mkt[0] is not None else None,
                "bars": len(D), "split": str(split.date()), "periods": {p: {"from": str(g.ts.min()), "to": str(g.ts.max()), "bars": len(g), "months": round(months[p], 1)} for p, g in D.groupby("period")},
-               "holdout": holdout_note, "label_definition": "a >=Nx option leg (1h zigzag, 0.75 or 1.5 day-ATR) starts within the next 0-3 bars",
-               "census": {"summary": census.summary(legs_in), "winners_5x_10x_by_horizon": census.winners(legs_in),
-                          "top_winners": legs_in.sort_values("gain", ascending=False).head(25)[
-                              ["ticker", "tf", "k_atr", "side", "entry_ts", "exit_ts", "horizon", "S0", "S1", "move_atr", "mult", "expiry", "outlived_option"]]
+               "holdout": holdout_note, "trade_as": trade_as, "assets": sorted(set(kinds.values())),
+               "label_definition": ("a leg whose at-the-money option gains at least 1x (or 3x) starts within the next 0-3 bars"
+                                    if trade_as == "options" else
+                                    "a move of at least 2 (or 4) daily ATRs starts within the next 0-3 bars"),
+               "census": {"summary": census.summary(legs_in, trade_as), "winners_by_horizon": census.winners(legs_in, trade_as),
+                          "top_winners": legs_in.sort_values("size", ascending=False).head(25)[
+                              [c for c in ("ticker", "tf", "k_atr", "side", "entry_ts", "exit_ts", "horizon", "S0", "S1", "move_atr",
+                                           "mult", "expiry", "outlived_option", "return_pct", "dollars_per_unit") if c in legs_in]]
                           if len(legs_in) else pd.DataFrame()}}
     LEGS.to_parquet(out_dir / "legs.parquet", index=False)
 
@@ -234,7 +256,11 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
           list(SESSION) + ["hour", "weekday", "rv"]
     NUM = [c for c in NUM if c in D.columns]
     CAT = [c for c in D.columns if "STATE" in c]
-    labels = [lab for lab in cfg.get("labels", ["C_1x", "C_3x", "P_1x", "P_3x"]) if lab in D.columns]
+    (t1, _), (t2, _) = census.TIERS["options" if trade_as == "options" else "underlying"]
+    default_labels = [f"C_{t1}", f"C_{t2}", f"P_{t1}", f"P_{t2}"]
+    labels = [lab for lab in (cfg.get("labels") or default_labels) if lab in D.columns]
+    if not labels:
+        raise ValueError(f"none of the labels {cfg.get('labels')} exist for trade_as = {trade_as}; try {default_labels}")
     summary["base_rates_pct"] = {lab: {h: round(100 * D[lab][D.period == h].mean(), 2) for h in ("P1", "P2")} for lab in labels}
 
     # ── lift tables ──
@@ -292,7 +318,7 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
     sig_list = sigmod.load(cfg)
     if sig_list:
         sig_eval = sigmod.evaluate(D, sig_list)
-        summary["signals"] = {"table": sigmod.describe(D, sig_eval, months),
+        summary["signals"] = {"table": sigmod.describe(D, sig_eval, months, (t1, t2)),
                               "defined": [{"name": x.name, "side": x.side, "when": getattr(x, "expr", "(python) " + _rel(s, x.source)),
                                            "note": x.note} for x in sig_list]}
         for nm_, e in sig_eval.items():
@@ -304,7 +330,7 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
     summary["exhaustion"] = ex_tables
     pr_path = d / "prereg.md"
     pr = tradecheck.read_prereg(pr_path) if pr_path.exists() else {}
-    probs = tradecheck.prereg_problems(pr) if pr else ["prereg.md is missing"]
+    probs = tradecheck.prereg_problems(pr, trade_as) if pr else ["prereg.md is missing"]
     state_f = out_dir / "prereg_fingerprint.txt"
     if probs:
         summary["trade_check"] = {"skipped": True, "why": probs}
@@ -313,7 +339,7 @@ def run(s: config.Settings, name: str, open_holdout: bool = False, log=print, ma
         if not pr.get("signal") and pr["label"] not in labels:
             summary["trade_check"] = {"skipped": True, "why": [f"label {pr['label']} not among study labels {labels}"]}
         else:
-            tc = tradecheck.run(D, pr, xs, sig_eval)
+            tc = tradecheck.run(D, pr, xs, sig_eval, trade_as)
             tc["trades"].to_csv(out_dir / "trades.csv", index=False)
             tc["trades_file"] = _rel(s, out_dir / "trades.csv")
             tc["n_trades"] = len(tc["trades"])

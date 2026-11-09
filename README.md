@@ -6,29 +6,32 @@
 </p>
 
 <p align="center">
-  Test trading ideas against every bar of history, priced as the options you would actually trade.
+  Test trading ideas against every bar of history, for stocks, options, futures and crypto.
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-3776AB" alt="Python 3.11 to 3.13">
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey" alt="macOS and Linux">
-  <img src="https://img.shields.io/badge/version-1.0.0-2a78d6" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/version-1.1.0-2a78d6" alt="Version 1.1.0">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT license">
 </p>
 
 ---
 
-Backtest Kit is a research tool for discretionary options traders. You bring the indicators you
-already watch on TradingView and a list of tickers. The kit rebuilds those indicators in Python,
-finds every move in the history that would have paid on an option, learns which chart readings
-tended to come before those moves, and checks the result on a stretch of time the model never
-learned from. Trades are priced as at-the-money options with a realistic expiry rather than as
-shares.
+Backtest Kit is a research tool for discretionary traders. You bring the indicators you already
+watch on TradingView and a list of symbols: stocks and ETFs, CME futures, or crypto. The kit rebuilds
+those indicators in Python, finds every move in the history that would have paid, learns which chart
+readings tended to come before those moves, and checks the result on a stretch of time the model
+never learned from.
 
-Everything runs on your own machine. The kit reads market data and never sends orders, and it was
-built to be driven by [Claude Code](https://claude.com/claude-code) as comfortably as from the
-command line: ask for a Pine script to be ported or a setup to be tested, and the repository
-contains the guides Claude follows to do it.
+Stocks are priced as at-the-money options with a realistic expiry, the way most discretionary traders
+play them. Futures and crypto are traded as the instruments themselves, on their own sessions: CME
+hours for futures, around the clock for crypto, with futures results in dollars per contract.
+
+Everything runs on your own machine, and the kit only ever reads market data. It is built to be
+driven by an AI coding assistant as comfortably as from the command line. Ask Claude Code, Codex,
+Cursor or Gemini CLI to port a Pine script or test a setup, and the repository contains the
+instructions they follow to do it.
 
 <p align="center">
   <img src="docs/images/report-overview.png" alt="The top of a study report" width="860">
@@ -59,13 +62,21 @@ uv run kit smoke
 
 ## Quick start
 
-Download some history. Alpaca's free plan includes minute bars back to 2016; TradeStation works
-too if you have API access.
+Download some history. Alpaca's free plan includes stock minute bars back to 2016, and its crypto
+bars need no account at all. TradeStation covers stocks and futures if you have API access.
 
 ```bash
-uv run kit login alpaca
+uv run kit fetch --source alpaca --tickers BTC/USD,ETH/USD           # crypto, no key needed
+
+uv run kit login alpaca                                               # stocks, free account
 uv run kit fetch --source alpaca --tickers SPY,QQQ,NVDA,AAPL,MSFT
+
+uv run kit login tradestation                                         # stocks and futures
+uv run kit fetch --tickers @ES,@NQ
 ```
+
+The kit works out the asset class from the symbol and remembers it. If it guesses wrong, add
+`--asset stock`, `--asset future` or `--asset crypto`.
 
 Create a study, write down what you expect before you look, and run it:
 
@@ -88,9 +99,10 @@ uv run kit report first-look --open
 </p>
 
 A study starts from the winners rather than from a rule. The kit walks each ticker's history with
-an ATR zigzag and lists every swing that would have paid on an at-the-money option, from same-day
-moves to multi-month trends. Each bar is then labelled by whether one of those winners started
-shortly after it.
+an ATR zigzag and lists every swing that would have paid, from same-day moves to multi-month trends:
+for stocks, swings where an at-the-money option at least doubled; for futures and crypto, moves of
+at least two daily ATRs. Each bar is then labelled by whether one of those winners started shortly
+after it.
 
 Next, every bar gets a snapshot of graded readings: where each indicator sat and which way it was
 moving on the 3-minute, 15-minute, 1-hour, 4-hour and daily charts, how the market was behaving, and
@@ -102,8 +114,8 @@ the history and graded on the other, then the halves swap, so every grade comes 
 never saw that bar. The report shows which readings mattered in both halves, which ones mark setups
 that tend to fail, and how the top grades performed.
 
-Finally, the trade check runs your pre-registered entry and exit as option trades and compares them
-with the same exit applied to every bar. A setup is only interesting if it beats that baseline in
+Finally, the trade check runs your pre-registered entry and exit as trades, as options or on the
+instrument itself, and compares them with the same exit applied to every bar. A setup is only interesting if it beats that baseline in
 both halves. The details are in [docs/method.md](docs/method.md).
 
 ## Example results
@@ -143,6 +155,18 @@ has to beat. The report breaks this down by half, month and ticker and lists eve
 | SYNA | 2025-06-20 15:30 at 71.16 | 2025-06-27 | 1.48 | 2025-06-25 10:30 at 78.34 | momentum trail | 4.89 |
 
 <sub>Rows from <a href="examples/sample-study/trades.csv"><code>trades.csv</code></a>. The tickers are made up.</sub>
+
+A second sample, [a future and a coin](examples/sample-futures-crypto/), shows the same study traded
+on the instruments themselves. Its trade log records each trade in points, percent, daily ATRs and,
+for the future, dollars per contract:
+
+| ticker | side | entry | exit | exit reason | points | move (ATR) | $ per contract |
+|---|---|---|---|---|---|---|---|
+| SYNFUT | long | 2025-05-15 17:00 at 5,182.68 | 2025-05-19 01:00 at 5,695.30 | momentum trail | +512.61 | +4.01 | +25,630.62 |
+| SYNFUT | long | 2025-06-03 14:00 at 5,333.05 | 2025-06-10 17:00 at 6,026.76 | time limit | +693.71 | +3.33 | +34,685.51 |
+| SYNCOIN | long | 2025-05-22 20:00 at 42,955.23 | 2025-05-23 17:00 at 41,430.54 | momentum trail | −1,524.68 | −0.54 | — |
+
+<sub>Rows from <a href="examples/sample-futures-crypto/trades.csv"><code>trades.csv</code></a>. SYNFUT is a made-up contract at $50 a point.</sub>
 
 ## Bringing your own indicators
 
@@ -199,20 +223,20 @@ average bar, and how often price moved its way first, separately for each half o
 
 ## Data sources
 
-| Source | Cost | Minute history | Notes |
-|---|---|---|---|
-| [Alpaca](https://alpaca.markets) | Free account | Since 2016 | All US exchanges; requests must end at least 15 minutes ago |
-| [TradeStation](https://api.tradestation.com/docs) | Free with a funded account | Depends on the account | Up to 57,600 bars per request |
-| [Databento](https://databento.com) | Pay as you go | Equities from 2023; options from 2013 | Optional; the route to real option quotes |
-| TradingView | Plus plan or higher | What the chart shows | Used to check indicators, not as the main source |
+| Source | Cost | Stocks | Futures | Crypto | Notes |
+|---|---|---|---|---|---|
+| [Alpaca](https://alpaca.markets) | Free | Minute bars since 2016 | | Minute bars, no key needed | Stock requests must end at least 15 minutes ago |
+| [TradeStation](https://api.tradestation.com/docs) | Free with a funded account | ✓ | ✓ (`@ES`, `ESZ26`) | | Up to 57,600 bars per request |
+| [Databento](https://databento.com) | Pay as you go | From 2023 | CME from 2010 (`ES.c.0`) | | Optional; quotes the cost before downloading |
+| TradingView | Plus plan or higher | ✓ | ✓ | ✓ | Used to check indicators, not as the main source |
 
 None of the free sources offer historical option quotes, so option prices are modelled with
 Black-Scholes until you add real quotes. See [docs/data-sources.md](docs/data-sources.md) for setup
 steps and the limits worth confirming with your own account.
 
-## Working with Claude Code
+## Working with an AI assistant
 
-Open Claude Code in the repository and describe what you want:
+Open your assistant in the repository folder and describe what you want:
 
 > Port my Pine script ~/Downloads/my_tool.pine into the kit and tell me what you couldn't port.
 
@@ -220,9 +244,11 @@ Open Claude Code in the repository and describe what you want:
 
 > Walk me through the first-look report. What held up in both halves?
 
-`CLAUDE.md` carries the research rules and setup steps, and `.claude/skills/` has step-by-step
-guides for porting indicators, adding signals, running studies, checking indicator matches and
-explaining reports. Every command also takes `--json`. More in [docs/claude-code.md](docs/claude-code.md).
+[`AGENTS.md`](AGENTS.md) carries the research rules and setup steps, and [`docs/agents/`](docs/agents/)
+has step-by-step guides for porting indicators, adding signals, running studies, checking indicator
+matches and explaining reports. Codex, Cursor and GitHub Copilot read `AGENTS.md` on their own,
+Claude Code reads it through `CLAUDE.md`, and any other assistant can be pointed at it. Every command
+also takes `--json`, so the assistant reads exact numbers. More in [docs/ai-assistants.md](docs/ai-assistants.md).
 
 ## Commands
 
@@ -231,7 +257,7 @@ explaining reports. Every command also takes `--json`. More in [docs/claude-code
 | `kit doctor` | Show what is set up and what is missing |
 | `kit smoke` | Run the self-test on synthetic data |
 | `kit login alpaca` / `tradestation` | Store API keys in the system keychain |
-| `kit fetch` | Download bars; safe to stop and restart |
+| `kit fetch` | Download stock, futures or crypto bars; safe to stop and restart |
 | `kit study new` / `run` | Create or run a study |
 | `kit report` | Summarise a study, or open its HTML report |
 | `kit indicators` | List built-in and plug-in indicators |
@@ -239,9 +265,9 @@ explaining reports. Every command also takes `--json`. More in [docs/claude-code
 | `kit match-check` | Compare indicators with a TradingView export |
 | `kit new-indicator` / `new-signal` | Start a plug-in from a template |
 | `kit columns` | List the columns a signal can use |
-| `kit census` | List every swing leg priced as an option |
+| `kit census` | List every swing leg, priced as an option or as the instrument |
 | `kit snapshot-options` | Save today's option chains |
-| `kit examples` | Rebuild the sample study |
+| `kit examples` | Rebuild the sample studies |
 
 Run `uv run kit <command> --help` for options.
 
@@ -251,7 +277,7 @@ Run `uv run kit <command> --help` for options.
 - [Indicators and signals](docs/extending.md), including the Pine Script mapping
 - [Data sources](docs/data-sources.md) and account setup
 - [Study outputs](docs/outputs.md), column by column
-- [Working with Claude Code](docs/claude-code.md)
+- [Working with an AI assistant](docs/ai-assistants.md)
 
 ## Testing
 
@@ -266,11 +292,13 @@ mock APIs, and runs the full pipeline end to end.
 
 ## Limitations
 
-Option prices are modelled, with no bid/ask spread and constant volatility, so treat results as a
-way to rank ideas rather than as expected returns. Studies currently use a one-hour base timeframe,
-regular trading hours and US equities. The broker clients have been tested against mock APIs built
-from the providers' documentation; [docs/data-sources.md](docs/data-sources.md) lists what is worth
-confirming against a live account.
+Option prices are modelled, with no bid/ask spread and constant volatility, and trades on futures,
+crypto or shares carry no commission, slippage, roll or funding costs, so treat results as a way to
+rank ideas rather than as expected returns. Options are modelled for US stocks only. Studies use a
+one-hour base timeframe; stocks use regular trading hours. Continuous futures from Databento are not
+back-adjusted, so a contract roll shows up as a price gap. The broker clients have been tested
+against mock APIs built from the providers' documentation; [docs/data-sources.md](docs/data-sources.md)
+lists what is worth confirming against a live account.
 
 ## Contributing
 

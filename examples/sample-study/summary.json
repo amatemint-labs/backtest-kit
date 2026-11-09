@@ -1,7 +1,7 @@
 {
  "study": "_example",
  "title": "Sample study (synthetic data)",
- "built": "2026-11-09T00:19:38.236366-05:00",
+ "built": "2026-11-09T01:42:37.773946-05:00",
  "versions": {
   "stoch": "Stochastic 14/1/3",
   "rsi": "RSI 14",
@@ -34,7 +34,11 @@
   }
  },
  "holdout": null,
- "label_definition": "a >=Nx option leg (1h zigzag, 0.75 or 1.5 day-ATR) starts within the next 0-3 bars",
+ "trade_as": "options",
+ "assets": [
+  "stock"
+ ],
+ "label_definition": "a leg whose at-the-money option gains at least 1x (or 3x) starts within the next 0-3 bars",
  "census": {
   "summary": [
    {
@@ -45,8 +49,8 @@
     "pct_1x+": 44.4,
     "pct_3x+": 16.7,
     "median_mult": 1.97,
-    "median_sessions": 6.0,
-    "pct_outlived_option": 5.6
+    "pct_outlived_option": 5.6,
+    "median_sessions": 6.0
    },
    {
     "tf": "1D",
@@ -56,8 +60,8 @@
     "pct_1x+": 22.5,
     "pct_3x+": 8.5,
     "median_mult": 1.42,
-    "median_sessions": 6.0,
-    "pct_outlived_option": 1.4
+    "pct_outlived_option": 1.4,
+    "median_sessions": 6.0
    },
    {
     "tf": "1D",
@@ -67,8 +71,8 @@
     "pct_1x+": 80.0,
     "pct_3x+": 50.0,
     "median_mult": 4.01,
-    "median_sessions": 23.5,
-    "pct_outlived_option": 15.0
+    "pct_outlived_option": 15.0,
+    "median_sessions": 23.5
    },
    {
     "tf": "1D",
@@ -78,8 +82,8 @@
     "pct_1x+": 40.0,
     "pct_3x+": 5.0,
     "median_mult": 1.83,
-    "median_sessions": 13.0,
-    "pct_outlived_option": 5.0
+    "pct_outlived_option": 5.0,
+    "median_sessions": 13.0
    },
    {
     "tf": "1D",
@@ -89,8 +93,8 @@
     "pct_1x+": 71.4,
     "pct_3x+": 57.1,
     "median_mult": 5.33,
-    "median_sessions": 89.0,
-    "pct_outlived_option": 71.4
+    "pct_outlived_option": 71.4,
+    "median_sessions": 89.0
    },
    {
     "tf": "1D",
@@ -100,8 +104,8 @@
     "pct_1x+": 57.1,
     "pct_3x+": 14.3,
     "median_mult": 2.26,
-    "median_sessions": 35.0,
-    "pct_outlived_option": 14.3
+    "pct_outlived_option": 14.3,
+    "median_sessions": 35.0
    },
    {
     "tf": "1h",
@@ -111,8 +115,8 @@
     "pct_1x+": 39.0,
     "pct_3x+": 11.7,
     "median_mult": 1.69,
-    "median_sessions": 1.0,
-    "pct_outlived_option": 6.7
+    "pct_outlived_option": 6.7,
+    "median_sessions": 1.0
    },
    {
     "tf": "1h",
@@ -122,8 +126,8 @@
     "pct_1x+": 27.0,
     "pct_3x+": 7.0,
     "median_mult": 1.39,
-    "median_sessions": 1.0,
-    "pct_outlived_option": 7.3
+    "pct_outlived_option": 7.3,
+    "median_sessions": 1.0
    },
    {
     "tf": "1h",
@@ -133,8 +137,8 @@
     "pct_1x+": 70.4,
     "pct_3x+": 19.4,
     "median_mult": 2.46,
-    "median_sessions": 3.0,
-    "pct_outlived_option": 13.0
+    "pct_outlived_option": 13.0,
+    "median_sessions": 3.0
    },
    {
     "tf": "1h",
@@ -144,11 +148,11 @@
     "pct_1x+": 44.3,
     "pct_3x+": 8.5,
     "median_mult": 1.87,
-    "median_sessions": 3.0,
-    "pct_outlived_option": 16.0
+    "pct_outlived_option": 16.0,
+    "median_sessions": 3.0
    }
   ],
-  "winners_5x_10x_by_horizon": [
+  "winners_by_horizon": [
    {
     "horizon": "same-day",
     "side": "calls",
@@ -5259,6 +5263,7 @@
    "A",
    "B"
   ],
+  "trade_as": "options",
   "min_premium": 0.2,
   "dropped_tiny_premium": 0,
   "exhaustion_compared": true,
@@ -5980,8 +5985,9 @@
   "tail_concentration": {
    "profit_share_top3_days_pct": 19.1,
    "profit_share_top3_tickers_pct": 70.0,
-   "median_mult_without_top3_days": 1.97
+   "median_pnl_without_top3_days": 0.97
   },
+  "result_key": "multiple",
   "multiples_trail": [
    3.944,
    4.889,
@@ -6927,5 +6933,5 @@
    "same_day": "no"
   }
  },
- "seconds": 143.7
+ "seconds": 76.9
 }

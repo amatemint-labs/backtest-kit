@@ -94,7 +94,7 @@ def new_indicator(s: config.Settings, name: str, pine: str | None = None) -> dic
     f.write_text(INDICATOR.format(name=slug, cls="".join(w.title() for w in slug.split("_")), title=name.replace("_", " ").title(),
                                   pine_ref=pine_ref, prefix=prefix, PREFIX=prefix.upper(), today=date.today().isoformat()))
     return {"file": str(f), "pine": pine_ref,
-            "next": (f"Port the Pine logic into {f.name} (ask Claude: 'port {pine_ref.split()[0]} into {f.name}'), "
+            "next": (f"Port the Pine logic into {f.name} (ask your AI assistant: 'port {pine_ref.split()[0]} into {f.name}'), "
                      f"then `uv run kit check-indicator {slug}`.")}
 
 

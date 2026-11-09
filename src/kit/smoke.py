@@ -1,9 +1,10 @@
 """`kit smoke`: the whole pipeline on made-up data, with checks. Needs no account and no internet.
 
-Synthetic bars go to <data>/synthetic (never mixed with your real bars); the smoke study lives
-in studies/_smoke. Checks: indicator ranges, no-lookahead, read-only guard, the TradeStation
-fetcher against the mock API (including a throttled reply), a full study, the planted pattern
-found out of sample, the trade check, and the HTML report.
+Synthetic bars go to <data>/synthetic (never mixed with your real bars); the smoke studies live
+in studies/_smoke (stocks, priced as options) and studies/_smoke_multi (a future and a coin, traded
+directly). Checks: indicator ranges, no-lookahead, read-only guard, the TradeStation fetcher against
+the mock API (including a throttled reply), a full study, the planted pattern found out of sample,
+the trade check, the HTML report, and the futures and crypto sessions and pricing.
 """
 from __future__ import annotations
 
@@ -19,7 +20,7 @@ import pandas as pd
 
 from . import config
 
-SMOKE_TOML = """tickers = []
+SMOKE_TOML = """tickers = ["SYNA", "SYNB", "SYNC", "SYND", "SYNE"]
 market = "SYNSPY"
 start = "2025-05-01"
 end = ""
@@ -49,6 +50,41 @@ grades: A, B
 trail_k: 0.75
 exhaustion: yes
 min_premium: 0.20
+
+## Verdict (append after running; never edit above this line)
+"""
+
+MULTI_TOML = """tickers = ["SYNFUT", "SYNCOIN"]
+market = "SYNSPY"
+start = "2025-05-01"
+end = ""
+split = "2025-11-03"
+holdout_start = ""
+mode = "closed"
+trade_as = "auto"
+labels = ["C_2atr", "P_2atr"]
+group_removal = false
+min_state_n = 120
+
+[signals.volume_surge]
+side = "C"
+when = "h1_volume_x > 2.0 and m15_volume_x > 1.5"
+note = "heavy volume on the 1h and 15m bars (the planted tell)"
+"""
+MULTI_PREREG = """# Pre-registration: _smoke_multi (synthetic data — written by `kit smoke`)
+
+idea: heavy volume before up-moves marks long entries in a future and a coin
+entry: buy at the 1h close on the first bar of each volume_surge signal
+exit: sell when price turns 0.75 day-ATR off its best point, or after 5 trading days
+measure: median move in day-ATR and win rate, signal entries vs all bars, each half
+pass_mark: none — this only proves the pipeline runs
+
+## Settings the kit reads (change only before running)
+label: C_2atr
+grades: A, B
+trail_k: 0.75
+exhaustion: yes
+signal: volume_surge
 
 ## Verdict (append after running; never edit above this line)
 """
@@ -159,4 +195,32 @@ def run(s: config.Settings, log=print) -> dict:
     check("trade log", nt > 50, f"{nt:,} trades written to {tf_.name} (entry, exit, reason, option multiple)")
     rep = Path(r["report"])
     check("HTML report", rep.exists() and rep.stat().st_size > 5000, str(rep))
+
+    # futures and crypto: sessions, a study traded on the instruments themselves, dollars per contract
+    fut, coin = store.read(ss.data_dir, "1h", synthetic.FUTURE), store.read(ss.data_dir, "1h", synthetic.COIN)
+    from .assets import lookup
+    fdays = lookup(ss.data_dir, synthetic.FUTURE).session.trade_date(fut.ts)
+    cdays = lookup(ss.data_dir, synthetic.COIN).session.trade_date(coin.ts)
+    per_f, per_c = fut.groupby(fdays.to_numpy()).size(), coin.groupby(cdays.to_numpy()).size()
+    last_f = fut.ts.dt.strftime("%H:%M").groupby(fdays.to_numpy()).last()
+    ok = (per_f == 23).all() and (last_f == "17:00").all() and (per_c == 24).all() and coin.ts.dt.day_of_week.nunique() == 7
+    check("futures and crypto sessions", ok, f"{synthetic.FUTURE}: 23 hourly bars per trading day, last at 17:00 New York; "
+          f"{synthetic.COIN}: 24 per UTC day, 7 days a week")
+    md = s.studies_dir / "_smoke_multi"
+    md.mkdir(parents=True, exist_ok=True)
+    (md / "study.toml").write_text(MULTI_TOML)
+    (md / "prereg.md").write_text(MULTI_PREREG)
+    fp = md / "results" / "prereg_fingerprint.txt"
+    if fp.exists():
+        fp.unlink()
+    rm = study.run(ss, "_smoke_multi", log=lambda m: log("  " + m))
+    M = json.loads((md / "results" / "summary.json").read_text())
+    b1, b2 = rm["auc"]["C_2atr"]
+    check("future + coin study", M.get("trade_as") == "underlying" and b1 > 0.55 and b2 > 0.55,
+          f"traded as the instruments; C_2atr AUC {b1} / {b2} on held-out halves")
+    T = pd.read_csv(md / "results" / "trades.csv") if (md / "results" / "trades.csv").exists() else pd.DataFrame()
+    tf_rows = T[T.ticker == synthetic.FUTURE] if len(T) else T
+    dollars_ok = len(tf_rows) > 10 and np.allclose(tf_rows.dollars_per_unit, tf_rows.points * 50, atol=0.02)
+    check("futures dollars per contract", dollars_ok and (T.ticker == synthetic.COIN).sum() > 10,
+          f"{len(T):,} trades; {synthetic.FUTURE} P&L = points x $50 on every row")
     return {"passed": all(c["pass"] for c in checks), "checks": checks, "report": str(rep), "seconds": round(time.time() - t0, 1)}

@@ -1,0 +1,24 @@
+# Sample study on SYNTHETIC data: a made-up future (SYNFUT, $50 a point, CME hours) and a made-up coin
+# (SYNCOIN, trades around the clock). Numbers mean nothing about markets.
+title = "Sample study: a future and a coin (synthetic data)"
+tickers = ["SYNFUT", "SYNCOIN"]
+market = "SYNSPY"
+start = "2025-05-01"
+end = ""
+split = "2025-11-03"
+holdout_start = ""
+mode = "closed"
+trade_as = "auto"          # futures and crypto -> traded as the instruments themselves
+labels = ["C_2atr", "C_4atr", "P_2atr", "P_4atr"]
+group_removal = true
+min_state_n = 120
+
+[signals.volume_surge]
+side = "C"
+when = "h1_volume_x > 2.0 and m15_volume_x > 1.5"
+note = "heavy volume on the 1h and 15m bars"
+
+[signals.overbought_fade]
+side = "P"
+when = "h1_stoch_k > 80 and h1_stoch_ch2 < 0 and h1_MACD_STATE == 'bull narrowing'"
+note = "1h stochastic rolling over above 80 while 1h MACD momentum fades"

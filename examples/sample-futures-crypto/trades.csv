@@ -1,0 +1,161 @@
+ticker,half,side,entries,exit_rule,entry_time,entry_price,exit_time,exit_price,exit_reason,points,return_pct,r_atr,dollars_per_unit,asset,hold_bars,grade
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-05-15 17:00,5182.6846,2025-05-19 01:00,5695.2971,momentum trail,512.6125,9.89,4.01,25630.62,future,30,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-06-03 14:00,5333.0507,2025-06-10 17:00,6026.761,time limit,693.7103,13.01,3.33,34685.51,future,118,C
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-06-09 08:00,5457.654,2025-06-13 09:00,5942.0277,momentum trail,484.3737,8.88,2.84,24218.68,future,93,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-06-09 22:00,5771.085,2025-06-16 01:00,5932.2292,momentum trail,161.1442,2.79,0.88,8057.21,future,95,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-06-24 14:00,5686.0736,2025-07-01 17:00,5979.9815,time limit,293.908,5.17,2.34,14695.4,future,118,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-07-22 19:00,5308.316,2025-07-30 17:00,5616.7441,time limit,308.4281,5.81,2.36,15421.41,future,137,A
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-09-02 00:00,5425.3295,2025-09-09 03:00,6329.1183,momentum trail,903.7888,16.66,5.84,45189.44,future,118,B
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-09-04 01:00,5825.4841,2025-09-09 04:00,6315.7206,momentum trail,490.2365,8.42,2.84,24511.82,future,72,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-09-29 01:00,5668.3954,2025-10-06 17:00,6231.7829,time limit,563.3876,9.94,3.39,28169.38,future,131,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-09-30 15:00,6031.4637,2025-10-07 02:00,6114.8039,momentum trail,83.3403,1.38,0.45,4167.01,future,102,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-06 19:00,6208.174,2025-10-07 02:00,6114.3574,momentum trail,-93.8166,-1.51,-0.65,-4690.83,future,7,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-07 17:00,6184.0586,2025-10-08 05:00,6156.0259,momentum trail,-28.0326,-0.45,-0.19,-1401.63,future,11,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-13 19:00,6113.0257,2025-10-14 06:00,6106.7739,momentum trail,-6.2518,-0.1,-0.04,-312.59,future,11,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-15 17:00,6067.8556,2025-10-17 01:00,6013.156,momentum trail,-54.6996,-0.9,-0.32,-2734.98,future,30,D
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-21 12:00,5751.2221,2025-10-28 17:00,6558.9983,time limit,807.7762,14.05,4.66,40388.81,future,120,B
+SYNFUT,P1,long,signal volume_surge,momentum trail,2025-10-27 00:00,6342.081,2025-10-29 02:00,6478.1229,momentum trail,136.042,2.15,0.69,6802.1,future,48,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-11-12 06:00,5941.439,2025-11-13 01:00,6177.1247,momentum trail,235.6857,3.97,1.7,11784.28,future,18,B
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-11-21 13:00,5670.9858,2025-11-28 17:00,6046.56,time limit,375.5742,6.62,2.4,18778.71,future,119,B
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-11-27 10:00,5746.1139,2025-12-04 16:00,6119.7461,momentum trail,373.6322,6.5,2.3,18681.61,future,121,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-12-04 19:00,6125.2443,2025-12-09 00:00,6452.8752,momentum trail,327.6309,5.35,2.33,16381.55,future,51,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-12-17 07:00,5705.2337,2025-12-18 06:00,5841.3254,momentum trail,136.0916,2.39,0.68,6804.58,future,22,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2025-12-23 02:00,5758.6395,2025-12-24 16:00,6148.2856,momentum trail,389.6461,6.77,1.7,19482.3,future,37,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-01-04 21:00,5743.9798,2026-01-06 11:00,6048.1176,momentum trail,304.1378,5.29,1.45,15206.89,future,37,C
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-01-08 08:00,6175.7225,2026-01-09 03:00,6493.9617,momentum trail,318.2392,5.15,1.51,15911.96,future,18,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-01-16 02:00,6332.2401,2026-01-19 03:00,6302.2394,momentum trail,-30.0007,-0.47,-0.13,-1500.04,future,24,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-01-30 11:00,6192.6229,2026-02-03 16:00,6465.6181,momentum trail,272.9953,4.41,2.06,13649.76,future,51,B
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-02-02 19:00,6484.3544,2026-02-03 15:00,6481.696,momentum trail,-2.6584,-0.04,-0.02,-132.92,future,20,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-02-12 14:00,6212.7812,2026-02-13 14:00,6497.7736,momentum trail,284.9925,4.59,2.95,14249.62,future,23,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-03-10 12:00,5889.8632,2026-03-12 20:00,6364.3344,momentum trail,474.4713,8.06,2.91,23723.56,future,53,D
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-03-13 17:00,6094.1525,2026-03-15 23:00,5981.3752,momentum trail,-112.7773,-1.85,-0.62,-5638.86,future,5,B
+SYNFUT,P2,long,signal volume_surge,momentum trail,2026-04-13 19:00,5677.6121,2026-04-16 08:00,5803.1431,momentum trail,125.531,2.21,1.09,6276.55,future,59,B
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-05-22 20:00,42955.2263,2025-05-23 17:00,41430.5415,momentum trail,-1524.6848,-3.55,-0.54,-1524.68,crypto,21,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-05-25 11:00,37539.0582,2025-05-26 23:00,44642.7019,momentum trail,7103.6437,18.92,2.61,7103.64,crypto,36,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-05-29 21:00,42599.13,2025-05-30 09:00,40680.9329,momentum trail,-1918.197,-4.5,-0.7,-1918.2,crypto,12,C
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-06-11 09:00,45325.0875,2025-06-13 06:00,51513.5279,momentum trail,6188.4404,13.65,3.0,6188.44,crypto,45,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-06-16 21:00,56526.1915,2025-06-18 06:00,58301.1876,momentum trail,1774.9961,3.14,0.77,1775.0,crypto,33,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-06-26 18:00,51825.9564,2025-06-29 12:00,66192.0397,momentum trail,14366.0833,27.72,3.39,14366.08,crypto,66,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-06-28 16:00,59648.0689,2025-06-29 13:00,65708.7188,momentum trail,6060.6499,10.16,1.24,6060.65,crypto,21,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-05 10:00,62495.8516,2025-07-06 11:00,66181.4119,momentum trail,3685.5603,5.9,0.7,3685.56,crypto,25,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-11 20:00,71517.7304,2025-07-12 13:00,73266.5366,momentum trail,1748.8061,2.45,0.35,1748.81,crypto,17,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-13 18:00,75235.0321,2025-07-14 15:00,80695.477,momentum trail,5460.4448,7.26,1.09,5460.44,crypto,21,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-15 21:00,84743.172,2025-07-16 06:00,83506.1384,momentum trail,-1237.0336,-1.46,-0.22,-1237.03,crypto,9,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-20 02:00,69900.2615,2025-07-23 03:00,78251.8803,momentum trail,8351.6188,11.95,1.11,8351.62,crypto,73,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-07-29 21:00,81425.7651,2025-07-30 15:00,79667.9799,momentum trail,-1757.7852,-2.16,-0.28,-1757.79,crypto,18,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-02 15:00,90493.7726,2025-08-06 01:00,101223.5882,momentum trail,10729.8156,11.86,2.24,10729.82,crypto,82,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-03 17:00,94963.7023,2025-08-06 01:00,101310.3991,momentum trail,6346.6968,6.68,1.36,6346.7,crypto,56,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-08 21:00,95388.0074,2025-08-09 05:00,94921.5736,momentum trail,-466.4338,-0.49,-0.1,-466.43,crypto,8,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-10 11:00,94503.027,2025-08-12 03:00,101134.7953,momentum trail,6631.7683,7.02,1.22,6631.77,crypto,40,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-13 20:00,105248.6598,2025-08-16 12:00,120101.0928,momentum trail,14852.433,14.11,2.29,14852.43,crypto,64,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-14 01:00,105014.0115,2025-08-16 12:00,119976.7314,momentum trail,14962.7199,14.25,2.25,14962.72,crypto,59,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-18 23:00,126754.4454,2025-08-20 14:00,128933.8102,momentum trail,2179.3648,1.72,0.27,2179.36,crypto,39,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-08-25 18:00,140414.7483,2025-08-27 02:00,175514.8883,momentum trail,35100.14,25.0,4.28,35100.14,crypto,32,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-02 21:00,148789.3637,2025-09-04 16:00,148052.1923,momentum trail,-737.1714,-0.5,-0.07,-737.17,crypto,43,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-06 05:00,153866.6867,2025-09-11 12:00,188837.6713,momentum trail,34970.9846,22.73,2.97,34970.98,crypto,127,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-07 11:00,171421.1499,2025-09-11 13:00,188064.3681,momentum trail,16643.2182,9.71,1.3,16643.22,crypto,98,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-22 07:00,154362.8317,2025-09-22 22:00,172234.4093,momentum trail,17871.5777,11.58,2.62,17871.58,crypto,15,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-23 20:00,177593.5947,2025-09-24 16:00,182616.1881,momentum trail,5022.5934,2.83,0.6,5022.59,crypto,20,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-24 14:00,186328.3643,2025-09-25 10:00,213808.2475,momentum trail,27479.8832,14.75,3.05,27479.88,crypto,20,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-09-25 22:00,223165.363,2025-09-26 10:00,229310.1064,momentum trail,6144.7434,2.75,0.54,6144.74,crypto,12,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-10-01 20:00,227578.2797,2025-10-02 21:00,221604.7985,momentum trail,-5973.4812,-2.62,-0.39,-5973.48,crypto,25,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-10-18 09:00,218170.2123,2025-10-19 12:00,237316.0043,momentum trail,19145.792,8.78,2.3,19145.79,crypto,27,B
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-10-28 21:00,207929.2771,2025-10-29 07:00,203953.5478,momentum trail,-3975.7293,-1.91,-0.48,-3975.73,crypto,10,D
+SYNCOIN,P1,long,signal volume_surge,momentum trail,2025-10-30 20:00,192899.3951,2025-11-01 04:00,191717.6811,momentum trail,-1181.714,-0.61,-0.12,-1181.71,crypto,32,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2025-11-07 19:00,201927.2429,2025-11-09 22:00,214180.5268,momentum trail,12253.2839,6.07,1.46,12253.28,crypto,51,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2025-11-15 20:00,210753.6294,2025-11-17 06:00,212692.7948,momentum trail,1939.1654,0.92,0.23,1939.17,crypto,34,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2025-12-23 14:00,169610.16,2025-12-24 08:00,189979.1552,momentum trail,20368.9951,12.01,4.12,20369.0,crypto,18,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-05 19:00,152400.3727,2026-01-08 23:00,155443.3646,momentum trail,3042.9918,2.0,0.31,3042.99,crypto,76,C
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-07 19:00,158718.0238,2026-01-08 22:00,155571.2871,momentum trail,-3146.7367,-1.98,-0.33,-3146.74,crypto,27,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-15 03:00,158103.9595,2026-01-16 08:00,172446.8667,momentum trail,14342.9072,9.07,2.34,14342.91,crypto,29,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-17 12:00,184459.2485,2026-01-18 12:00,202263.0369,momentum trail,17803.7884,9.65,2.41,17803.79,crypto,24,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-27 19:00,187352.1414,2026-02-01 19:00,219777.7162,time limit,32425.5748,17.31,3.04,32425.57,crypto,120,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-01-31 01:00,209500.4342,2026-02-02 10:00,217331.7393,momentum trail,7831.3051,3.74,0.74,7831.31,crypto,57,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-02-22 20:00,177961.2322,2026-02-23 04:00,182299.6942,momentum trail,4338.462,2.44,0.83,4338.46,crypto,8,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-02-28 20:00,175091.9956,2026-03-01 09:00,173536.1793,momentum trail,-1555.8163,-0.89,-0.22,-1555.82,crypto,13,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-03-05 17:00,152835.9131,2026-03-10 01:00,210249.2644,momentum trail,57413.3513,37.57,6.16,57413.35,crypto,103,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-03-11 22:00,189477.067,2026-03-17 20:00,245583.5662,time limit,56106.4992,29.61,4.09,56106.5,crypto,142,C
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-03-15 02:00,221729.4251,2026-03-20 17:00,238034.5093,momentum trail,16305.0842,7.35,1.07,16305.08,crypto,135,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-03-16 20:00,244762.4427,2026-03-20 17:00,236903.6096,momentum trail,-7858.8331,-3.21,-0.47,-7858.83,crypto,93,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-03-21 21:00,241535.605,2026-03-23 05:00,233730.9534,momentum trail,-7804.6516,-3.23,-0.62,-7804.65,crypto,32,D
+SYNCOIN,P2,long,signal volume_surge,momentum trail,2026-04-20 03:00,253214.3796,2026-04-21 07:00,283033.4386,momentum trail,29819.059,11.78,2.71,29819.06,crypto,28,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-05-15 17:00,5182.6846,2025-05-16 07:00,5520.0234,exhaustion,337.3387,6.51,2.64,16866.94,future,13,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-06-03 14:00,5333.0507,2025-06-09 17:00,5769.7966,exhaustion,436.7459,8.19,2.1,21837.29,future,95,C
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-06-09 08:00,5457.654,2025-06-09 17:00,5769.7966,exhaustion,312.1426,5.72,1.83,15607.13,future,9,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-06-09 22:00,5771.085,2025-06-09 23:00,5778.8121,exhaustion,7.7271,0.13,0.04,386.36,future,1,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-06-24 14:00,5686.0736,2025-06-30 23:00,5983.7799,exhaustion,297.7063,5.24,2.37,14885.32,future,100,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-07-22 19:00,5308.316,2025-07-24 05:00,5464.0552,exhaustion,155.7391,2.93,1.19,7786.96,future,33,A
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-09-02 00:00,5425.3295,2025-09-02 11:00,5815.1082,exhaustion,389.7786,7.18,2.52,19488.93,future,11,B
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-09-04 01:00,5825.4841,2025-09-04 05:00,6064.8793,exhaustion,239.3952,4.11,1.39,11969.76,future,4,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-09-29 01:00,5668.3954,2025-09-29 15:00,5989.4644,exhaustion,321.069,5.66,1.93,16053.45,future,14,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-09-30 15:00,6031.4637,2025-09-30 21:00,6039.6475,exhaustion,8.1838,0.14,0.04,409.19,future,5,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-06 19:00,6208.174,2025-10-07 02:00,6114.3574,momentum trail,-93.8166,-1.51,-0.65,-4690.83,future,7,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-07 17:00,6184.0586,2025-10-07 19:00,6196.2738,exhaustion,12.2152,0.2,0.08,610.76,future,1,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-13 19:00,6113.0257,2025-10-13 21:00,6187.2373,exhaustion,74.2116,1.21,0.5,3710.58,future,2,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-15 17:00,6067.8556,2025-10-17 01:00,6013.156,momentum trail,-54.6996,-0.9,-0.32,-2734.98,future,30,D
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-21 12:00,5751.2221,2025-10-22 05:00,6268.2841,exhaustion,517.062,8.99,2.98,25853.1,future,16,B
+SYNFUT,P1,long,signal volume_surge,trail + exhaustion,2025-10-27 00:00,6342.081,2025-10-27 04:00,6427.908,exhaustion,85.827,1.35,0.44,4291.35,future,4,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-11-12 06:00,5941.439,2025-11-13 01:00,6177.1247,momentum trail,235.6857,3.97,1.7,11784.28,future,18,B
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-11-21 13:00,5670.9858,2025-11-24 12:00,5783.5517,exhaustion,112.5658,1.98,0.72,5628.29,future,22,B
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-11-27 10:00,5746.1139,2025-11-27 23:00,5998.8499,exhaustion,252.736,4.4,1.55,12636.8,future,12,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-12-04 19:00,6125.2443,2025-12-08 16:00,6540.7189,exhaustion,415.4746,6.78,2.95,20773.73,future,44,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-12-17 07:00,5705.2337,2025-12-17 11:00,5756.1336,exhaustion,50.8999,0.89,0.25,2544.99,future,4,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2025-12-23 02:00,5758.6395,2025-12-23 07:00,5944.2592,exhaustion,185.6197,3.22,0.81,9280.98,future,5,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-01-04 21:00,5743.9798,2026-01-05 11:00,6081.452,exhaustion,337.4722,5.88,1.61,16873.61,future,14,C
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-01-08 08:00,6175.7225,2026-01-08 15:00,6587.4918,exhaustion,411.7693,6.67,1.96,20588.46,future,7,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-01-16 02:00,6332.2401,2026-01-19 03:00,6302.2394,momentum trail,-30.0007,-0.47,-0.13,-1500.04,future,24,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-01-30 11:00,6192.6229,2026-02-02 19:00,6484.3544,exhaustion,291.7316,4.71,2.2,14586.58,future,30,B
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-02-02 19:00,6484.3544,2026-02-02 21:00,6512.6091,exhaustion,28.2546,0.44,0.25,1412.73,future,2,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-02-12 14:00,6212.7812,2026-02-13 14:00,6497.7736,momentum trail,284.9925,4.59,2.95,14249.62,future,23,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-03-10 12:00,5889.8632,2026-03-11 11:00,6397.7427,exhaustion,507.8796,8.62,3.12,25393.98,future,22,D
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-03-13 17:00,6094.1525,2026-03-15 23:00,5981.3752,momentum trail,-112.7773,-1.85,-0.62,-5638.86,future,5,B
+SYNFUT,P2,long,signal volume_surge,trail + exhaustion,2026-04-13 19:00,5677.6121,2026-04-14 20:00,5809.9689,exhaustion,132.3568,2.33,1.15,6617.84,future,24,B
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-05-22 20:00,42955.2263,2025-05-23 17:00,41430.5415,momentum trail,-1524.6848,-3.55,-0.54,-1524.68,crypto,21,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-05-25 11:00,37539.0582,2025-05-26 01:00,44944.0744,exhaustion,7405.0162,19.73,2.72,7405.02,crypto,14,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-05-29 21:00,42599.13,2025-05-30 09:00,40680.9329,momentum trail,-1918.197,-4.5,-0.7,-1918.2,crypto,12,C
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-06-11 09:00,45325.0875,2025-06-12 01:00,49211.3313,exhaustion,3886.2438,8.57,1.88,3886.24,crypto,16,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-06-16 21:00,56526.1915,2025-06-17 00:00,56584.7556,exhaustion,58.5642,0.1,0.03,58.56,crypto,3,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-06-26 18:00,51825.9564,2025-06-29 01:00,66159.6084,exhaustion,14333.652,27.66,3.38,14333.65,crypto,55,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-06-28 16:00,59648.0689,2025-06-29 01:00,66159.6084,exhaustion,6511.5395,10.92,1.33,6511.54,crypto,9,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-05 10:00,62495.8516,2025-07-05 21:00,67564.2462,exhaustion,5068.3946,8.11,0.96,5068.39,crypto,11,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-11 20:00,71517.7304,2025-07-12 10:00,76138.8537,exhaustion,4621.1233,6.46,0.93,4621.12,crypto,14,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-13 18:00,75235.0321,2025-07-13 21:00,78775.9128,exhaustion,3540.8807,4.71,0.71,3540.88,crypto,3,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-15 21:00,84743.172,2025-07-16 04:00,87233.3933,exhaustion,2490.2213,2.94,0.44,2490.22,crypto,7,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-20 02:00,69900.2615,2025-07-21 13:00,83197.3868,exhaustion,13297.1253,19.02,1.76,13297.13,crypto,35,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-07-29 21:00,81425.7651,2025-07-30 15:00,79667.9799,momentum trail,-1757.7852,-2.16,-0.28,-1757.79,crypto,18,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-02 15:00,90493.7726,2025-08-02 16:00,90752.1088,exhaustion,258.3362,0.29,0.05,258.34,crypto,1,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-03 17:00,94963.7023,2025-08-03 18:00,95187.5057,exhaustion,223.8035,0.24,0.05,223.8,crypto,1,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-08 21:00,95388.0074,2025-08-09 05:00,94921.5736,momentum trail,-466.4338,-0.49,-0.1,-466.43,crypto,8,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-10 11:00,94503.027,2025-08-11 11:00,102432.7929,exhaustion,7929.7659,8.39,1.45,7929.77,crypto,24,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-13 20:00,105248.6598,2025-08-13 22:00,105455.5613,exhaustion,206.9015,0.2,0.03,206.9,crypto,2,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-14 01:00,105014.0115,2025-08-14 05:00,107201.1103,exhaustion,2187.0988,2.08,0.33,2187.1,crypto,4,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-18 23:00,126754.4454,2025-08-19 00:00,127064.1373,exhaustion,309.6919,0.24,0.04,309.69,crypto,1,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-08-25 18:00,140414.7483,2025-08-25 19:00,142107.5802,exhaustion,1692.8319,1.21,0.21,1692.83,crypto,1,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-02 21:00,148789.3637,2025-09-03 08:00,152979.6572,exhaustion,4190.2935,2.82,0.38,4190.29,crypto,11,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-06 05:00,153866.6867,2025-09-06 13:00,171769.6032,exhaustion,17902.9165,11.64,1.52,17902.92,crypto,8,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-07 11:00,171421.1499,2025-09-07 16:00,182692.0541,exhaustion,11270.9041,6.57,0.88,11270.9,crypto,5,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-22 07:00,154362.8317,2025-09-22 15:00,170724.8014,exhaustion,16361.9698,10.6,2.4,16361.97,crypto,8,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-23 20:00,177593.5947,2025-09-23 23:00,181329.5103,exhaustion,3735.9156,2.1,0.45,3735.92,crypto,3,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-24 14:00,186328.3643,2025-09-24 21:00,208734.0045,exhaustion,22405.6402,12.02,2.49,22405.64,crypto,7,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-09-25 22:00,223165.363,2025-09-25 23:00,224465.7349,exhaustion,1300.372,0.58,0.12,1300.37,crypto,1,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-10-01 20:00,227578.2797,2025-10-02 04:00,227784.5263,exhaustion,206.2466,0.09,0.01,206.25,crypto,8,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-10-18 09:00,218170.2123,2025-10-18 21:00,241991.5717,exhaustion,23821.3594,10.92,2.86,23821.36,crypto,12,B
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-10-28 21:00,207929.2771,2025-10-29 07:00,203953.5478,momentum trail,-3975.7293,-1.91,-0.48,-3975.73,crypto,10,D
+SYNCOIN,P1,long,signal volume_surge,trail + exhaustion,2025-10-30 20:00,192899.3951,2025-11-01 04:00,191717.6811,momentum trail,-1181.714,-0.61,-0.12,-1181.71,crypto,32,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2025-11-07 19:00,201927.2429,2025-11-07 22:00,204026.2559,exhaustion,2099.013,1.04,0.25,2099.01,crypto,3,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2025-11-15 20:00,210753.6294,2025-11-17 06:00,212692.7948,momentum trail,1939.1654,0.92,0.23,1939.17,crypto,34,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2025-12-23 14:00,169610.16,2025-12-23 21:00,189026.8101,exhaustion,19416.65,11.45,3.93,19416.65,crypto,7,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-05 19:00,152400.3727,2026-01-08 23:00,155443.3646,momentum trail,3042.9918,2.0,0.31,3042.99,crypto,76,C
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-07 19:00,158718.0238,2026-01-08 22:00,155571.2871,momentum trail,-3146.7367,-1.98,-0.33,-3146.74,crypto,27,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-15 03:00,158103.9595,2026-01-15 12:00,167177.3909,exhaustion,9073.4314,5.74,1.48,9073.43,crypto,9,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-17 12:00,184459.2485,2026-01-17 18:00,186015.5016,exhaustion,1556.253,0.84,0.21,1556.25,crypto,6,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-27 19:00,187352.1414,2026-01-29 04:00,199455.4459,exhaustion,12103.3045,6.46,1.14,12103.3,crypto,33,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-01-31 01:00,209500.4342,2026-01-31 03:00,211621.1209,exhaustion,2120.6868,1.01,0.2,2120.69,crypto,2,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-02-22 20:00,177961.2322,2026-02-23 04:00,182299.6942,momentum trail,4338.462,2.44,0.83,4338.46,crypto,8,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-02-28 20:00,175091.9956,2026-03-01 09:00,173536.1793,momentum trail,-1555.8163,-0.89,-0.22,-1555.82,crypto,13,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-03-05 17:00,152835.9131,2026-03-06 12:00,175711.4496,exhaustion,22875.5365,14.97,2.45,22875.54,crypto,19,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-03-11 22:00,189477.067,2026-03-14 15:00,222842.3361,exhaustion,33365.2691,17.61,2.43,33365.27,crypto,65,C
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-03-15 02:00,221729.4251,2026-03-15 10:00,232389.6254,exhaustion,10660.2003,4.81,0.7,10660.2,crypto,8,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-03-16 20:00,244762.4427,2026-03-16 22:00,246522.2792,exhaustion,1759.8365,0.72,0.11,1759.84,crypto,2,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-03-21 21:00,241535.605,2026-03-23 05:00,233730.9534,momentum trail,-7804.6516,-3.23,-0.62,-7804.65,crypto,32,D
+SYNCOIN,P2,long,signal volume_surge,trail + exhaustion,2026-04-20 03:00,253214.3796,2026-04-20 12:00,282690.8201,exhaustion,29476.4405,11.64,2.68,29476.44,crypto,9,D

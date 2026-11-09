@@ -17,7 +17,8 @@ def explain(s: config.Settings, name: str) -> tuple[dict, list[str]]:
         raise FileNotFoundError(f"no results for {name!r} yet; run `kit study run {name}`")
     S = json.loads(f.read_text())
     L = [f"Study {name} — {len(S['tickers'])} tickers, {S['bars']:,} 1h bars, split {S['split']}, higher timeframes '{S['mode']}'",
-         f"Holdout: {S.get('holdout') or 'none set'}.  Option prices are MODELLED (no spread).", ""]
+         f"Holdout: {S.get('holdout') or 'none set'}.  " + ("Traded as the instrument itself (" + ", ".join(S.get("assets", [])) + "); no costs."
+                                                          if S.get("trade_as", "options") != "options" else "Option prices are MODELLED (no spread)."), ""]
     out = {"study": name, "report": str(d / "report.html"), "labels": {}}
     for lab, c in S.get("scorecard", {}).items():
         g = {(r["graded_half"], r["grade"]): r for r in c["grades"]}
@@ -39,8 +40,13 @@ def explain(s: config.Settings, name: str) -> tuple[dict, list[str]]:
                  f"{tc.get('n_trades', 0):,} trades in {tc.get('trades_file')}.")
         for r in tc["table"]:
             if r.get("trades"):
-                L.append(f"   {r['half']} {r['entries']:>14} | {r['exit']:<19} | {r['trades']:>6} trades, median x{r['median_mult']}, "
-                         f"doubled {r['pct_doubled']}%, lost half {r['pct_lost_half']}%, censored {r['pct_censored']}%")
+                if "median_mult" in r:
+                    L.append(f"   {r['half']} {r['entries']:>14} | {r['exit']:<19} | {r['trades']:>6} trades, median x{r['median_mult']}, "
+                             f"doubled {r['pct_doubled']}%, lost half {r['pct_lost_half']}%, censored {r['pct_censored']}%")
+                else:
+                    L.append(f"   {r['half']} {r['entries']:>14} | {r['exit']:<19} | {r['trades']:>6} trades, median {r['median_return_pct']}% "
+                             f"({r['median_r_atr']} ATR), win rate {r['win_rate_pct']}%, +1 ATR {r['pct_gained_1atr']}%, "
+                             f"-0.5 ATR {r['pct_lost_half_atr']}%, censored {r['pct_censored']}%")
         t = tc.get("tail_concentration", {})
         if t:
             L.append(f"   Top 3 days carry {t.get('profit_share_top3_days_pct')}% of these entries' profit; top 3 tickers {t.get('profit_share_top3_tickers_pct')}%.")

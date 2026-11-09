@@ -1,2 +1,2 @@
-"""Backtest Kit: test trading ideas against every bar of history, priced as options."""
-__version__ = "1.0.0"
+"""Backtest Kit: test trading ideas against every bar of history, for stocks, options, futures and crypto."""
+__version__ = "1.1.0"

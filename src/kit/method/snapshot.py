@@ -58,6 +58,7 @@ def tf_feats(d: pd.DataFrame, p: str, names: list[str] | None = None) -> pd.Data
 
 
 def _asof(left: pd.DataFrame, right: pd.DataFrame, strict: bool) -> pd.DataFrame:
+    left, right = left.assign(ts=left.ts.dt.as_unit("ns")), right.assign(ts=right.ts.dt.as_unit("ns"))
     return pd.merge_asof(left.sort_values("ts"), right.sort_values("ts"), on="ts", direction="backward",
                          allow_exact_matches=not strict)
 
@@ -107,12 +108,16 @@ def market_feats(data_dir, market: str, base_tf: str, mode: str, names: list[str
 
 # ── simulation: exits that follow momentum ────────────────────────────────────
 EXIT_REASONS = {1: "momentum trail", 2: "exhaustion", 3: "option expiry", 4: "data ended (censored)"}
+EXIT_REASONS_UNDERLYING = {**EXIT_REASONS, 3: "time limit"}
+# For shares, futures and crypto the trail's time limit, in trading days (options use the expiry instead)
+HOLD_DAYS = {0.75: 5, 1.5: 10}
 
 def sim(F: pd.DataFrame, side: str, k: float, jend: np.ndarray, expiry: np.ndarray, first_k: float,
         xs: np.ndarray | None = None, xthr: float = 0.0, detail: bool = False):
     """Enter at each bar's close. Exit when price turns k x day-ATR off its best point since entry,
     when an exhaustion score xs[j] >= xthr while in profit (optional), or at the option's expiry.
-    Returns option multiple, hold (bars), first-move flag (+1 our way first, -1 against first, 0 neither),
+    Returns the payoff (option multiple; or, with expiry=None, the position's fractional return),
+    hold (bars), first-move flag (+1 our way first, -1 against first, 0 neither),
     and censored (data ended before the trade did). With detail=True also the exit bar index, the
     underlying exit price and the exit reason (see EXIT_REASONS)."""
     c, h, l, o, atr = (F[x].to_numpy(float) for x in ("close", "high", "low", "open", "d_atr"))
@@ -172,6 +177,13 @@ def sim(F: pd.DataFrame, side: str, k: float, jend: np.ndarray, expiry: np.ndarr
         Sx[i], jx[i], why[i] = px, jj, rs
     ok = jx >= 0
     mult = np.full(n, np.nan)
+    if expiry is None:                       # shares, futures, crypto: the trade's own return
+        sign = 1.0 if call else -1.0
+        mult[ok] = sign * (Sx[ok] - c[ok]) / c[ok]
+        hold = np.where(ok, jx - np.arange(n), np.nan)
+        if detail:
+            return mult, hold, fp, cens, jx, Sx, why
+        return mult, hold, fp, cens
     dts = F.date.to_numpy().astype("datetime64[D]")
     fr = F.frac.to_numpy(float)
     iv = F.iv.to_numpy(float)
@@ -188,11 +200,21 @@ def sim(F: pd.DataFrame, side: str, k: float, jend: np.ndarray, expiry: np.ndarr
     return mult, hold, fp, cens
 
 
-def trade_windows(F: pd.DataFrame) -> tuple[dict, dict]:
-    """Per trail size k: the option expiry for an entry at each bar (fixed at entry) and the last
-    bar index the trade may run to. Expiry after the data ends -> index n (censored)."""
+def trade_windows(F: pd.DataFrame, trade_as: str = "options") -> tuple[dict, dict]:
+    """Per trail size k: (options) the expiry for an entry at each bar, fixed at entry, or
+    (underlying) None; and the last bar index the trade may run to. Past the data -> n (censored)."""
     n = len(F)
     dts = F.date.to_numpy().astype("datetime64[D]")
+    if trade_as != "options":
+        days = np.unique(dts)
+        di = np.searchsorted(days, dts)
+        jend, exp = {}, {}
+        for k, h in HOLD_DAYS.items():
+            target = di + h
+            last = np.searchsorted(dts, days[np.minimum(target, len(days) - 1)], side="right") - 1
+            jend[k] = np.where(target >= len(days), n, last)
+            exp[k] = None
+        return exp, jend
     exp = {k: options.expiry_after(dts, census.EXPIRY_SESSIONS[k]) for k in census.INTRADAY_K}
     jend = {k: np.searchsorted(dts, exp[k], side="right") - 1 for k in exp}
     for k in exp:
@@ -200,17 +222,27 @@ def trade_windows(F: pd.DataFrame) -> tuple[dict, dict]:
     return exp, jend
 
 
-def day_windows(F: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
-    """Same-day trades: this week's option (the Friday on/after the entry date) and the session's last bar."""
+def day_windows(F: pd.DataFrame, trade_as: str = "options") -> tuple[np.ndarray | None, np.ndarray]:
+    """Same-day trades: closed by the session's last bar; options use this week's expiry (the Friday
+    on/after the entry date)."""
     dts = F.date.to_numpy().astype("datetime64[D]")
+    jend = np.searchsorted(dts, dts, side="right") - 1
+    if trade_as != "options":
+        return None, jend
     wd = (dts.view("int64") - 4) % 7                    # 0 = Monday (1970-01-01 was a Thursday)
-    return dts + ((4 - wd) % 7).astype("timedelta64[D]"), np.searchsorted(dts, dts, side="right") - 1
+    return dts + ((4 - wd) % 7).astype("timedelta64[D]"), jend
 
 
 # ── per-ticker build ──────────────────────────────────────────────────────────
 def build_intraday(data_dir, ticker: str, market: tuple, mode: str, label_ahead: int = 3,
-                   names: list[str] | None = None) -> dict | None:
-    """Base timeframe 1h. Returns {'bars': per-bar frame, 'legs': legs (1h and 1D), 'exit_rows': ...}."""
+                   names: list[str] | None = None, trade_as: str = "options") -> dict | None:
+    """Base timeframe 1h. Returns {'bars': per-bar frame, 'legs': legs (1h and 1D), 'exit_rows': ...}.
+    trade_as: "options" (at-the-money options; stocks only) or "underlying" (the instrument itself)."""
+    from ..assets import lookup
+    inst = lookup(data_dir, ticker)
+    ses = inst.session
+    if trade_as == "options" and inst.asset != "stock":
+        raise ValueError(f"{ticker} is a {inst.asset}; options are modelled for stocks only — set trade_as = \"underlying\"")
     tfs = ["1h", "4h", "1D", "15m", "3m"]
     ind = indicators(data_dir, ticker, tfs, mode, names)
     if "1h" not in ind or "1D" not in ind:
@@ -219,9 +251,9 @@ def build_intraday(data_dir, ticker: str, market: tuple, mode: str, label_ahead:
     F = tf_feats(h1, "h1_", names)
     for x in ("open", "high", "low", "close", "volume"):
         F[x] = h1[x].to_numpy(float)
-    F["date"] = F.ts.dt.tz_localize(None).dt.normalize()
+    F["date"] = ses.trade_date(F.ts).to_numpy()
     daily = store.read(data_dir, "1D", ticker)
-    ctx = census.daily_context(daily)
+    ctx = census.daily_context(daily, ses)
     F = F.merge(ctx[["date", "prev_atr", "prev_rv", "prev_high", "prev_low", "prev_close"]], on="date", how="left")
     F = F.rename(columns={"prev_atr": "d_atr", "prev_rv": "rv"})
     A = F.d_atr
@@ -238,8 +270,9 @@ def build_intraday(data_dir, ticker: str, market: tuple, mode: str, label_ahead:
     F["down_from_20bar_high_atr"] = (F.high.rolling(20).max() - F.close) / A
     F["bars_since_20bar_low"] = 19 - F.low.rolling(20).apply(np.argmin, raw=True)
     F["bars_since_20bar_high"] = 19 - F.high.rolling(20).apply(np.argmax, raw=True)
-    F["hour"] = F.ts.dt.hour + F.ts.dt.minute / 60
-    F["weekday"] = F.ts.dt.day_of_week
+    local = F.ts.dt.tz_convert(ses.tz)
+    F["hour"] = local.dt.hour + local.dt.minute / 60
+    F["weekday"] = pd.to_datetime(F.date).dt.day_of_week
     F = F.drop(columns=["prev_high", "prev_low", "prev_close"])
     for tf, strict in (("4h", True), ("1D", True), ("15m", False), ("3m", False)):
         if tf in ind:
@@ -255,49 +288,53 @@ def build_intraday(data_dir, ticker: str, market: tuple, mode: str, label_ahead:
         F = _asof(F, mH, False)
     F = F.reset_index(drop=True)
     F["ticker"] = ticker
+    F["asset"] = inst.asset
+    F["multiplier"] = inst.multiplier
     n = len(F)
-    # option expiry per leg size, fixed at entry
-    F["frac"] = options.day_fraction_left(F.ts)
-    F["iv"] = options.iv_from_rv(F.rv)
-    exp, jend = trade_windows(F)
-    exp_day, jend_day = day_windows(F)
+    if trade_as == "options":
+        F["frac"] = options.day_fraction_left(F.ts)
+        F["iv"] = options.iv_from_rv(F.rv)
+    exp, jend = trade_windows(F, trade_as)
+    exp_day, jend_day = day_windows(F, trade_as)
+    pay = "mult" if trade_as == "options" else "ret"
+    (t1, v1), (t2, v2) = census.TIERS["options" if trade_as == "options" else "underlying"]
     # legs
-    legs_h = census.legs_for(h1[["ts", "open", "high", "low", "close", "volume"]], daily, ticker, "1h")
-    legs_d = census.legs_for(daily, daily, ticker, "1D")
-    # labels: a >=1x / >=3x leg starts within the next 0..label_ahead bars
+    legs_h = census.legs_for(h1[["ts", "open", "high", "low", "close", "volume"]], daily, ticker, "1h", inst, trade_as)
+    legs_d = census.legs_for(daily, daily, ticker, "1D", inst, trade_as)
+    # labels: a leg of at least tier-1 / tier-2 size starts within the next 0..label_ahead bars
     for side in ("C", "P"):
         Ls = legs_h[legs_h.side == side] if len(legs_h) else legs_h
         best = np.zeros(n)
         l1 = np.zeros(n, bool)
         l3 = np.zeros(n, bool)
-        for si, gi in zip(Ls.entry_i.to_numpy() if len(Ls) else [], Ls.gain.to_numpy() if len(Ls) else []):
+        for si, gi in zip(Ls.entry_i.to_numpy() if len(Ls) else [], Ls["size"].to_numpy() if len(Ls) else []):
             lo_ = max(0, si - label_ahead)
             best[lo_:si + 1] = np.maximum(best[lo_:si + 1], gi)
-            if gi >= 1:
+            if gi >= v1:
                 l1[lo_:si + 1] = True
-            if gi >= 3:
+            if gi >= v2:
                 l3[lo_:si + 1] = True
-        F[f"{side}_1x"], F[f"{side}_3x"], F[f"{side}_bestgain"] = l1, l3, best
+        F[f"{side}_{t1}"], F[f"{side}_{t2}"], F[f"{side}_bestsize"] = l1, l3, best
         for k in census.INTRADAY_K:
             m, hd, fp, cz = sim(F, side, k, jend[k], exp[k], first_k=0.75)
             nm = f"t{int(k * 100):03d}"
-            F[f"{side}_{nm}_mult"], F[f"{side}_{nm}_hold"], F[f"{side}_{nm}_censored"] = m, hd, cz
+            F[f"{side}_{nm}_{pay}"], F[f"{side}_{nm}_hold"], F[f"{side}_{nm}_censored"] = m, hd, cz
             if k == 0.75:
                 F[f"{side}_first"] = fp
-        # same-day: a >=1x day-size (0.75 ATR) leg that starts within 0-2 bars AND ends the same session;
-        # traded with this week's option (Friday on/after the entry date) and closed by the day's last bar
+        # same-day: a day-size (0.75 ATR) leg of at least tier-1 size that starts within 0-2 bars AND ends
+        # the same session; closed by the session's last bar (options: this week's expiry)
         sd = np.zeros(n, bool)
         if len(Ls):
-            for si, gi, kk, hz in zip(Ls.entry_i.to_numpy(), Ls.gain.to_numpy(), Ls.k_atr.to_numpy(), Ls.horizon.to_numpy()):
-                if kk == 0.75 and hz == "same-day" and gi >= 1:
+            for si, gi, kk, hz in zip(Ls.entry_i.to_numpy(), Ls["size"].to_numpy(), Ls.k_atr.to_numpy(), Ls.horizon.to_numpy()):
+                if kk == 0.75 and hz == "same-day" and gi >= v1:
                     sd[max(0, si - 2):si + 1] = True
-        F[f"{side}_sameday1x"] = sd
+        F[f"{side}_sameday{t1}"] = sd
         m, hd, _, cz = sim(F, side, 0.75, jend_day, exp_day, first_k=0.75)
-        F[f"{side}_sd075_mult"], F[f"{side}_sd075_hold"], F[f"{side}_sd075_censored"] = m, hd, cz
-    # exit rows: every bar inside a >=1x leg, and how much was left to the leg's best price
+        F[f"{side}_sd075_{pay}"], F[f"{side}_sd075_hold"], F[f"{side}_sd075_censored"] = m, hd, cz
+    # exit rows: every bar inside a tier-1 leg, and how much was left to the leg's best price
     ex = []
     hi, lo, cl, atr = F.high.to_numpy(), F.low.to_numpy(), F.close.to_numpy(), F.d_atr.to_numpy()
-    for r in legs_h[legs_h.gain >= 1].itertuples() if len(legs_h) else []:
+    for r in legs_h[legs_h["size"] >= v1].itertuples() if len(legs_h) else []:
         si, bi = int(r.entry_i), int(r.exit_i)
         if bi <= si + 1:
             continue
@@ -305,6 +342,6 @@ def build_intraday(data_dir, ticker: str, market: tuple, mode: str, label_ahead:
         top = hi[e] if r.side == "C" else lo[e]
         for i in range(si + 1, bi + 1):
             rem = (top - cl[i]) / atr[i] if r.side == "C" else (cl[i] - top) / atr[i]
-            ex.append((ticker, i, r.side, r.k_atr, rem, r.gain, i - si))
-    EX = pd.DataFrame(ex, columns=["ticker", "i", "side", "k", "remaining_atr", "leg_gain", "bars_in"])
+            ex.append((ticker, i, r.side, r.k_atr, rem, r.size, i - si))
+    EX = pd.DataFrame(ex, columns=["ticker", "i", "side", "k", "remaining_atr", "leg_size", "bars_in"])
     return {"bars": F, "legs": pd.concat([legs_h, legs_d], ignore_index=True), "exit_rows": EX}

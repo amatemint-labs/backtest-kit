@@ -163,15 +163,24 @@ def grade_table(D: pd.DataFrame, g: np.ndarray, lab: str, months: dict) -> pd.Da
             side = lab[0]
             for nm in (("sd075",) if "sameday" in lab else ("t075", "t150")):
                 col = f"{side}_{nm}_mult"
-                if col not in D:
-                    continue
-                mu = D[col].to_numpy()[mm]
-                mu = mu[np.isfinite(mu)]
-                if len(mu):
-                    r[f"{nm}_median_mult"] = round(float(np.median(mu)), 2)
-                    r[f"{nm}_pct_doubled"] = round(100 * float((mu >= 2).mean()), 1)
-                    r[f"{nm}_pct_4x"] = round(100 * float((mu >= 4).mean()), 1)
-                    r[f"{nm}_pct_lost_half"] = round(100 * float((mu <= 0.5).mean()), 1)
+                if col in D:
+                    mu = D[col].to_numpy()[mm]
+                    mu = mu[np.isfinite(mu)]
+                    if len(mu):
+                        r[f"{nm}_median_mult"] = round(float(np.median(mu)), 2)
+                        r[f"{nm}_pct_doubled"] = round(100 * float((mu >= 2).mean()), 1)
+                        r[f"{nm}_pct_4x"] = round(100 * float((mu >= 4).mean()), 1)
+                        r[f"{nm}_pct_lost_half"] = round(100 * float((mu <= 0.5).mean()), 1)
+                elif f"{side}_{nm}_ret" in D:
+                    # the instrument itself (shares, futures, crypto): return and move in day-ATR
+                    ret = D[f"{side}_{nm}_ret"].to_numpy()[mm]
+                    ra = ret * (D.close.to_numpy(float)[mm] / D.d_atr.to_numpy(float)[mm])
+                    ok = np.isfinite(ret) & np.isfinite(ra)
+                    if ok.any():
+                        r[f"{nm}_median_return_pct"] = round(100 * float(np.median(ret[ok])), 2)
+                        r[f"{nm}_win_rate_pct"] = round(100 * float((ret[ok] > 0).mean()), 1)
+                        r[f"{nm}_pct_gained_1atr"] = round(100 * float((ra[ok] >= 1).mean()), 1)
+                        r[f"{nm}_pct_lost_half_atr"] = round(100 * float((ra[ok] <= -0.5).mean()), 1)
             if f"{side}_first" in D:
                 r["broke_first_pct"] = round(100 * float((D[f"{side}_first"].to_numpy()[mm] == -1).mean()), 1)
             rows.append(r)

@@ -1,6 +1,6 @@
 # Sample study on SYNTHETIC data (made-up tickers SYNA..SYNE, market SYNSPY). Numbers mean nothing about markets.
 title = "Sample study (synthetic data)"
-tickers = []
+tickers = ["SYNA", "SYNB", "SYNC", "SYND", "SYNE"]
 market = "SYNSPY"
 start = "2025-05-01"
 end = ""

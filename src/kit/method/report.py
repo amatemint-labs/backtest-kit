@@ -39,7 +39,16 @@ HEADERS = {
     "odds_x_learned_P1": "odds × (learned on P1)", "odds_x_learned_P2": "odds × (learned on P2)",
     "median_mult": "median ×", "mean_mult_cap20": "mean × (capped 20)", "pct_doubled": "doubled %", "pct_4x": "4x+ %",
     "pct_lost_half": "lost half %", "median_hold_bars": "median hold (bars)", "pct_censored": "censored %",
-    "weaker_lift": "weaker-half lift", "win_first_P1_pct": "won first % (P1)", "win_first_P2_pct": "won first % (P2)",
+    "weaker_lift": "weaker-half lift",
+    "t075_median_return_pct": "median return % (0.75 trail)", "t075_win_rate_pct": "win rate %",
+    "t075_pct_gained_1atr": "gained 1 ATR+ %", "t075_pct_lost_half_atr": "lost ½ ATR+ %",
+    "t150_median_return_pct": "median return % (1.5 trail)", "t150_win_rate_pct": "win rate % (1.5)",
+    "t150_pct_gained_1atr": "gained 1 ATR+ % (1.5)", "t150_pct_lost_half_atr": "lost ½ ATR+ % (1.5)",
+    "sd075_median_return_pct": "median return % (same day)", "sd075_win_rate_pct": "win rate %",
+    "sd075_pct_gained_1atr": "gained 1 ATR+ %", "sd075_pct_lost_half_atr": "lost ½ ATR+ %",
+    "median_return_pct": "median return %", "mean_return_pct": "mean return %", "win_rate_pct": "win rate %",
+    "median_r_atr": "median move (ATR)", "pct_gained_1atr": "gained 1 ATR+ %", "pct_lost_half_atr": "lost ½ ATR+ %",
+    "r_atr": "move (ATR)", "dollars_per_unit": "$ per contract/unit", "atr_won": "ATRs won", "win_first_P1_pct": "won first % (P1)", "win_first_P2_pct": "won first % (P2)",
 }
 
 
@@ -67,11 +76,15 @@ def table(rows, lift_cols=(), max_rows=60) -> str:
     return "".join(h)
 
 
-def histogram(mults, title="Option multiple at exit (1.0 = break-even)") -> str:
-    """Inline SVG bar chart of trade outcomes."""
+def histogram(mults, title="Option multiple at exit (1.0 = break-even)", underlying=False) -> str:
+    """Inline SVG bar chart of trade outcomes (option multiples, or moves in day-ATR)."""
     import math
-    edges = [0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, math.inf]
-    labels = ["<0.25", "0.25-0.5", "0.5-0.75", "0.75-1", "1-1.5", "1.5-2", "2-3", "3-5", "5+"]
+    if underlying:
+        edges = [-math.inf, -2, -1, -0.5, 0, 0.5, 1, 2, 3, math.inf]
+        labels = ["<-2", "-2 to -1", "-1 to -0.5", "-0.5 to 0", "0 to 0.5", "0.5 to 1", "1 to 2", "2 to 3", "3+"]
+    else:
+        edges = [0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0, math.inf]
+        labels = ["<0.25", "0.25-0.5", "0.5-0.75", "0.75-1", "1-1.5", "1.5-2", "2-3", "3-5", "5+"]
     counts = [0] * len(labels)
     for m in mults:
         if m is None or (isinstance(m, float) and math.isnan(m)):
@@ -103,6 +116,7 @@ def render(S: dict) -> str:
     out.append(f"<h1>{e(S.get('title') or S['study'])}</h1><p class='muted'>Built {e(S['built'][:16])} · "
                + " · ".join(e(v) for v in S["versions"].values()) + f" · higher timeframes: <b>{e(S['mode'])}</b></p>")
     labs = list(S.get("scorecard", {}).keys())
+    under = S.get("trade_as", "options") != "options"
     out.append("<nav>" + "".join(f"<a href='#{l}'>{l}</a>" for l in labs) + "<a href='#census'>census</a><a href='#lift'>lift</a><a href='#exit'>exits</a><a href='#signals'>signals</a><a href='#trade'>trade check</a><a href='#check'>checklist</a></nav>")
     P = S["periods"]
     out.append("<div class='grid'>"
@@ -110,12 +124,17 @@ def render(S: dict) -> str:
                f"<div class='kpi'><span class='muted'>1h bars</span><b>{S['bars']:,}</b></div>"
                + "".join(f"<div class='kpi'><span class='muted'>Half {p}</span><b>{v['months']} mo</b><span class='muted'>{v['from'][:10]} → {v['to'][:10]}</span></div>" for p, v in P.items())
                + f"<div class='kpi'><span class='muted'>Holdout</span><b>{e(S.get('holdout') or 'none set')}</b></div></div>")
-    out.append("<div class='warn'><b>About these numbers.</b> Option prices are modelled with Black-Scholes, with no "
-               "bid/ask spread and constant implied volatility, so use them to compare setups rather than to size positions. "
+    pricing = ("Trades are the instrument itself (" + ", ".join(e(a) for a in S.get("assets", [])) + "), filled at bar "
+               "closes and trail levels with no commission, spread or slippage, and no funding or roll costs. "
+               if under else
+               "Option prices are modelled with Black-Scholes, with no bid/ask spread and constant implied volatility. ")
+    out.append("<div class='warn'><b>About these numbers.</b> " + pricing + "Use them to compare setups rather than to size positions. "
                f"The lift tables tested {S.get('lift_cells_tested', 0):,} state combinations; at the 5% level about "
                f"{S.get('lift_expected_false_at_5pct', 0):,} of them would look significant by chance. Only results that "
                "hold in both halves are shown, and they remain hypotheses until a pre-registered forward test.</div>")
-    out.append(f"<p class='muted'>Label: {e(S['label_definition'])}. '1x' = the option gained 1x its cost (doubled); '3x' = +300%.</p>")
+    names = ("'2atr' = a move of at least 2 daily ATRs; '4atr' = 4 ATRs. C = long, P = short." if under else
+             "'1x' = the option gained 1x its cost (doubled); '3x' = +300%. C = calls, P = puts.")
+    out.append(f"<p class='muted'>Label: {e(S['label_definition'])}. {names}</p>")
     br = S.get("base_rates_pct", {})
     out.append("<h3>Base rates (how often a label is true on an ordinary bar)</h3>" +
                table([{"label": k, "P1 %": v.get("P1"), "P2 %": v.get("P2")} for k, v in br.items()]))
@@ -139,10 +158,14 @@ def render(S: dict) -> str:
         out.append("<h3>Strengtheners</h3>" + table(la.get("strengtheners", []), lift_cols=("x_P1", "x_P2")))
         out.append("<h3>Eliminators</h3>" + table(la.get("eliminators", []), lift_cols=("x_P1", "x_P2")))
     cz = S.get("census", {})
-    out.append("<h2 id='census'>Winner census</h2><p class='muted'>Every ATR-zigzag swing leg, priced as an ATM option "
-               "with the expiry fixed at entry (first Friday ≥3 sessions out for 0.75 ATR legs, ≥8 for 1.5, ≥21/42/63 for 2/4/8 ATR daily legs).</p>")
+    if under:
+        out.append("<h2 id='census'>Winner census</h2><p class='muted'>Every ATR-zigzag swing leg, measured as the move "
+                   "from entry to exit in daily ATRs (0.75 / 1.5 ATR legs on 1h bars; 2 / 4 / 8 ATR legs on daily bars).</p>")
+    else:
+        out.append("<h2 id='census'>Winner census</h2><p class='muted'>Every ATR-zigzag swing leg, priced as an ATM option "
+                   "with the expiry fixed at entry (first Friday ≥3 sessions out for 0.75 ATR legs, ≥8 for 1.5, ≥21/42/63 for 2/4/8 ATR daily legs).</p>")
     out.append(table(cz.get("summary", [])))
-    out.append("<h3>5x / 10x winners by horizon</h3>" + table(cz.get("winners_5x_10x_by_horizon", [])))
+    out.append("<h3>Big winners by horizon</h3>" + table(cz.get("winners_by_horizon", cz.get("winners_5x_10x_by_horizon", []))))
     out.append("<h3>Biggest legs</h3>" + table(cz.get("top_winners", [])))
     out.append("<h2 id='lift'>Lift tables</h2><p class='muted'>Rate of the label in each state ÷ the base rate, per half. "
                "Shown only if seen often enough in each half; ranked by the weaker half.</p>")
@@ -152,13 +175,14 @@ def render(S: dict) -> str:
     sg = S.get("signals")
     out.append("<h2 id='signals'>Your signals</h2>")
     if sg:
-        out.append("<p class='muted'>An entry = the first bar of each run of fires. Rate = how often a winning option leg started "
+        out.append("<p class='muted'>An entry = the first bar of each run of fires. Rate = how often a winning leg started "
                    "within the next 0-3 bars; lift = that ÷ any bar's rate, per half. Descriptive only — results in money terms "
                    "come from a pre-registered trade check.</p>" + table(sg.get("defined", [])))
         out.append(table(sg.get("table", []), lift_cols=tuple(c for c in (sg["table"][0].keys() if sg.get("table") else []) if c.endswith("_lift"))))
     else:
         out.append("<p class='muted'>None defined. Add <code>[signals.&lt;name&gt;]</code> to study.toml or a file in plugins/signals/.</p>")
-    out.append("<h2 id='exit'>Exhaustion (is the move spent?)</h2><p class='muted'>Bars inside ≥1x legs; 'spent' = less than 0.25 day-ATR left to the leg's best price.</p>")
+    out.append("<h2 id='exit'>Exhaustion (is the move spent?)</h2><p class='muted'>Bars inside winning legs (" + ("≥2 ATR" if under else "≥1x")
+               + "); 'spent' = less than 0.25 day-ATR left to the leg's best price.</p>")
     for k, t in S.get("exhaustion", {}).items():
         out.append(f"<h3>{e(k.replace('_', ' trail '))} day-ATR</h3><p>In-leg bars {t['in_leg_bars']:,}; spent base {t['spent_base_pct']}; "
                    f"held-out AUC {t['auc']}</p>" + table(t["spent_lift_by_decile"]) + "<p class='muted'>Says spent:</p>" + table(t["says_spent"]))
@@ -169,23 +193,29 @@ def render(S: dict) -> str:
     else:
         pr = tc.get("prereg", {})
         out.append(f"<p><b>{e(tc.get('status', ''))}</b></p><ul>" + "".join(f"<li><b>{k}:</b> {e(str(pr.get(k, '')))}</li>" for k in ("idea", "entry", "exit", "measure", "pass_mark")) + "</ul>")
-        out.append(f"<p class='muted'>Entries: {e(tc['entries'])}; trail {tc['trail_k']} day-ATR; "
-                   f"{tc['dropped_tiny_premium']} entries dropped for premium under ${tc['min_premium']}. "
+        dropped = "" if under else f"{tc['dropped_tiny_premium']} entries dropped for premium under ${tc['min_premium']}. "
+        out.append(f"<p class='muted'>Entries: {e(tc['entries'])}; trail {tc['trail_k']} day-ATR; {dropped}"
                    f"{tc.get('n_trades', 0):,} trades logged in <code>results/trades.csv</code>.</p>")
         out.append(table(tc["table"]))
         prev = tc.get("trades_preview") or []
-        out.append("<h3>Distribution</h3>" + histogram(tc.get("multiples_trail", [])))
+        out.append("<h3>Distribution</h3>" + (histogram(tc.get("multiples_trail", []), "Move at exit in day-ATRs (0 = break-even)", True)
+                                              if under else histogram(tc.get("multiples_trail", []))))
         out.append("<h3>Tail concentration (momentum trail exit)</h3>" + table([tc.get("tail_concentration", {})]))
-        out.append("<h3>By month</h3><p class='muted'>units_won = sum of (multiple − 1) with 1 unit of premium per trade.</p>"
-                   + table(tc.get("monthly", []), max_rows=80))
+        unit_note = ("atr_won = sum of each trade's move in day-ATRs." if under
+                     else "units_won = sum of (multiple − 1) with 1 unit of premium per trade.")
+        out.append(f"<h3>By month</h3><p class='muted'>{unit_note}</p>" + table(tc.get("monthly", []), max_rows=80))
         out.append("<h3>By ticker (momentum trail)</h3>" + table(tc.get("by_ticker", []), max_rows=40))
-        cols = ["ticker", "half", "entry_time", "entry_price", "premium", "exit_time", "exit_price", "exit_reason", "multiple", "hold_bars", "grade"]
+        cols = (["ticker", "half", "side", "entry_time", "entry_price", "exit_time", "exit_price", "exit_reason", "return_pct", "r_atr",
+                 "dollars_per_unit", "hold_bars", "grade"] if under else
+                ["ticker", "half", "entry_time", "entry_price", "premium", "exit_time", "exit_price", "exit_reason", "multiple", "hold_bars", "grade"])
         out.append("<h3>Best 10 trades</h3>" + table([{c: r.get(c) for c in cols} for r in tc.get("best", [])]))
         out.append("<h3>Worst 10 trades</h3>" + table([{c: r.get(c) for c in cols} for r in tc.get("worst", [])]))
         out.append("<h3>Trade log (first 40)</h3>" + table([{c: r.get(c) for c in ["exit_rule"] + cols} for r in prev], max_rows=40))
     out.append("<h2 id='check'>Checklist before believing a result</h2><ul>"
                "<li>Held in both halves, with enough cases in each</li><li>No reading used anything from after its bar's close</li>"
-               "<li>Priced as an option; premium not tiny; spread considered (real quotes!)</li><li>Compared against all bars and against the same entries</li>"
+               + ("<li>Costs considered: commission, spread, slippage, futures roll, crypto funding</li>" if under else
+                  "<li>Priced as an option; premium not tiny; spread considered (real quotes!)</li>") +
+               "<li>Compared against all bars and against the same entries</li>"
                "<li>Censored share and tail concentration reported</li><li>Pre-registered, or labelled exploratory</li>"
                "<li>A refute pass (a fresh session whose only job is to break it) found nothing fatal</li></ul>")
     out.append(f"<p class='muted'>Run time {S.get('seconds')}s. Source: results/summary.json in this study folder.</p></main></body></html>")

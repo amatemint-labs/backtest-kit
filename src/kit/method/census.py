@@ -71,13 +71,26 @@ def zigzag(hi: np.ndarray, lo: np.ndarray, atr: np.ndarray, k: float) -> list[tu
     return piv
 
 
-def daily_context(daily: pd.DataFrame) -> pd.DataFrame:
-    """Per session: ATR(14), 20-day realized vol, EMA50 slope — all from PRIOR sessions (shift 1)."""
-    d = daily[["ts", "high", "low", "close"]].copy()
-    d["date"] = d.ts.dt.tz_localize(None).dt.normalize()
+# How a leg's size is measured, and the two label tiers built from it.
+#   options:    the at-the-money option's gain (1x = doubled)
+#   underlying: the move in daily ATRs (shares, futures contracts, crypto)
+TIERS = {"options": (("1x", 1.0), ("3x", 3.0)), "underlying": (("2atr", 2.0), ("4atr", 4.0))}
+WINNER_LEVELS = {"options": (1, 3, 5, 10), "underlying": (1, 2, 4, 8)}
+
+
+def _sessions():
+    from ..assets import SESSIONS
+    return SESSIONS
+
+
+def daily_context(daily: pd.DataFrame, session=None) -> pd.DataFrame:
+    """Per trading day: ATR(14), 20-day realized vol, EMA50 slope — all from PRIOR days (shift 1)."""
+    ses = session or _sessions()["us_equity"]
+    d = daily[["ts", "high", "low", "close"]].copy().reset_index(drop=True)
+    d["date"] = ses.trade_date(d.ts).to_numpy()
     tr = pine.tr(d.high, d.low, d.close)
     d["atr"] = pd.Series(tr).rolling(14, min_periods=10).mean().to_numpy()
-    d["rv"] = np.log(d.close).diff().rolling(20).std().to_numpy() * np.sqrt(252)
+    d["rv"] = np.log(d.close).diff().rolling(20).std().to_numpy() * np.sqrt(ses.days_per_year)
     e50 = d.close.ewm(span=50, adjust=False).mean()
     d["e50_slope"] = (e50 - e50.shift(10)).to_numpy()
     prev = d[["date"]].copy()
@@ -95,7 +108,7 @@ def horizon(sessions: np.ndarray) -> np.ndarray:
 
 def _price(legs: pd.DataFrame, bars: pd.DataFrame, close: np.ndarray, dates: np.ndarray) -> pd.DataFrame:
     call = (legs.side == "C").to_numpy()
-    ed = legs.entry_ts.dt.tz_localize(None).dt.normalize().to_numpy().astype("datetime64[D]")
+    ed = legs.entry_date.to_numpy().astype("datetime64[D]")
     exp = np.empty(len(legs), dtype="datetime64[D]")
     ks = legs.k_atr.to_numpy(float)
     for k in np.unique(ks):
@@ -112,7 +125,7 @@ def _price(legs: pd.DataFrame, bars: pd.DataFrame, close: np.ndarray, dates: np.
     x_ts = bars.ts.iloc[xi].reset_index(drop=True)
     fr_x = options.day_fraction_left(x_ts)
     T0 = options.years_to_expiry(ed, fr_e, exp)
-    T1 = options.years_to_expiry(x_ts.dt.tz_localize(None).dt.normalize().to_numpy().astype("datetime64[D]"), fr_x, exp)
+    T1 = options.years_to_expiry(dates[xi], fr_x, exp)
     mult, p0 = options.multiple(S0, S1, T0, T1, legs.iv.to_numpy(), call)
     touch, _ = options.multiple(S0, legs.extreme.to_numpy(), T0, T1, legs.iv.to_numpy(), call)
     legs = legs.copy()
@@ -123,15 +136,31 @@ def _price(legs: pd.DataFrame, bars: pd.DataFrame, close: np.ndarray, dates: np.
     legs["mult"] = mult
     legs["mult_at_best"] = touch
     legs["gain"] = mult - 1
+    legs["size"] = legs["gain"]
     legs["tier"] = np.select([legs.gain >= 10, legs.gain >= 5, legs.gain >= 3, legs.gain >= 1], ["10x+", "5-10x", "3-5x", "1-3x"], "<1x")
     return legs
 
 
-def legs_for(bars: pd.DataFrame, daily: pd.DataFrame, ticker: str, tf: str) -> pd.DataFrame:
-    """All legs for one ticker on one timeframe ('1h' intraday or '1D')."""
+def _underlying(legs: pd.DataFrame, multiplier: float) -> pd.DataFrame:
+    legs = legs.copy()
+    sign = np.where(legs.side == "C", 1.0, -1.0)
+    legs["points"] = sign * (legs.S1 - legs.S0)
+    legs["return_pct"] = 100 * legs.points / legs.S0
+    legs["dollars_per_unit"] = legs.points * multiplier
+    legs["size"] = (legs.S1 - legs.S0).abs() / legs.atr
+    legs["tier"] = np.select([legs["size"] >= 8, legs["size"] >= 4, legs["size"] >= 2, legs["size"] >= 1],
+                             ["8+ ATR", "4-8 ATR", "2-4 ATR", "1-2 ATR"], "<1 ATR")
+    return legs
+
+
+def legs_for(bars: pd.DataFrame, daily: pd.DataFrame, ticker: str, tf: str, inst=None, trade_as: str = "options") -> pd.DataFrame:
+    """All legs for one ticker on one timeframe ('1h' intraday or '1D'), valued per `trade_as`."""
+    from ..assets import Instrument
+    inst = inst or Instrument(ticker, "stock")
+    ses = inst.session
     bars = bars.reset_index(drop=True)
-    ctx = daily_context(daily)
-    date = bars.ts.dt.tz_localize(None).dt.normalize()
+    ctx = daily_context(daily, ses)
+    date = ses.trade_date(bars.ts).reset_index(drop=True)
     m = pd.DataFrame({"date": date}).merge(ctx, on="date", how="left")
     intraday = tf != "1D"
     atr = (m.prev_atr if intraday else m.atr_today).to_numpy(float)
@@ -139,6 +168,7 @@ def legs_for(bars: pd.DataFrame, daily: pd.DataFrame, ticker: str, tf: str) -> p
     slope = m.prev_e50_slope.to_numpy(float)
     hi, lo, c = (bars[x].to_numpy(float) for x in ("high", "low", "close"))
     dates = date.to_numpy().astype("datetime64[D]")
+    day_idx = np.searchsorted(np.unique(dates), dates)
     rows = []
     for k in (INTRADAY_K if intraday else DAILY_K):
         P = zigzag(hi, lo, atr, k)
@@ -151,47 +181,57 @@ def legs_for(bars: pd.DataFrame, daily: pd.DataFrame, ticker: str, tf: str) -> p
     L = pd.DataFrame(rows, columns=cols)
     if L.empty:
         return L
-    L["entry_ts"] = bars.ts.iloc[L.entry_i].to_numpy()
-    L["exit_ts"] = bars.ts.iloc[L.exit_i].to_numpy()
-    L["entry_ts"] = pd.to_datetime(L.entry_ts).dt.tz_convert(bars.ts.dt.tz)
-    L["exit_ts"] = pd.to_datetime(L.exit_ts).dt.tz_convert(bars.ts.dt.tz)
+    L["entry_ts"] = pd.to_datetime(bars.ts.iloc[L.entry_i].reset_index(drop=True))
+    L["exit_ts"] = pd.to_datetime(bars.ts.iloc[L.exit_i].reset_index(drop=True))
+    L["entry_date"] = pd.to_datetime(dates[L.entry_i])
     L["S1"] = c[L.exit_i]
     L["bars"] = L.exit_i - L.entry_i
     L["iv"] = options.iv_from_rv(L.rv)
-    L = _price(L, bars, c, dates)
-    sess = np.busday_count(L.entry_ts.dt.tz_localize(None).dt.normalize().to_numpy().astype("datetime64[D]"),
-                           L.exit_ts.dt.tz_localize(None).dt.normalize().to_numpy().astype("datetime64[D]"))
+    if trade_as == "options":
+        L = _price(L, bars, c, dates)
+    else:
+        L = _underlying(L, inst.multiplier)
+    sess = day_idx[L.exit_i] - day_idx[L.entry_i]
     L["sessions"] = sess
     L["horizon"] = horizon(sess)
     L["move_atr"] = (L.S1 - L.S0).abs() / L.atr
     L["move_pct"] = L.S1 / L.S0 - 1
+    L["asset"] = inst.asset
     L["trend"] = np.where(np.sign(L.e50_slope) == np.where(L.side == "C", 1, -1), "with", "against")
-    return L.drop(columns=["e50_slope"])
+    return L.drop(columns=["e50_slope", "entry_date"])
 
 
-def winners(legs: pd.DataFrame, gains=(5, 10)) -> pd.DataFrame:
-    """Count of legs whose option gained >= 5x / >= 10x, by horizon and side."""
+def winners(legs: pd.DataFrame, trade_as: str = "options") -> pd.DataFrame:
+    """Count of legs reaching each size level (option gain, or move in ATR), by horizon and side."""
     if legs.empty:
         return pd.DataFrame()
+    unit = "x" if trade_as == "options" else " ATR"
+    sides = {"C": "calls", "P": "puts"} if trade_as == "options" else {"C": "long", "P": "short"}
     out = []
     for h in HORIZONS:
         for side in ("C", "P"):
             x = legs[(legs.horizon == h) & (legs.side == side)]
-            r = {"horizon": h, "side": {"C": "calls", "P": "puts"}[side], "legs": len(x)}
-            for g in (1, 3, *gains):
-                r[f">={g}x"] = int((x.gain >= g).sum())
+            r = {"horizon": h, "side": sides[side], "legs": len(x)}
+            for g in WINNER_LEVELS[trade_as]:
+                r[f">={g}{unit}"] = int((x["size"] >= g).sum())
             out.append(r)
     return pd.DataFrame(out)
 
 
-def summary(legs: pd.DataFrame) -> pd.DataFrame:
+def summary(legs: pd.DataFrame, trade_as: str = "options") -> pd.DataFrame:
     if legs.empty:
         return pd.DataFrame()
     g = legs.groupby(["tf", "k_atr", "side"])
     s = g.size().rename("legs").to_frame()
-    s["pct_1x+"] = (100 * g.apply(lambda x: (x.gain >= 1).mean(), include_groups=False)).round(1)
-    s["pct_3x+"] = (100 * g.apply(lambda x: (x.gain >= 3).mean(), include_groups=False)).round(1)
-    s["median_mult"] = g["mult"].median().round(2)
+    if trade_as == "options":
+        s["pct_1x+"] = (100 * g.apply(lambda x: (x.gain >= 1).mean(), include_groups=False)).round(1)
+        s["pct_3x+"] = (100 * g.apply(lambda x: (x.gain >= 3).mean(), include_groups=False)).round(1)
+        s["median_mult"] = g["mult"].median().round(2)
+        s["pct_outlived_option"] = (100 * g["outlived_option"].mean()).round(1)
+    else:
+        s["pct_2atr+"] = (100 * g.apply(lambda x: (x["size"] >= 2).mean(), include_groups=False)).round(1)
+        s["pct_4atr+"] = (100 * g.apply(lambda x: (x["size"] >= 4).mean(), include_groups=False)).round(1)
+        s["median_move_atr"] = g["size"].median().round(2)
+        s["median_return_pct"] = g["return_pct"].median().round(2)
     s["median_sessions"] = g["sessions"].median()
-    s["pct_outlived_option"] = (100 * g["outlived_option"].mean()).round(1)
     return s.reset_index()

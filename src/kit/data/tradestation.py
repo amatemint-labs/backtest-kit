@@ -162,7 +162,8 @@ class TradeStation:
 
     # ── bars ──────────────────────────────────────────────────────────────
     def bars(self, symbol: str, unit: str = "Minute", interval: int = 1,
-             firstdate: datetime | None = None, lastdate: datetime | None = None, barsback: int | None = None) -> pd.DataFrame:
+             firstdate: datetime | None = None, lastdate: datetime | None = None, barsback: int | None = None,
+             session=None) -> pd.DataFrame:
         p: dict = {"unit": unit, "interval": interval}
         if barsback:
             p["barsback"] = barsback
@@ -171,10 +172,10 @@ class TradeStation:
         if lastdate:
             p["lastdate"] = lastdate.strftime("%Y-%m-%dT%H:%M:%SZ")
         js = self.get("/v3/marketdata/barcharts/" + urllib.parse.quote(symbol, safe=""), p)
-        return parse_bars(js.get("Bars", []), unit)
+        return parse_bars(js.get("Bars", []), unit, session)
 
 
-def parse_bars(rows: list[dict], unit: str) -> pd.DataFrame:
+def parse_bars(rows: list[dict], unit: str, session=None) -> pd.DataFrame:
     if not rows:
         return pd.DataFrame(columns=store.COLS)
     df = pd.DataFrame(rows)
@@ -185,25 +186,33 @@ def parse_bars(rows: list[dict], unit: str) -> pd.DataFrame:
         "low": pd.to_numeric(df["Low"]), "close": pd.to_numeric(df["Close"]),
         "volume": pd.to_numeric(df.get("TotalVolume", 0)),
     })
-    if unit != "Minute":                      # daily+: stamp the session close (16:00 ET) of that date
-        out["ts"] = out["ts"].dt.normalize() + pd.Timedelta(hours=16)
+    if unit != "Minute":                      # daily+: stamp the session close of that date (16:00 ET for stocks)
+        out["ts"] = store.stamp_daily(out["ts"], session).to_numpy()
     return out.sort_values("ts").reset_index(drop=True)
 
 
-def detect_open_stamps(m1: pd.DataFrame) -> bool:
-    """True if minute bars look stamped at their OPEN (a 09:30 bar exists, no 16:00 bar).
-    The kit stores CLOSE times; TradeStation's convention is checked on your data, not assumed."""
+def detect_open_stamps(m1: pd.DataFrame, session=None) -> bool:
+    """True if minute bars look stamped at their OPEN (a bar at the session's opening minute exists, none
+    at its closing minute; e.g. 09:30 but no 16:00 for stocks, 18:00 but no 17:00 for CME futures).
+    The kit stores CLOSE times; the vendor's convention is checked on your data, not assumed.
+    A 24-hour session cannot be told apart this way and returns False."""
     if m1.empty:
         return False
-    hm = m1["ts"].dt.hour * 60 + m1["ts"].dt.minute
-    return bool((hm == 570).any() and not (hm == 960).any())
+    ses = store._session(session)
+    loc = m1["ts"].dt.tz_convert(ses.tz)
+    hm = loc.dt.hour * 60 + loc.dt.minute
+    o, c = ses.open_min % 1440, (ses.open_min + ses.length_min) % 1440
+    if o == c:
+        return False
+    return bool((hm == o).any() and not (hm == c).any())
 
 
 # ── fetch with resume ─────────────────────────────────────────────────────────
 def fetch_minutes(ts: TradeStation, data_dir: Path, symbol: str, start: str, now: datetime | None = None,
-                  window_days: int = 120, log: Callable[[str], None] = print) -> dict:
+                  window_days: int = 120, log: Callable[[str], None] = print, session=None) -> dict:
     """Pull 1-minute bars from `start` to now into raw/1m/<symbol>.parquet. Resumes: only missing
-    stretches are requested, and each window is saved as soon as it arrives."""
+    stretches are requested, and each window is saved as soon as it arrives.
+    Futures: use TradeStation's continuous symbol (@ES) or a contract (ESZ26) with session "cme_globex"."""
     now = now or datetime.now(timezone.utc)
     p = store.path(data_dir, "1m", symbol, raw=True)
     cache = store.read(data_dir, "1m", symbol, raw=True)
@@ -234,13 +243,11 @@ def fetch_minutes(ts: TradeStation, data_dir: Path, symbol: str, start: str, now
                     earliest_hit = True      # no data this far back: TradeStation's history ends here
                     break
             else:
-                if detect_open_stamps(df):
+                if detect_open_stamps(df, session):
                     df["ts"] = df["ts"] + pd.Timedelta(minutes=1)
                     shifted = True
                 # never store a session that has not finished: its daily/4h bars would be partial
-                now_et = pd.Timestamp(now).tz_convert(TZ)
-                if now_et.hour * 60 + now_et.minute < 16 * 60 + 5:
-                    df = df[df["ts"] < now_et.normalize()]
+                df = store.drop_unfinished(df, session, now)
                 if df.empty:
                     cur_hi = cur_lo - timedelta(minutes=1)
                     continue
@@ -256,9 +263,9 @@ def fetch_minutes(ts: TradeStation, data_dir: Path, symbol: str, start: str, now
             "history_ended_early": earliest_hit, "shifted_open_stamps": shifted}
 
 
-def fetch_daily(ts: TradeStation, data_dir: Path, symbol: str, start: str) -> int:
+def fetch_daily(ts: TradeStation, data_dir: Path, symbol: str, start: str, session=None) -> int:
     df = ts.bars(symbol, "Daily", 1, firstdate=pd.Timestamp(start, tz="UTC").to_pydatetime(),
-                 lastdate=datetime.now(timezone.utc))
+                 lastdate=datetime.now(timezone.utc), session=session)
     if df.empty:
         return 0
     store.write(df, store.path(data_dir, "1D", symbol, raw=True))

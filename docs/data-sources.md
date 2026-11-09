@@ -1,11 +1,31 @@
 # Data sources
 
-| Source | Cost | 1-minute history | Use it for | Commands |
+| Source | Cost | Asset classes | 1-minute history | Commands |
 |---|---|---|---|---|
-| **Alpaca Market Data (Basic)** | Free account, no deposit (paper accounts included) | All-exchange (SIP) bars since 2016; requests must end ≥ 15 minutes ago; 200 calls/min | Years of minute bars at no cost | `kit login alpaca`, `kit fetch --source alpaca` |
-| **TradeStation API** | Free API; funded account required | ≤ 57,600 bars per request, ≤ 3 calendar years per minute request; depth depends on account | If you already trade at TradeStation | `kit login tradestation`, `kit fetch` |
-| **Databento** *(optional)* | Pay as you go (credit for new accounts) | US equities (EQUS.MINI) from 2023-03-28; options (OPRA.PILLAR) from 2013-04-01 | Real option quotes; deep history | `uv sync --extra databento`, `kit fetch --source databento` |
-| **TradingView export** | Plus plan or higher | What the chart shows (10K–40K bars by plan) | Proving indicators match; one-off imports | `kit import-tv`, `kit match-check` |
+| **Alpaca Market Data (Basic)** | Free; crypto needs no account | Stocks, crypto | Stocks: all-exchange (SIP) bars since 2016, requests must end ≥ 15 minutes ago, 200 calls/min. Crypto: 24/7 bars, depth not documented | `kit login alpaca`, `kit fetch --source alpaca` |
+| **TradeStation API** | Free API; funded account required | Stocks, futures | ≤ 57,600 bars per request, ≤ 3 calendar years per minute request; depth depends on account | `kit login tradestation`, `kit fetch` |
+| **Databento** *(optional)* | Pay as you go (credit for new accounts) | Stocks, futures | US equities (EQUS.MINI) from 2023-03-28; CME futures (GLBX.MDP3) from 2010-06-06 | `uv sync --extra databento`, `kit fetch --source databento` |
+| **TradingView export** | Plus plan or higher | Anything on a chart | What the chart shows (10K–40K bars by plan) | `kit import-tv`, `kit match-check` |
+
+## Asset classes and sessions
+
+`kit fetch` decides each symbol's asset class, records it in `data/meta/<symbol>.json`, and every later
+step reads it from there:
+
+| Asset | Recognised from | Session | Trading day | Daily bar stamped |
+|---|---|---|---|---|
+| Stock / ETF | anything else | 09:30–16:00 New York | calendar date | 16:00 New York |
+| Future | `@ES`, `ESZ26`, `ES.c.0` | 18:00–17:00 New York | the evening session belongs to the next day | 17:00 New York |
+| Crypto | `BTC/USD`, `ETH-USD` | 00:00–24:00 UTC, 7 days | UTC date | 00:00 UTC |
+
+Override the guess with `--asset stock|future|crypto`. Futures multipliers (dollars per point) are
+filled in for common CME contracts (ES 50, MES 5, NQ 20, MNQ 2, YM 5, RTY 50, CL 1,000, GC 100,
+SI 5,000, NG 10,000, ZN and ZB 1,000, 6E 125,000, and others); pass `--multiplier` for anything else.
+A bare root such as `GC` is read as a stock ticker, so write `@GC` or add `--asset future`.
+
+Intraday bars are anchored at each session's open, so futures 1-hour bars close at 19:00, 20:00 …
+17:00 New York and 4-hour bars at 22:00, 02:00, 06:00, 10:00, 14:00 and 17:00. Holidays and early
+closes are not modelled separately: a short session simply has fewer bars.
 
 Facts above were checked against each provider's documentation on 2026-11-08; providers change
 their terms — check before relying on them.
@@ -18,13 +38,22 @@ Brokers (funded account and data subscriptions; no expired options); Tiingo (fre
 
 ## Alpaca (free)
 
+Crypto needs no account:
+
+```bash
+uv run kit fetch --source alpaca --tickers BTC/USD,ETH/USD,SOL/USD --start 2023-01-01
+```
+
+For stocks:
+
 1. Sign up at [alpaca.markets](https://alpaca.markets) (no deposit needed).
 2. In the Paper Trading dashboard, generate **API Keys**.
 3. `uv run kit login alpaca` — paste the Key ID and Secret (hidden input; stored in the Keychain).
 4. `uv run kit fetch --source alpaca --tickers SPY,QQQ --start 2022-01-01`
 
-The kit only calls `GET https://data.alpaca.markets/v2/stocks/bars` (SIP feed, split-adjusted); every
-other host and path is refused before a request leaves the machine.
+The kit only calls `GET https://data.alpaca.markets/v2/stocks/bars` (SIP feed, split-adjusted) and
+`GET https://data.alpaca.markets/v1beta3/crypto/us/bars`; every other host and path is refused before a
+request leaves the machine. Crypto minutes without trades arrive with zero volume, priced from quotes.
 
 ## TradeStation
 
@@ -43,20 +72,28 @@ if added to `kit.toml`.
 `kit fetch` walks back in ~120-day windows, halves a window that hits the 57,600-bar limit, waits on
 HTTP 429 (honouring `X-RateLimit-Reset`), saves after every window, and resumes from where it stopped.
 
+Futures use TradeStation's symbols: `@ES` for the continuous contract or `ESZ26` for one expiry
+(`uv run kit fetch --tickers @ES,@NQ`). TradeStation no longer offers crypto.
+
 ## Databento (optional, paid)
 
 ```bash
 uv sync --extra databento
 uv run kit fetch --source databento --tickers SPY --start 2023-04-01
+uv run kit fetch --source databento --tickers ES.c.0,NQ.c.0 --start 2019-01-01
 ```
 
 Store `DATABENTO_API_KEY` in the Keychain or `.env` first. The kit prints the cost and asks for
-"yes" before downloading.
+"yes" before downloading. Futures come from CME Globex (`GLBX.MDP3`); a symbol of the form
+`ROOT.RULE.RANK` is a continuous contract (`ES.c.0` = front month by calendar, `ES.v.0` = by volume,
+`ES.n.0` = by open interest), anything else is read as one contract (`ESZ6`). Databento's continuous
+prices are not back-adjusted, so each roll appears as a jump in price.
 
 ## TradingView export
 
 1. Put the indicators you want to check on a chart at the timeframe you want (start with 1h).
-2. Turn **extended hours off** (the kit uses regular hours).
+2. For stocks, turn **extended hours off** (the kit uses regular hours). Futures and crypto use their
+   full sessions; add `--asset future` or `--asset crypto` if the export's file name hides the symbol.
 3. Scroll back so plenty of history is loaded.
 4. Chart menu → **Export chart data…** → choose a time format → Export.
    The file "includes time, OHLC data, and any plots".
@@ -94,6 +131,9 @@ Every request must carry the secret path printed at start-up.
 | TradingView 2D bar alignment | Kit pairs trading days from 2000-01-03 | `kit match-check` on an indicator that reads 2D |
 | Pine EMA warm-up seeding | SMA seed assumed; affects only early bars | `kit match-check --ema-seed first` |
 | Databento cost and data layout | Untested without a key | Cost shown before download |
+| TradeStation futures bar stamps and daily-bar time | Not documented; treated like stock bars | `shifted_open_stamps` in the fetch result; compare one day with TradingView |
+| Alpaca crypto history depth and keyless rate limit | Not documented | `first` in the fetch result |
+| TradingView futures and crypto bar anchoring | Futures day starts 18:00 New York (documented); hourly anchoring and crypto daily bars assumed | `kit match-check` |
 
 ## Troubleshooting
 

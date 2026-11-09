@@ -92,7 +92,7 @@ fires, so a condition true for six bars in a row is one trade.
 
 ```toml
 [signals.stoch_turn_up]
-side = "C"                                   # C = calls, P = puts
+side = "C"                                   # C = calls (or long), P = puts (or short)
 when = "h1_STOCH_STATE == '<20 rising' and h4_MACD_STATE.str.startswith('bull')"
 note = "1h stochastic turning up from below 20 while 4h MACD momentum is bullish"
 ```

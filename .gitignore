@@ -26,7 +26,7 @@ __pycache__/
 .DS_Store
 studies/_smoke/
 scratch_*.py
-# local Claude Code permission choices are yours to make; not shipped
+# local AI-assistant permission choices are yours to make; not shipped
 .claude/settings.json
 .claude/settings.local.json
 studies/_*/

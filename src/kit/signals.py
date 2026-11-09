@@ -2,7 +2,7 @@
 
 Two ways to write one.
 
-1. An expression in the study's study.toml (fastest; Claude can write these from a sentence):
+1. An expression in the study's study.toml (fastest; an AI assistant can write these from a sentence):
 
        [signals.stoch_hook]
        side = "C"                     # C = call (long), P = put (short)
@@ -130,7 +130,7 @@ def evaluate(D: pd.DataFrame, signals: list[Signal]) -> dict[str, dict]:
     return res
 
 
-def describe(D: pd.DataFrame, ev: dict, months: dict) -> pd.DataFrame:
+def describe(D: pd.DataFrame, ev: dict, months: dict, tiers=("1x", "3x")) -> pd.DataFrame:
     """Per signal and half: entries, per month, and how often a winning leg started right there vs any bar."""
     rows = []
     for name, e in ev.items():
@@ -138,9 +138,10 @@ def describe(D: pd.DataFrame, ev: dict, months: dict) -> pd.DataFrame:
         for h in ("P1", "P2"):
             mh = (D.period == h).to_numpy()
             ent = e["entries"] & mh
-            r = {"signal": name, "side": {"C": "calls", "P": "puts"}[side], "half": h, "entries": int(ent.sum()),
+            names = {"C": "calls", "P": "puts"} if tiers[0] == "1x" else {"C": "long", "P": "short"}
+            r = {"signal": name, "side": names[side], "half": h, "entries": int(ent.sum()),
                  "per_month": round(ent.sum() / max(months.get(h, 1), 1e-9), 1), "bars_firing_pct": round(100 * (e["fires"] & mh).mean(), 2)}
-            for lab in (f"{side}_1x", f"{side}_3x"):
+            for lab in (f"{side}_{tiers[0]}", f"{side}_{tiers[1]}"):
                 if lab in D:
                     base = D[lab].to_numpy()[mh].mean()
                     hit = D[lab].to_numpy()[ent].mean() if ent.any() else np.nan
